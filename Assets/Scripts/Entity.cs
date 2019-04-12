@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+
     [SerializeField] public int maxHealth;
     [SerializeField] public int maxStamina;
 
@@ -29,6 +30,7 @@ public class Entity : MonoBehaviour
         set { stamina = normalize(value, maxStamina); }
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +44,4 @@ public class Entity : MonoBehaviour
         // TODO: Make stamina regain over time.
     }
 
-    
 }
