@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 453309479}
   - component: {fileID: 453309478}
   - component: {fileID: 453309477}
+  - component: {fileID: 453309483}
   - component: {fileID: 453309480}
   - component: {fileID: 453309482}
   - component: {fileID: 453309481}
@@ -286,25 +287,6 @@ MonoBehaviour:
   CameraSpeed: 10
   MaxCameraPitch: 45
   Camera: {fileID: 1490935562}
-  m_Script: {fileID: 11500000, guid: 74e5fb5db7697bb4d9b922f810a0d0e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  maxStamina: 100
-  m_Script: {fileID: 11500000, guid: 71571a1c2e140104aaff0d20df9a5b84, type: 3}
-  m_ObjectHideFlags: 0
-  m_GameObject: {fileID: 453309475}
-  m_EditorHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_EditorClassIdentifier: 
-  m_Enabled: 1
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  CameraSpeed: 10
-  Camera: {fileID: 1490935562}
-  MaxCameraPitch: 45
-  MovementSpeed: 6
 --- !u!114 &453309482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
+--- !u!54 &453309483
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,7 +315,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &1236871779
 GameObject:
@@ -666,7 +649,7 @@ Transform:
   m_LocalScale: {x: 1.5809523, y: 1.5809523, z: 1.5809523}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490935562
 GameObject:
@@ -780,7 +763,7 @@ Transform:
   - {fileID: 1887045476}
   - {fileID: 453309476}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887045475
 GameObject:
