@@ -26,6 +26,19 @@ public class Entity : MonoBehaviour
 		set { stamina = normalize(value, maxStamina); }
 	}
 
+    public bool LoseStamina(int staminaLoss) // this method can be called on when the player does an action and needs to lose stamina
+    {
+        if ((stamina + staminaLoss) >= 0) // if new stamina would be bigger than 0, then its okay.
+        {
+            stamina = stamina - staminaLoss;
+            return true;
+        }
+        else // if new stamina would be lower than 0 not allowed
+        {
+            return false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +49,6 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Make stamina regain over time.
+        
     }
 }
