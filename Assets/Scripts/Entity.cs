@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-	[SerializeField] private int maxHealth;
-	[SerializeField] private int maxStamina;
+	[SerializeField] public int maxHealth;
+	[SerializeField] public int maxStamina;
 
 	private int health;
 	private int stamina;
