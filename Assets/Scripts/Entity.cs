@@ -48,20 +48,19 @@ public class Entity : MonoBehaviour
 
     IEnumerator DoEverySoOften(float seconds)
     {
-        
-        yield return new WaitForSeconds(seconds);
-        RegainStamina();
+        yield return new WaitForSeconds(seconds); // this makes the function wait
+        RegainStamina(); // call function to regain stamina
     }
 
     private void RegainStamina()
     {
-        if ((stamina + 10) > maxStamina)
+        if ((stamina + 10) > maxStamina) // make sure it doesnt exceed maximum
         {
-            stamina = maxStamina;
+            stamina = maxStamina; // set stamina
         }
         else
         {
-            stamina = stamina + 10;
+            stamina = stamina + 10; // set new stamina
         }
     }
 
