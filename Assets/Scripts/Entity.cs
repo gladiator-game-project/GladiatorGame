@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour
     {
         if ((stamina + staminaLoss) >= 0) // if new stamina would be bigger than 0, then its okay.
         {
-            stamina = stamina - staminaLoss;
+            stamina = stamina - staminaLoss; // then change the stamina
             return true;
         }
         else // if new stamina would be lower than 0 not allowed
@@ -46,9 +46,28 @@ public class Entity : MonoBehaviour
         Stamina = maxStamina;
     }
 
+    IEnumerator DoEverySoOften(float seconds)
+    {
+        
+        yield return new WaitForSeconds(seconds);
+        RegainStamina();
+    }
+
+    private void RegainStamina()
+    {
+        if ((stamina + 10) > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+        else
+        {
+            stamina = stamina + 10;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        StartCoroutine(DoEverySoOften(0.5f)); // start the every 0.5 seconds loop
     }
 }
