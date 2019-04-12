@@ -24,6 +24,6 @@ public class HealthBar : MonoBehaviour
         int maxHealth = Entity.GetComponent<Entity>().maxHealth; // get maxhealth of entity
         float percentage = currentHealth / maxHealth * 100; // calculate percentage of health the entity has
         float width = percentage / 100 * 200; // calculate width, 200 is normal width
-        Transform.sizeDelta = new Vector2(width,30); // height is set so it stays 30
+        Transform.sizeDelta = new Vector2(width,Transform.sizeDelta.y); // set height and width
     }
 }
