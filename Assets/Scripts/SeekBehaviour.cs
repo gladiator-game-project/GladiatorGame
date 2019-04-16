@@ -16,7 +16,7 @@ public class SeekBehaviour : MonoBehaviour
     void Start()
     {
         Velocity = Vector3.zero; // velocity starts zero
-        Target = transform.position;
+        Target = transform.position; // set current position
     }
 
     // Update is called once per frame
