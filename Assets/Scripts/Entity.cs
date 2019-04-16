@@ -8,8 +8,14 @@ public class Entity : MonoBehaviour
     [SerializeField] public int maxHealth;
     [SerializeField] public int maxStamina;
 
+    [SerializeField] private BaseWeapon weapon;
     private int health;
     private int stamina;
+
+    public void Attack()
+    {
+        weapon.Animate();
+    }
 
     private int normalize(int value, int max)
     {
@@ -49,6 +55,7 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
+       
     }
 
     IEnumerator DoEverySoOften(float seconds)
