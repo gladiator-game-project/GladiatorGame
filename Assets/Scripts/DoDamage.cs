@@ -11,13 +11,11 @@ public class DoDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider _collision)
     {
-        if (_collision.gameObject.name == "Enemy")
+        if (_collision.gameObject.GetComponent<Entity>() != null)
         {
-            print("OH NOO");
+            Entity healthScript = _collision.gameObject.GetComponent<Entity>();
+            int damage = 20;
+            healthScript.LoseHealth(damage);
         }
-
-        Entity healthScript = _collision.gameObject.GetComponent<Entity>();
-        int damage = 20;
-        healthScript.LoseHealth(damage);
     }
 }
