@@ -22,9 +22,9 @@ public class StaminaBar : MonoBehaviour
 
     private void CheckWidth()
     {
-        int currentStamina = EntityScript.Stamina;
-        int maxStamina = EntityScript.maxStamina;
-        float percentage = currentStamina / maxStamina * 100;
+        float currentStamina = EntityScript.Stamina;
+        float maxStamina = EntityScript.maxStamina;
+        float percentage = currentStamina / maxStamina * 100F;
         float width = percentage / 100 * 200;
         Transform.sizeDelta = new Vector2(width,Transform.sizeDelta.y);
     }

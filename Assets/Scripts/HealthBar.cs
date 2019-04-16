@@ -22,9 +22,9 @@ public class HealthBar : MonoBehaviour
 
     public void SizeHealthBar() // function to check the healthbar and resize it if necesary
     {
-        int currentHealth = Entityscript.Health; // get currenthealth of entitiy
-        int maxHealth = Entityscript.maxHealth; // get maxhealth of entity
-        float percentage = currentHealth / maxHealth * 100; // calculate percentage of health the entity has
+        float currentHealth = Entityscript.Health; // get currenthealth of entitiy
+        float maxHealth = Entityscript.maxHealth; // get maxhealth of entity
+        float percentage = currentHealth / maxHealth * 100F; // calculate percentage of health the entity has
         float width = percentage / 100 * 200; // calculate width, 200 is normal width
         Transform.sizeDelta = new Vector2(width,Transform.sizeDelta.y); // set height and width
     }
