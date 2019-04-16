@@ -12,16 +12,19 @@ public class PlayerMovement : MonoBehaviour
     private float _pitch;
 
     private Rigidbody _rigidBody;
+    private Entity _entity;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        _entity = GetComponent<Entity>();
     }
 
     void Update()
     {
         UpdateKeyMovement();
         UpdateCameraMovement();
+        UpdateAttack();
     }
 
     private void UpdateKeyMovement()
@@ -47,5 +50,13 @@ public class PlayerMovement : MonoBehaviour
 
         _pitch = Mathf.Clamp(_pitch, -MaxCameraPitch, MaxCameraPitch);
         Camera.transform.localEulerAngles = new Vector3(-_pitch, 0, 0);
+    }
+
+    private void UpdateAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            _entity.Attack();
+        }
     }
 }

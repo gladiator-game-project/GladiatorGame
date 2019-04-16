@@ -10,7 +10,7 @@ public class BaseWeapon : MonoBehaviour
     protected int stabHash = Animator.StringToHash("Stab");
     protected int punchHash = Animator.StringToHash("Punch");
 
-    public BaseWeapon()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
