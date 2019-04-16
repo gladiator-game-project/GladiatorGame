@@ -422,9 +422,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 122, y: -40}
+  m_AnchoredPosition: {x: 21.999878, y: -54.999985}
   m_SizeDelta: {x: 200, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1236871781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,9 +602,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 147.00002, y: -92}
+  m_AnchoredPosition: {x: 46.99991, y: -107}
   m_SizeDelta: {x: 200, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1428589259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
+  weapon: {fileID: 0}
 --- !u!114 &1887045481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +980,6 @@ MonoBehaviour:
   Mass: 15
   MaxVelocity: 3
   MaxForce: 15
-  weapon: {fileID: 0}
 --- !u!1 &2036091029
 GameObject:
   m_ObjectHideFlags: 0
