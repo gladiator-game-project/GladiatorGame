@@ -867,6 +867,7 @@ GameObject:
   - component: {fileID: 1887045478}
   - component: {fileID: 1887045477}
   - component: {fileID: 1887045480}
+  - component: {fileID: 1887045481}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -961,6 +962,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
+--- !u!114 &1887045481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887045475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb694f693590aa243a3df29d7babb6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {x: 0, y: 0, z: 0}
+  TargetObject: {fileID: 0}
+  Mass: 15
+  MaxVelocity: 3
+  MaxForce: 15
   weapon: {fileID: 0}
 --- !u!1 &2036091029
 GameObject:
