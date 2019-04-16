@@ -40,7 +40,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_Name
-      value: Knife_final_model
+      value: Knife_final_model Variant
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -50,6 +50,12 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public void LoseHealth(int healthLoss)
+    {
+        health = health - healthLoss;
+        Debug.Log(gameObject.name + "heeft nu " + health);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
