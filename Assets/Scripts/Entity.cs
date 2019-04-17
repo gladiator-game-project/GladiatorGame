@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-
     [SerializeField] public int maxHealth;
     [SerializeField] public int maxStamina;
 
@@ -53,7 +52,7 @@ public class Entity : MonoBehaviour
     public void LoseHealth(int healthLoss)
     {
         health = health - healthLoss; // Changes the current health
-        Debug.Log(gameObject.name + "heeft nu " + health);
+        Debug.Log(gameObject.name + "now has " + health);
     }
 
     // Start is called before the first frame update
