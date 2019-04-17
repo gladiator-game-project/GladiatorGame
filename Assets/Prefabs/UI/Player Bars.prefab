@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 8317416231895003103}
   - component: {fileID: 700049935332335518}
   m_Layer: 5
-  m_Name: Stamina Block
+  m_Name: Stealth Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
