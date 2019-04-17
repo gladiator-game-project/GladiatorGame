@@ -14,11 +14,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rigidBody;
     private Entity _entity;
 
+    private bool _holdMouseDown = false;
+
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
         _entity = GetComponent<Entity>();
     }
+
+    
 
     void Update()
     {
@@ -54,9 +58,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAttack()
     {
+        
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            _holdMouseDown = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+        }
+            
+        if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(20))
+        {
+            _holdMouseDown = false;
+            Vector2 MousePos = Input.mousePosition;
+            Cursor.lockState = CursorLockMode.Locked;
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20);
+            Cursor.visible = false;
+            Debug.Log(Direction(MousePos, MousePosCenter));
             _entity.Attack();
         }
+    }
+
+    private string Direction(Vector2 New_Pos, Vector2 MousePosCenter)
+    {
+        float diffx = New_Pos.x - MousePosCenter.x;
+        float diffy = New_Pos.y - MousePosCenter.y;
+
+        if (diffx > 50 && diffy < 50 && diffy > -50)
+            return "Right";
+        else if (diffx > 50 && diffy > 50)
+            return "UpRight";
+        else if (diffx < 50 && diffx > -50 && diffy > 50)
+            return "Up";
+        else if (diffx < -50 && diffy > 50)
+            return "UpLeft";
+        else if (diffx < -50 && diffy < 50 && diffy > -50)
+            return "Left";
+        else if (diffy < -50)
+            return "Down";
+        else
+            return "Center";
     }
 }
