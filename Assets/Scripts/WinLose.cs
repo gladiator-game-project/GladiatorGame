@@ -26,5 +26,20 @@ public class WinLose : MonoBehaviour
             Debug.Log("Game Over");
             //TODO make game over screen?
         }
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool allDeath = true;
+        foreach (GameObject Enemy in Enemies)
+        {
+            if (Enemy.GetComponent<Entity>().Health > 0)
+            {
+                allDeath = false;
+            }
+        }
+        if (allDeath == true)
+        {
+            Debug.Log("You win!");
+            //TODO make a you win screen
+            allDeath = false;
+        }
     }
 }
