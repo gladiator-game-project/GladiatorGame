@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Entity _entity;
 
     private bool _holdMouseDown = false;
+    public enum Direction { Right, UpRight, Up, UpLeft, Left, Down, Center};
 
     void Start()
     {
@@ -61,41 +62,41 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0)) // if mouse button is pressed
         {
-            _holdMouseDown = true; // then mouse is being hold
-            Cursor.lockState = CursorLockMode.None; // mouse should be moved freely
-            Cursor.visible = false; // but not visible to the player
+            _holdMouseDown = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
         }
             
-        if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(10)) // if mouse button let go, normal attack cost 10 stamina
+        if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(10))// normal attack cost 10 stamina
         {
-            _holdMouseDown = false; // then mouse is not holding down anymore
-            Vector2 MousePos = Input.mousePosition; // check the new pos for direction
-            Cursor.lockState = CursorLockMode.Locked; // set mouse locked agin
-            Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20);
-            Debug.Log(Direction(MousePos, MousePosCenter)); // put in console direction
-            _entity.Attack(); // attack
+            _holdMouseDown = false;
+            Vector2 MousePos = Input.mousePosition;
+            Cursor.lockState = CursorLockMode.Locked;
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
+            Debug.Log(WhichDirection(MousePos, MousePosCenter));
+            _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }
 
-    private string Direction(Vector2 New_Pos, Vector2 MousePosCenter) // Functio  to check direction
+    private Direction WhichDirection(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
-        float diffx = New_Pos.x - MousePosCenter.x; // check distance x
-        float diffy = New_Pos.y - MousePosCenter.y; // check distance y
+        float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
+        float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
-        if (diffx > 50 && diffy < 50 && diffy > -50) // right
-            return "Right";                   //                                                 ----------------
-        else if (diffx > 50 && diffy > 50) //upright                                             | UL | U  | UR |
-            return "UpRight";               //                                                   |----+----+-----
-        else if (diffx < 50 && diffx > -50 && diffy > 50) // up                                  | L  | C  | R  |
-            return "Up";                    //                                                   |----+----+-----
-        else if (diffx < -50 && diffy > 50) // upleft                                            |              |
-            return "UpLeft";                //                                                   |      D       |
-        else if (diffx < -50 && diffy < 50 && diffy > -50) // left                               ----------------
-            return "Left";
-        else if (diffy < -50) // down
-            return "Down";
-        else // center
-            return "Center";
+        if (diffx > 50 && diffy < 50 && diffy > -50)
+            return Direction.Right;                   //                                         ----------------
+        else if (diffx > 50 && diffy > 50) //                                                    | UL | U  | UR |
+            return Direction.UpRight;               //                                           |----+----+-----
+        else if (diffx < 50 && diffx > -50 && diffy > 50) //                                     | L  | C  | R  |
+            return Direction.Up;                    //                                           |----+----+-----
+        else if (diffx < -50 && diffy > 50) //                                                   |              |
+            return Direction.UpLeft;                //                                           |      D       |
+        else if (diffx < -50 && diffy < 50 && diffy > -50) //                                    ----------------
+            return Direction.Left;
+        else if (diffy < -50)
+            return Direction.Down;
+        else
+            return Direction.Center;
     }
 }
