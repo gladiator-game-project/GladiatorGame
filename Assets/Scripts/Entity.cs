@@ -60,7 +60,7 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
-        InvokeRepeating("RegainStamina", 2.0f, 2.0f);
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
     }
 
 
