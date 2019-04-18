@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class EditorPlayMode : MonoBehaviour
 {
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))

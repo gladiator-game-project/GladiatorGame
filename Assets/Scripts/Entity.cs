@@ -38,7 +38,7 @@ public class Entity : MonoBehaviour
 
     public bool LoseStamina(int staminaLoss) // this method can be called on when the player does an action and needs to lose stamina
     {
-        if ((stamina + staminaLoss) >= 0) // if new stamina would be bigger than 0, then its okay.
+        if ((stamina - staminaLoss) >= 0) // if new stamina would be bigger than 0, then its okay.
         {
             stamina = stamina - staminaLoss; // then change the stamina
             return true;
@@ -60,14 +60,9 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
-       
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
     }
 
-    IEnumerator DoEverySoOften(float seconds)
-    {
-        yield return new WaitForSeconds(seconds); // this makes the function wait
-        RegainStamina(); // call function to regain stamina
-    }
 
     private void RegainStamina()
     {
@@ -77,14 +72,14 @@ public class Entity : MonoBehaviour
         }
         else
         {
-            stamina = stamina + 10; // set new stamina
+            stamina = stamina + 20; // set new stamina
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(DoEverySoOften(0.5f)); // start the every 0.5 seconds loop
+        
     }
 
 }
