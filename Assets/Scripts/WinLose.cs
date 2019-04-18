@@ -1,0 +1,30 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WinLose : MonoBehaviour
+{
+    private GameObject Player;
+    private Entity entityscript;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Player = GameObject.Find("Player");
+        entityscript = Player.GetComponent<Entity>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        CheckGameStatus();
+    }
+
+    private void CheckGameStatus()
+    {
+        if (entityscript.Health <= 0)
+        {
+            Debug.Log("Game Over");
+            //TODO make game over screen?
+        }
+    }
+}
