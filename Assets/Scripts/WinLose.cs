@@ -27,12 +27,12 @@ public class WinLose : MonoBehaviour
             //TODO make game over screen?
         }
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        bool allDeath = true;
+        bool allDeath = true; // assume all are death
         foreach (GameObject Enemy in Enemies)
         {
             if (Enemy.GetComponent<Entity>().Health > 0)
             {
-                allDeath = false;
+                allDeath = false;                               // find one alive, then change the bool
             }
         }
         if (allDeath == true)
