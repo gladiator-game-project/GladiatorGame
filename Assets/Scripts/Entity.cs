@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private BaseWeapon weapon;
     private int health;
     private int stamina;
+    private bool _alive = true;
 
     public void Attack()
     {
@@ -92,7 +93,7 @@ public class Entity : MonoBehaviour
     {
         if (health <= 0)
         {
-            Debug.Log(name + " died");
+            _alive = false;
         }
     }
 
