@@ -30,7 +30,7 @@ public class WinLose : MonoBehaviour
         bool allDeath = true; // assume all are death
         foreach (GameObject Enemy in Enemies)
         {
-            if (Enemy.GetComponent<Entity>().Health > 0)
+            if (Enemy.GetComponent<Entity>().Alive == true)
             {
                 allDeath = false;                               // find one alive, then change the bool
             }

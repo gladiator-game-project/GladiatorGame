@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private BaseWeapon weapon;
     private int health;
     private int stamina;
-    private bool _alive = true;
+    public bool Alive;
 
     public void Attack()
     {
@@ -61,7 +61,7 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
-       
+        Alive = true;
     }
 
     IEnumerator DoEverySoOften(float seconds)
@@ -93,7 +93,7 @@ public class Entity : MonoBehaviour
     {
         if (health <= 0)
         {
-            _alive = false;
+            Alive = false;
         }
     }
 
