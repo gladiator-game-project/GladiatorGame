@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             Cursor.visible = false;
         }
             
-        if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(20))
+        if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(10))
         {
             _holdMouseDown = false;
             Vector2 MousePos = Input.mousePosition;

@@ -60,15 +60,9 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
-        StartCoroutine(DoEverySoOften(2f)); // start the every 2 seconds loop
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f);
     }
 
-    IEnumerator DoEverySoOften(float seconds)
-    {
-        yield return new WaitForSeconds(seconds); // this makes the function wait
-        RegainStamina(); // call function to regain stamina
-        DoEverySoOften(seconds);
-    }
 
     private void RegainStamina()
     {
@@ -78,7 +72,7 @@ public class Entity : MonoBehaviour
         }
         else
         {
-            stamina = stamina + 10; // set new stamina
+            stamina = stamina + 20; // set new stamina
         }
     }
 
