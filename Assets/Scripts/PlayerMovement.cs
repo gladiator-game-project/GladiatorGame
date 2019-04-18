@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
             Vector2 MousePos = Input.mousePosition; // check the new pos for direction
             Cursor.lockState = CursorLockMode.Locked; // set mouse locked agin
             Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20);
-            Cursor.visible = true; // and visible in case other functions need it
             Debug.Log(Direction(MousePos, MousePosCenter)); // put in console direction
             _entity.Attack(); // attack
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
