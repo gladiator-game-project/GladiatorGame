@@ -85,6 +85,15 @@ public class Entity : MonoBehaviour
     void Update()
     {
         StartCoroutine(DoEverySoOften(0.5f)); // start the every 0.5 seconds loop
+        UpdateDeath();
+    }
+
+    private void UpdateDeath()
+    {
+        if (health <= 0)
+        {
+            Debug.Log(name + " died");
+        }
     }
 
 }
