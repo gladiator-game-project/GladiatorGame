@@ -21,7 +21,7 @@ public class WinLose : MonoBehaviour
 
     private void CheckGameStatus()
     {
-        if (entityscript.Health <= 0)
+        if (entityscript.Alive == false)
         {
             Debug.Log("Game Over");
             //TODO make game over screen?
