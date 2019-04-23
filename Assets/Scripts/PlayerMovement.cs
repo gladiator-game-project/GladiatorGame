@@ -82,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateShield() // update attack function, which checks for attacks and what direction
     {
-
         if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
         {
             _holdSecondMouseDown = true;
@@ -132,36 +131,39 @@ public class PlayerMovement : MonoBehaviour
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
         //      -------------
-        //      | \ | U | / |
-        //      | ----+----+--
-        //      | L | C | R |
-        //      | ----+----+--
-        //      | / | D | \ |
+        //      | \   U   / |
+        //      |--\-----/--
+        //      | L|  C  |R |
+        //      |--/-+---\+--
+        //      | /   D   \ |
         //      -------------
 
+        float diffxPercentage = diffx / (Screen.width / 2);
+        float diffyPercentage = diffy / ((Screen.height / 2) + 20);
+        
         if (diffx > 50 && diffy < 50 && diffy > -50)
             return Direction.Right;
-        else if (diffx > 50 && diffy > 50 && diffx > diffy)
+        else if (diffx > 50 && diffy > 50 && diffxPercentage > diffyPercentage)
             return Direction.Right;
-        else if (diffx > 50 && diffy > 50 && diffy > diffx)
+        else if (diffx > 50 && diffy > 50 && diffyPercentage > diffxPercentage)
             return Direction.Up;
         else if (diffx < 50 && diffx > -50 && diffy > 50)
             return Direction.Up;
-        else if (diffx < -50 && diffy > 50 && diffy > diffx * -1)
+        else if (diffx < -50 && diffy > 50 && diffyPercentage > diffxPercentage * -1)
             return Direction.Up;
-        else if (diffx < -50 && diffy > 50 && diffx * -1 > diffy)
+        else if (diffx < -50 && diffy > 50 && diffxPercentage * -1 > diffyPercentage)
             return Direction.Left;
         else if (diffx < -50 && diffy < 50 && diffy > -50)
             return Direction.Left;
-        else if (diffx < -50 && diffy < -50 && diffx < diffy)
+        else if (diffx < -50 && diffy < -50 && diffxPercentage < diffyPercentage)
             return Direction.Left;
-        else if (diffx < -50 && diffy < -50 && diffy < diffx)
+        else if (diffx < -50 && diffy < -50 && diffyPercentage < diffxPercentage)
             return Direction.Down;
         else if (diffx < 50 && diffx > -50 && diffy < -50)
             return Direction.Down;
-        else if (diffx > 50 && diffy < -50 && diffy * -1 > diffx)
+        else if (diffx > 50 && diffy < -50 && diffyPercentage * -1 > diffxPercentage)
             return Direction.Down;
-        else if (diffx > 50 && diffy < -50 && diffx > diffy * -1)
+        else if (diffx > 50 && diffy < -50 && diffxPercentage > diffyPercentage * -1)
             return Direction.Right;
         else
             return Direction.Center;
