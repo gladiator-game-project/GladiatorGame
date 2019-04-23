@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         //      | /   D   \ |
         //      -------------
 
-        float diffxPercentage = diffx / (Screen.width / 2);
+        float diffxPercentage = diffx / (Screen.width / 2);         // percentages compared to screensize
         float diffyPercentage = diffy / ((Screen.height / 2) + 20);
         
         if (diffx > 50 && diffy < 50 && diffy > -50)
