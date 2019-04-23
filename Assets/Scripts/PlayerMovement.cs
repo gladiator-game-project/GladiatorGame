@@ -73,13 +73,13 @@ public class PlayerMovement : MonoBehaviour
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
-            Debug.Log(WhichDirection(MousePos, MousePosCenter));
+            Debug.Log(WhichDirection6(MousePos, MousePosCenter));
             _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }
 
-    private Direction WhichDirection(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
+    private Direction WhichDirection6(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
@@ -96,6 +96,47 @@ public class PlayerMovement : MonoBehaviour
             return Direction.Left;
         else if (diffy < -50)
             return Direction.Down;
+        else
+            return Direction.Center;
+    }
+
+    private Direction WhichDirection4(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
+    {
+        float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
+        float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
+
+        //      -------------
+        //      | \ | U | / |
+        //      | ----+----+--
+        //      | L | C | R |
+        //      | ----+----+--
+        //      | / | D | \ |
+        //      -------------
+
+        if (diffx > 50 && diffy < 50 && diffy > -50)
+            return Direction.Right;
+        else if (diffx > 50 && diffy > 50 && diffx > diffy)
+            return Direction.Right;
+        else if (diffx > 50 && diffy > 50 && diffy > diffx)
+            return Direction.Up;
+        else if (diffx < 50 && diffx > -50 && diffy > 50)
+            return Direction.Up;
+        else if (diffx < -50 && diffy > 50 && diffy > diffx * -1)
+            return Direction.Up;
+        else if (diffx < -50 && diffy > 50 && diffx * -1 > diffy)
+            return Direction.Left;
+        else if (diffx < -50 && diffy < 50 && diffy > -50)
+            return Direction.Left;
+        else if (diffx < -50 && diffy < -50 && diffx < diffy)
+            return Direction.Left;
+        else if (diffx < -50 && diffy < -50 && diffy < diffx)
+            return Direction.Down;
+        else if (diffx < 50 && diffx > -50 && diffy < -50)
+            return Direction.Down;
+        else if (diffx > 50 && diffy < -50 && diffy * -1 > diffx)
+            return Direction.Down;
+        else if (diffx > 50 && diffy < -50 && diffx > diffy * -1)
+            return Direction.Right;
         else
             return Direction.Center;
     }
