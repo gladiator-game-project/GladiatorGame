@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoDamage : MonoBehaviour
 {
+    public GameObject damageEffect;
     private List<Collision> collisions; //Declare list with all colliders that are colliding with the weapon.
     private Animator animator; // Declare the animator of the weapon
 
@@ -26,6 +27,7 @@ public class DoDamage : MonoBehaviour
         {
             if(c.gameObject.GetComponent<Entity>() != null && animator.GetCurrentAnimatorStateInfo(0).IsTag("attack")) // Also check if animation is playing
             {
+                Instantiate(damageEffect, c.contacts[0].point, Quaternion.FromToRotation(Vector3.up, c.contacts[0].normal));
                 Entity healthScript = c.gameObject.GetComponent<Entity>(); // Call entity script of the hit entity
                 int damage = 20; //Amount of damage
                 healthScript.LoseHealth(damage); // Call the LoseHealth function from entity script
