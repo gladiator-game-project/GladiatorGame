@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Entity _entity;
 
     private bool _holdMouseDown = false;
+    private bool _holdSecondMouseDown = false;
     public enum Direction { Right, UpRight, Up, UpLeft, Left, Down, Center};
 
     void Start()
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateKeyMovement();
         UpdateCameraMovement();
         UpdateAttack();
+        UpdateShield();
     }
 
     private void UpdateKeyMovement()
@@ -73,9 +75,29 @@ public class PlayerMovement : MonoBehaviour
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
-            Debug.Log(WhichDirection6(MousePos, MousePosCenter));
+            Debug.Log("Sword " + WhichDirection6(MousePos, MousePosCenter));
             _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
+        }
+    }
+    private void UpdateShield() // update attack function, which checks for attacks and what direction
+    {
+
+        if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
+        {
+            _holdSecondMouseDown = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+            Vector2 MousePos = Input.mousePosition;
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
+            Debug.Log("Shield " + WhichDirection4(MousePos, MousePosCenter));
+            //TODO: shield animation, etc.
+        }
+
+        if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown == true)
+        {
+            _holdSecondMouseDown = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
