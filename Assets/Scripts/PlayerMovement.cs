@@ -88,6 +88,10 @@ public class PlayerMovement : MonoBehaviour
             _holdSecondMouseDown = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
+        }
+
+        if (_holdSecondMouseDown)
+        {
             Vector2 MousePos = Input.mousePosition;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
             Debug.Log("Shield " + WhichDirection4(MousePos, MousePosCenter));
