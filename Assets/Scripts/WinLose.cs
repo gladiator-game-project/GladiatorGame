@@ -33,13 +33,14 @@ public class WinLose : MonoBehaviour
             if (Enemy.GetComponent<Entity>().Alive == true)
             {
                 allDeath = false;                               // find one alive, then change the bool
+                break;
             }
         }
+
         if (allDeath == true)
         {
             Debug.Log("You win!");
-            //TODO make a you win screen
-            allDeath = false;
+            //TODO make a you win screen\
         }
     }
 }
