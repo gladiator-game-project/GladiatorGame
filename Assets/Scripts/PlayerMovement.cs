@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _holdMouseDown = false;
     public enum Direction { Right, UpRight, Up, UpLeft, Left, Down, Center};
 
+    public GameObject Circle;
+
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -74,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
             Debug.Log(WhichDirection(MousePos, MousePosCenter));
+
+            //transfrom circle position here
+
             _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }

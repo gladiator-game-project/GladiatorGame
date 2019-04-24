@@ -481,6 +481,7 @@ MonoBehaviour:
   CameraSpeed: 10
   MaxCameraPitch: 45
   Camera: {fileID: 1153618586}
+  Circle: {fileID: 1764252959}
 --- !u!114 &1010527774
 MonoBehaviour:
   m_ObjectHideFlags: 0
