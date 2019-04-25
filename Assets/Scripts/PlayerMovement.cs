@@ -139,8 +139,6 @@ public class PlayerMovement : MonoBehaviour
             if(DebugMode)
                 ChangeCirclePosition(WhichDirection4(MousePos, _mousePosCenter), ShieldIndication, 40f);
 
-            // Find the point in absolute time where we want to fire (1 seconds later)
-
             // If absolute time is later than the timestamp, we know 1 seconds have passed
             if (Time.realtimeSinceStartup > fireTimestamp)
             {
