@@ -12,9 +12,20 @@ public class Entity : MonoBehaviour
     private int stamina;
     public bool Alive;
 
-    public void Attack()
+    public void Attack(PlayerMovement.Direction direction)
     {
-        weapon.Animate();
+        switch (direction)
+        {
+            case PlayerMovement.Direction.Left:
+                weapon.AttackLeft();
+                break;
+            case PlayerMovement.Direction.Right:
+                weapon.AttackRight();
+                break;
+            default:
+                weapon.AttackDefault();
+                break;
+        }
     }
 
     private int normalize(int value, int max)

@@ -74,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
             Debug.Log(WhichDirection(MousePos, MousePosCenter));
-            _entity.Attack();
+            Direction direction = WhichDirection(MousePos, MousePosCenter);
+            _entity.Attack(direction);
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }
