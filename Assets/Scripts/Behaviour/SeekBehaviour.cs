@@ -9,7 +9,7 @@ public class SeekBehaviour : MonoBehaviour
     public float Mass = 15; // mass of the entity, we could/should set this in the entity class later
     public float MaxVelocity = 3;  // just like this one
     public float MaxForce = 15; // just like this one
-
+    
     private Vector3 _velocity; // current velocity
 
     // Start is called before the first frame update
