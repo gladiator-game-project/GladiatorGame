@@ -371,6 +371,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   weapon: {fileID: 1434618742}
+  Alive: 0
 --- !u!54 &453309483
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -387,6 +388,75 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1001 &500509728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7623414850871164902, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_Name
+      value: gladiator_final
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.8662224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.624775e-18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.433893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623414850871059398, guid: 80f180068b0df0f4a9842d565147af3a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80f180068b0df0f4a9842d565147af3a, type: 3}
 --- !u!1 &1236871779
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +892,75 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1001 &1501326595
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6355714995787343000, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_Name
+      value: gladiator_animations 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355714995786922168, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b662861a262c31498b6d586a73301e4, type: 3}
 --- !u!1 &1638252794
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1102,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   weapon: {fileID: 0}
+  Alive: 0
 --- !u!114 &1887045481
 MonoBehaviour:
   m_ObjectHideFlags: 0
