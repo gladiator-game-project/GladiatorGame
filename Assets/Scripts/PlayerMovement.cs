@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Camera; // TODO Change to Head object
     private float _pitch;
 
+    private Animator _animator;
+
     private Rigidbody _rigidBody;
     private Entity _entity;
 
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         _mousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
         _rigidBody = GetComponent<Rigidbody>();
         _entity = GetComponent<Entity>();
+        _animator = GetComponent<Animator>();
     }
 
     
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = (xInput + zInput) * MovementSpeed;
 
+        _animator.SetInteger("inputx", (int)Input.GetAxis("Horizontal"));
+        _animator.SetInteger("inputy", (int)Input.GetAxis("Vertical"));
         _rigidBody.velocity = movementDirection;
     }
 
@@ -82,10 +87,12 @@ public class PlayerMovement : MonoBehaviour
             _holdMouseDown = false;
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
+            Direction direction = WhichDirection4(MousePos, MousePosCenter);
+            _entity.Attack(direction);
             Debug.Log("Sword " + WhichDirection6(MousePos, _mousePosCenter));
             if (DebugMode)
                 ChangeCirclePosition(WhichDirection6(MousePos, _mousePosCenter), SwordIndication, 0f);
-            _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }

@@ -9,9 +9,6 @@ namespace Assets.Scripts.Entity
 {
     public class Knife : BaseWeapon
     {
-        public override void Animate()
-        {
-            animator.SetTrigger(stabHash);
-        }
+        
     }
 }

@@ -29,25 +29,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7594377, y: 0.47805396, z: 1.8527757}
   m_Center: {x: -0.08904505, y: -0.04929366, z: -1.5446498}
---- !u!95 &677754762
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800699754331538828}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a10218ee4da242946803e40b568747cd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &430059796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageEffect: {fileID: 0}
 --- !u!114 &677754763
 MonoBehaviour:
   m_ObjectHideFlags: 0
