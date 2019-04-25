@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
     public GameObject Entity;
     private RectTransform Transform;
     private Entity EntityScript;
+    private Image imgComponent;
+
     // Start is called before the first frame update
     void Start()
     {
         Transform = GetComponent<RectTransform>();
         EntityScript = Entity.GetComponent<Entity>();
+        imgComponent = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -24,8 +28,8 @@ public class StaminaBar : MonoBehaviour
     {
         float currentStamina = EntityScript.Stamina;
         float maxStamina = EntityScript.maxStamina;
-        float percentage = currentStamina / maxStamina * 100F;
-        float width = percentage / 100 * 200;
-        Transform.sizeDelta = new Vector2(width,Transform.sizeDelta.y);
+        float promille = currentStamina / maxStamina;
+        float fillAmount = 1 - promille;
+        imgComponent.fillAmount = fillAmount;
     }
 }
