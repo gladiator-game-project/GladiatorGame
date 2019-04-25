@@ -13,7 +13,7 @@ public class BaseWeapon : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
     }
 
     //default animation if a entity does not have a weapon.

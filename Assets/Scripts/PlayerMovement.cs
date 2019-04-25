@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Camera; // TODO Change to Head object
     private float _pitch;
 
+    private Animator _animator;
+
     private Rigidbody _rigidBody;
     private Entity _entity;
 
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         _entity = GetComponent<Entity>();
+        _animator = GetComponent<Animator>();
     }
 
     
@@ -39,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = (xInput + zInput) * MovementSpeed;
 
+        _animator.SetInteger("inputx", (int)Input.GetAxis("Horizontal"));
+        _animator.SetInteger("inputy", (int)Input.GetAxis("Vertical"));
         _rigidBody.velocity = movementDirection;
     }
 
