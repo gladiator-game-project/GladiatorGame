@@ -78,9 +78,10 @@ public class DevPlayerMovement : MonoBehaviour
             _holdMouseDown = false;
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
-            Debug.Log(WhichDirection(MousePos, _mousePosCenter));
-            ChangeCirclePosition(WhichDirection(MousePos, _mousePosCenter));
-            _entity.Attack();
+            Direction direction = WhichDirection(MousePos, _mousePosCenter);
+            Debug.Log(direction);
+            ChangeCirclePosition(direction);
+            _entity.Attack(PlayerMovement.Direction.Center);
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }
