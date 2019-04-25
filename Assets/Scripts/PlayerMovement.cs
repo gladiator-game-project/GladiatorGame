@@ -93,17 +93,17 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeCirclePosition(Direction direction, GameObject Swordorshield, float Offside)
     {
         if (direction == Direction.Down)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x, Swordorshield.transform.position.y - 200 - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 200 - Offside);
         else if (direction == Direction.Left)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x - 200, Swordorshield.transform.position.y - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x - 200, _mousePosCenter.y - Offside);
         else if (direction == Direction.UpLeft)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x - 200, Swordorshield.transform.position.y + 200 - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x - 200, _mousePosCenter.y + 200 - Offside);
         else if (direction == Direction.Up)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x, Swordorshield.transform.position.y + 200 - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y + 200 - Offside);
         else if (direction == Direction.UpRight)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x + 200, Swordorshield.transform.position.y + 200 - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x + 200, _mousePosCenter.y + 200 - Offside);
         else if (direction == Direction.Right)
-            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x + 200, Swordorshield.transform.position.y - Offside);
+            Swordorshield.transform.position = new Vector2(_mousePosCenter.x + 200, _mousePosCenter.y - Offside);
     }
 
     private void UpdateShield() // update attack function, which checks for attacks and what direction
@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _holdSecondMouseDown = false;
             Cursor.lockState = CursorLockMode.Locked;
+            ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
     }
 
