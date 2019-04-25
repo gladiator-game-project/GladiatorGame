@@ -11,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Camera; // TODO Change to Head object
     private float _pitch;
 
+    float seconds = 0;
+    public float fireDelay = 1.0f; // Seconds to wait
+    private float fireTimestamp = 0.0f;
+    private float cooldown = 3;
+
     private Rigidbody _rigidBody;
     private Entity _entity;
 
@@ -28,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _mousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
         _rigidBody = GetComponent<Rigidbody>();
         _entity = GetComponent<Entity>();
+        fireTimestamp = Time.realtimeSinceStartup + fireDelay;
     }
 
     
@@ -108,8 +114,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateShield() // update attack function, which checks for attacks and what direction
     {
+        if (_holdSecondMouseDown == false)
+        {
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0f)
+                seconds = 0f;
+        }
+
         if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
         {
+            cooldown = 3f;
             _holdSecondMouseDown = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
@@ -124,7 +138,23 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Shield " + WhichDirection4(MousePos, MousePosCenter));
             if(DebugMode)
                 ChangeCirclePosition(WhichDirection4(MousePos, _mousePosCenter), ShieldIndication, 40f);
-            //TODO: shield animation, etc.
+
+            // Find the point in absolute time where we want to fire (1 seconds later)
+
+            // If absolute time is later than the timestamp, we know 1 seconds have passed
+            if (Time.realtimeSinceStartup > fireTimestamp)
+            {
+                fireTimestamp = Time.realtimeSinceStartup + fireDelay;
+                //energy consumption
+                float factor = 2f;
+                seconds++;
+                float BlockStaminaLoss = seconds * factor;
+                Debug.Log(BlockStaminaLoss);
+                if(_entity.LoseStamina((int)BlockStaminaLoss))
+                {
+                    //TODO: shield animation, etc.
+                }
+            }
         }
 
         if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown == true)
