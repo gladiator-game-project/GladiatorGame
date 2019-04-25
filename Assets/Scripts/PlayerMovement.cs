@@ -106,20 +106,21 @@ public class PlayerMovement : MonoBehaviour
 
     private Direction WhichDirection6(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
+        float radius = 50; // the radius of the center
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
-        if (diffx > 50 && diffy < 50 && diffy > -50)
+        if (diffx > radius && diffy < radius && diffy > -radius)
             return Direction.Right;                   //                                         ----------------
-        else if (diffx > 50 && diffy > 50) //                                                    | UL | U  | UR |
+        else if (diffx > radius && diffy > radius) //                                            | UL | U  | UR |
             return Direction.UpRight;               //                                           |----+----+-----
-        else if (diffx < 50 && diffx > -50 && diffy > 50) //                                     | L  | C  | R  |
+        else if (diffx < radius && diffx > -radius && diffy > radius) //                         | L  | C  | R  |
             return Direction.Up;                    //                                           |----+----+-----
-        else if (diffx < -50 && diffy > 50) //                                                   |              |
+        else if (diffx < -radius && diffy > radius) //                                                   |              |
             return Direction.UpLeft;                //                                           |      D       |
-        else if (diffx < -50 && diffy < 50 && diffy > -50) //                                    ----------------
+        else if (diffx < -radius && diffy < radius && diffy > -radius) //                                    ----------------
             return Direction.Left;
-        else if (diffy < -50)
+        else if (diffy < -radius)
             return Direction.Down;
         else
             return Direction.Center;
@@ -127,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Direction WhichDirection4(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
+        float radius = 50; // the radius of the center
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
@@ -141,29 +143,29 @@ public class PlayerMovement : MonoBehaviour
         float diffxPercentage = diffx / (Screen.width / 2);         // percentages compared to screensize
         float diffyPercentage = diffy / ((Screen.height / 2) + 20);
         
-        if (diffx > 50 && diffy < 50 && diffy > -50)
+        if (diffx > radius && diffy < radius && diffy > -radius)
             return Direction.Right;
-        else if (diffx > 50 && diffy > 50 && diffxPercentage > diffyPercentage)
+        else if (diffx > radius && diffy > radius && diffxPercentage > diffyPercentage)
             return Direction.Right;
-        else if (diffx > 50 && diffy > 50 && diffyPercentage > diffxPercentage)
+        else if (diffx > radius && diffy > radius && diffyPercentage > diffxPercentage)
             return Direction.Up;
-        else if (diffx < 50 && diffx > -50 && diffy > 50)
+        else if (diffx < radius && diffx > -radius && diffy > radius)
             return Direction.Up;
-        else if (diffx < -50 && diffy > 50 && diffyPercentage > diffxPercentage * -1)
+        else if (diffx < -radius && diffy > radius && diffyPercentage > diffxPercentage * -1)
             return Direction.Up;
-        else if (diffx < -50 && diffy > 50 && diffxPercentage * -1 > diffyPercentage)
+        else if (diffx < -radius && diffy > radius && diffxPercentage * -1 > diffyPercentage)
             return Direction.Left;
-        else if (diffx < -50 && diffy < 50 && diffy > -50)
+        else if (diffx < -radius && diffy < radius && diffy > -radius)
             return Direction.Left;
-        else if (diffx < -50 && diffy < -50 && diffxPercentage < diffyPercentage)
+        else if (diffx < -radius && diffy < -radius && diffxPercentage < diffyPercentage)
             return Direction.Left;
-        else if (diffx < -50 && diffy < -50 && diffyPercentage < diffxPercentage)
+        else if (diffx < -radius && diffy < -radius && diffyPercentage < diffxPercentage)
             return Direction.Down;
-        else if (diffx < 50 && diffx > -50 && diffy < -50)
+        else if (diffx < radius && diffx > -radius && diffy < -radius)
             return Direction.Down;
-        else if (diffx > 50 && diffy < -50 && diffyPercentage * -1 > diffxPercentage)
+        else if (diffx > radius && diffy < -radius && diffyPercentage * -1 > diffxPercentage)
             return Direction.Down;
-        else if (diffx > 50 && diffy < -50 && diffxPercentage > diffyPercentage * -1)
+        else if (diffx > radius && diffy < -radius && diffxPercentage > diffyPercentage * -1)
             return Direction.Right;
         else
             return Direction.Center;
