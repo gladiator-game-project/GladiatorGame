@@ -15,12 +15,12 @@ public class DevPlayerMovement : MonoBehaviour
     private Entity _entity;
 
     private bool _holdMouseDown = false;
+    private bool _holdSecondMouseDown = false;
     public enum Direction { Right, UpRight, Up, UpLeft, Left, Down, Center };
     private Vector2 _mousePosCenter;
 
     public GameObject Circle;
 
-    
     void Start()
     {
         _mousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
@@ -35,6 +35,7 @@ public class DevPlayerMovement : MonoBehaviour
         UpdateKeyMovement();
         UpdateCameraMovement();
         UpdateAttack();
+        UpdateShield();
     }
 
     private void UpdateKeyMovement()
@@ -78,8 +79,10 @@ public class DevPlayerMovement : MonoBehaviour
             _holdMouseDown = false;
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
-            Debug.Log(WhichDirection(MousePos, _mousePosCenter));
-            ChangeCirclePosition(WhichDirection(MousePos, _mousePosCenter));
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
+            Debug.Log("Sword " + WhichDirection6(MousePos, MousePosCenter));
+
+            ChangeCirclePosition(WhichDirection6(MousePos, _mousePosCenter));
             _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
@@ -88,7 +91,7 @@ public class DevPlayerMovement : MonoBehaviour
     private void ChangeCirclePosition(Direction direction)
     {
         if (direction == Direction.Down)
-            Circle.transform.position = new Vector2(Circle.transform.position.x,Circle.transform.position.y - 200);
+            Circle.transform.position = new Vector2(Circle.transform.position.x, Circle.transform.position.y - 200);
         else if (direction == Direction.Left)
             Circle.transform.position = new Vector2(Circle.transform.position.x - 200, Circle.transform.position.y);
         else if (direction == Direction.UpLeft)
@@ -101,23 +104,93 @@ public class DevPlayerMovement : MonoBehaviour
             Circle.transform.position = new Vector2(Circle.transform.position.x + 200, Circle.transform.position.y);
     }
 
-    private Direction WhichDirection(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
+    private void UpdateShield() // update attack function, which checks for attacks and what direction
     {
+        if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
+        {
+            _holdSecondMouseDown = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+        }
+
+        if (_holdSecondMouseDown)
+        {
+            Vector2 MousePos = Input.mousePosition;
+            Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
+            Debug.Log("Shield " + WhichDirection4(MousePos, MousePosCenter));
+            //TODO: shield animation, etc.
+        }
+
+        if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown == true)
+        {
+            _holdSecondMouseDown = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    private Direction WhichDirection6(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
+    {
+        float radius = 50; // the radius of the center
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
-        if (diffx > 50 && diffy < 50 && diffy > -50)
+        if (diffx > radius && diffy < radius && diffy > -radius)
             return Direction.Right;                   //                                         ----------------
-        else if (diffx > 50 && diffy > 50) //                                                    | UL | U  | UR |
+        else if (diffx > radius && diffy > radius) //                                            | UL | U  | UR |
             return Direction.UpRight;               //                                           |----+----+-----
-        else if (diffx < 50 && diffx > -50 && diffy > 50) //                                     | L  | C  | R  |
+        else if (diffx < radius && diffx > -radius && diffy > radius) //                         | L  | C  | R  |
             return Direction.Up;                    //                                           |----+----+-----
-        else if (diffx < -50 && diffy > 50) //                                                   |              |
+        else if (diffx < -radius && diffy > radius) //                                                   |              |
             return Direction.UpLeft;                //                                           |      D       |
-        else if (diffx < -50 && diffy < 50 && diffy > -50) //                                    ----------------
+        else if (diffx < -radius && diffy < radius && diffy > -radius) //                                    ----------------
             return Direction.Left;
-        else if (diffy < -50)
+        else if (diffy < -radius)
             return Direction.Down;
+        else
+            return Direction.Center;
+    }
+
+    private Direction WhichDirection4(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
+    {
+        float radius = 50; // the radius of the center
+        float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
+        float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
+
+        //      -------------
+        //      | \   U   / |
+        //      |--\-----/--
+        //      | L|  C  |R |
+        //      |--/-+---\+--
+        //      | /   D   \ |
+        //      -------------
+
+        float diffxPercentage = diffx / (Screen.width / 2);         // percentages compared to screensize
+        float diffyPercentage = diffy / ((Screen.height / 2) + 20);
+
+        if (diffx > radius && diffy < radius && diffy > -radius)
+            return Direction.Right;
+        else if (diffx > radius && diffy > radius && diffxPercentage > diffyPercentage)
+            return Direction.Right;
+        else if (diffx > radius && diffy > radius && diffyPercentage > diffxPercentage)
+            return Direction.Up;
+        else if (diffx < radius && diffx > -radius && diffy > radius)
+            return Direction.Up;
+        else if (diffx < -radius && diffy > radius && diffyPercentage > diffxPercentage * -1)
+            return Direction.Up;
+        else if (diffx < -radius && diffy > radius && diffxPercentage * -1 > diffyPercentage)
+            return Direction.Left;
+        else if (diffx < -radius && diffy < radius && diffy > -radius)
+            return Direction.Left;
+        else if (diffx < -radius && diffy < -radius && diffxPercentage < diffyPercentage)
+            return Direction.Left;
+        else if (diffx < -radius && diffy < -radius && diffyPercentage < diffxPercentage)
+            return Direction.Down;
+        else if (diffx < radius && diffx > -radius && diffy < -radius)
+            return Direction.Down;
+        else if (diffx > radius && diffy < -radius && diffyPercentage * -1 > diffxPercentage)
+            return Direction.Down;
+        else if (diffx > radius && diffy < -radius && diffxPercentage > diffyPercentage * -1)
+            return Direction.Right;
         else
             return Direction.Center;
     }
