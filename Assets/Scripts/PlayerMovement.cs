@@ -17,9 +17,15 @@ public class PlayerMovement : MonoBehaviour
     private bool _holdMouseDown = false;
     private bool _holdSecondMouseDown = false;
     public enum Direction { Right, UpRight, Up, UpLeft, Left, Down, Center};
+    private Vector2 _mousePosCenter;
+
+    public GameObject SwordIndication;
+    public GameObject ShieldIndication;
+    public bool DebugMode = false;
 
     void Start()
     {
+        _mousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
         _rigidBody = GetComponent<Rigidbody>();
         _entity = GetComponent<Entity>();
     }
@@ -67,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
             _holdMouseDown = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
+            if (DebugMode)
+                SwordIndication.transform.position = _mousePosCenter;
         }
             
         if (Input.GetKeyUp(KeyCode.Mouse0) && _holdMouseDown == true && _entity.LoseStamina(10))// normal attack cost 10 stamina
@@ -74,12 +82,30 @@ public class PlayerMovement : MonoBehaviour
             _holdMouseDown = false;
             Vector2 MousePos = Input.mousePosition;
             Cursor.lockState = CursorLockMode.Locked;
-            Vector2 MousePosCenter = new Vector2(Screen.width / 2 , (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
-            Debug.Log("Sword " + WhichDirection6(MousePos, MousePosCenter));
+            Debug.Log("Sword " + WhichDirection6(MousePos, _mousePosCenter));
+            if (DebugMode)
+                ChangeCirclePosition(WhichDirection6(MousePos, _mousePosCenter), SwordIndication, 0f);
             _entity.Attack();
             //We could change the attack functions to set the number of stamina in there of how much stamina it costs
         }
     }
+
+    private void ChangeCirclePosition(Direction direction, GameObject Swordorshield, float Offside)
+    {
+        if (direction == Direction.Down)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x, Swordorshield.transform.position.y - 200 - Offside);
+        else if (direction == Direction.Left)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x - 200, Swordorshield.transform.position.y - Offside);
+        else if (direction == Direction.UpLeft)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x - 200, Swordorshield.transform.position.y + 200 - Offside);
+        else if (direction == Direction.Up)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x, Swordorshield.transform.position.y + 200 - Offside);
+        else if (direction == Direction.UpRight)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x + 200, Swordorshield.transform.position.y + 200 - Offside);
+        else if (direction == Direction.Right)
+            Swordorshield.transform.position = new Vector2(Swordorshield.transform.position.x + 200, Swordorshield.transform.position.y - Offside);
+    }
+
     private void UpdateShield() // update attack function, which checks for attacks and what direction
     {
         if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
@@ -87,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
             _holdSecondMouseDown = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
+            if (DebugMode)
+                ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
 
         if (_holdSecondMouseDown)
@@ -94,6 +122,8 @@ public class PlayerMovement : MonoBehaviour
             Vector2 MousePos = Input.mousePosition;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
             Debug.Log("Shield " + WhichDirection4(MousePos, MousePosCenter));
+            if(DebugMode)
+                ChangeCirclePosition(WhichDirection4(MousePos, _mousePosCenter), ShieldIndication, 40f);
             //TODO: shield animation, etc.
         }
 
