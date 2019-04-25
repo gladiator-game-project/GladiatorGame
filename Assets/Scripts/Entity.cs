@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private BaseWeapon weapon;
     private int health;
     private int stamina;
+    public bool Alive;
 
     public void Attack()
     {
@@ -60,6 +61,7 @@ public class Entity : MonoBehaviour
     {
         Health = maxHealth;
         Stamina = maxStamina;
+        Alive = true;
         InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
     }
 
@@ -79,7 +81,15 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateDeath();
+    }
+
+    private void UpdateDeath()
+    {
+        if (health <= 0)
+        {
+            Alive = false;
+        }
     }
 
 }
