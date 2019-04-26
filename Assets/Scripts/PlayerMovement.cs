@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Direction WhichDirection6(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
-        float radius = 50; // the radius of the center
+        float radius = 40; // the radius of the center
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Direction WhichDirection4(Vector2 New_Pos, Vector2 MousePosCenter) // Function  to check direction
     {
-        float radius = 50; // the radius of the center
+        float radius = 40; // the radius of the center
         float diffx = New_Pos.x - MousePosCenter.x; // check distance between mouse x and center
         float diffy = New_Pos.y - MousePosCenter.y; // check distance between mouse y and center
 
