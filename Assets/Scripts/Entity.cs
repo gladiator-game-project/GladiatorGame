@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public int maxHealth;
     [SerializeField] public int maxStamina;
 
-    [SerializeField] private BaseWeapon weapon;
+    [SerializeField] public BaseWeapon weapon;
     private int health;
     private int stamina;
     public bool Alive;

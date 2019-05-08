@@ -182,6 +182,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife_on_floor
       objectReference: {fileID: 0}
+    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 8085775812401542860, guid: 2a030bff78f5b684d944779b6139ef0d,
         type: 3}
       propertyPath: m_Constraints
@@ -336,6 +341,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
         type: 3}
+    - target: {fileID: 5253106948713594615, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421936760076061865, guid: 4b662861a262c31498b6d586a73301e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 1138047899751186409, guid: 4b662861a262c31498b6d586a73301e4,
         type: 3}
       propertyPath: m_Constraints
@@ -360,6 +375,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 757538838}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &757538845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757538839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &846767345
 GameObject:
   m_ObjectHideFlags: 0
