@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public int maxStamina;
 
     [SerializeField] private BaseWeapon weapon;
+    public GameObject Hand;
     private int health;
     private int stamina;
     public bool Alive;
@@ -97,7 +98,9 @@ public class Entity : MonoBehaviour
     {
         if (weapon == null)
         {
-
+            GameObject knucklesPrefab = (GameObject) Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
+            knucklesPrefab.transform.parent = Hand.transform;
+            weapon = knucklesPrefab.GetComponent<BaseWeapon>();
         }
     }
 
