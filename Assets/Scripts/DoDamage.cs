@@ -6,7 +6,7 @@ public class DoDamage : MonoBehaviour
 {
     public GameObject damageEffect;
     private List<Collision> collisions; //Declare list with all colliders that are colliding with the weapon.
-    private Animator animator; // Declare the animator of the weapon
+    public Animator animator; // Declare the animator of the weapon
 
     void Start()
     {

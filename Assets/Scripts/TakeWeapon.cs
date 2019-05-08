@@ -29,7 +29,21 @@ public class TakeWeapon : MonoBehaviour
     {
         if (CurrentWeapon != null)
         {
-
+            SelectedWeapon.transform.SetParent(CurrentWeapon.transform.parent);
+            SelectedWeapon.transform.position = CurrentWeapon.transform.position;
+            Rigidbody New_weapon = SelectedWeapon.GetComponent<Rigidbody>();
+            New_weapon.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ |
+            RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            New_weapon.useGravity = false;
+            CurrentWeapon.transform.parent = null;
+            Rigidbody Old_weapon = CurrentWeapon.GetComponent<Rigidbody>();
+            Old_weapon.constraints = RigidbodyConstraints.None;
+            Old_weapon.useGravity = true;
+            gameObject.GetComponent<Entity>().weapon = SelectedWeapon.gameObject.GetComponent<BaseWeapon>();
+            CurrentWeapon = SelectedWeapon;
+            CurrentWeapon.GetComponent<DoDamage>().animator = gameObject.GetComponent<Animator>();
+            CurrentWeapon.GetComponent<BaseWeapon>().animator = gameObject.GetComponent<Animator>();
+            SelectedWeapon = null;
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
-    protected Animator animator;
+    public Animator animator;
 
     //get hash for optimalization so the location only has to be retrieved once.
     protected int stabHash = Animator.StringToHash("Stab");
