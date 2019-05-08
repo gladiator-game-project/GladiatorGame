@@ -14,18 +14,7 @@ public class Entity : MonoBehaviour
 
     public void Attack(PlayerMovement.Direction direction)
     {
-        switch (direction)
-        {
-            case PlayerMovement.Direction.Left:
-                weapon.AttackLeft();
-                break;
-            case PlayerMovement.Direction.Right:
-                weapon.AttackRight();
-                break;
-            default:
-                weapon.AttackDefault();
-                break;
-        }
+        weapon.Attack(direction);
     }
 
     private int normalize(int value, int max)
@@ -92,6 +81,7 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateWeapon();
         UpdateDeath();
     }
 
@@ -100,6 +90,14 @@ public class Entity : MonoBehaviour
         if (health <= 0)
         {
             Alive = false;
+        }
+    }
+
+    private void UpdateWeapon()
+    {
+        if (weapon == null)
+        {
+
         }
     }
 

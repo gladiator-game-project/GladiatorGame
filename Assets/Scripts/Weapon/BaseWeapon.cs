@@ -6,29 +6,24 @@ public class BaseWeapon : MonoBehaviour
 {
     protected Animator animator;
 
-    //get hash for optimalization so the location only has to be retrieved once.
-    protected int stabHash = Animator.StringToHash("Stab");
-    protected int slashLeftHash = Animator.StringToHash("SlashRight");
-    protected int slashRightHash = Animator.StringToHash("SlashLeft");
+    public enum AttackType { Stab, Punch, Slash }
 
-    private void Start()
+    public AttackType currentAnim = AttackType.Punch;
+
+    protected void Start()
     {
         animator = GetComponentInParent<Animator>();
     }
 
-    //default animation if a entity does not have a weapon.
-    public virtual void AttackDefault()
+    public void Attack(PlayerMovement.Direction direction)
     {
-        animator.SetTrigger(stabHash);
-    }
-
-    public virtual void AttackLeft()
-    {
-        animator.SetTrigger(slashLeftHash);
-    }
-
-    public virtual void AttackRight()
-    {
-        animator.SetTrigger(slashRightHash);
+        if(currentAnim == AttackType.Slash)
+        {
+            animator.SetTrigger(currentAnim.ToString() + direction.ToString());
+        }
+        else
+        {
+            animator.SetTrigger(currentAnim.ToString());
+        }
     }
 }
