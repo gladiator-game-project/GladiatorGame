@@ -41,6 +41,7 @@ public class TakeWeapon : MonoBehaviour
             Old_weapon.useGravity = true;
             gameObject.GetComponent<Entity>().weapon = SelectedWeapon.gameObject.GetComponent<BaseWeapon>();
             CurrentWeapon = SelectedWeapon;
+            CurrentWeapon.transform.rotation = CurrentWeapon.GetComponent<BaseWeapon>().originalRotation;
             CurrentWeapon.GetComponent<DoDamage>().animator = gameObject.GetComponent<Animator>();
             CurrentWeapon.GetComponent<BaseWeapon>().animator = gameObject.GetComponent<Animator>();
             SelectedWeapon = null;
@@ -54,9 +55,9 @@ public class TakeWeapon : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 6.0f))
         {
-            Collider[] hitColliders = Physics.OverlapSphere(hit.point, 2.01F); // check alle colliders in een radius van 4.01 vanuit de buidling
+            Collider[] hitColliders = Physics.OverlapSphere(hit.point, 2.01F);
             int i = 0;
-            while (i < hitColliders.Length) // check elke collider of het een road is, en als het erin zit is het true en mag het geplaats worden
+            while (i < hitColliders.Length) // c
             {
                 if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != CurrentWeapon)
                 {

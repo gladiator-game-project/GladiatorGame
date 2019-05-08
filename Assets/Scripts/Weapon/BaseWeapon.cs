@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseWeapon : MonoBehaviour
 {
     public Animator animator;
+    public Quaternion originalRotation;
 
     //get hash for optimalization so the location only has to be retrieved once.
     protected int stabHash = Animator.StringToHash("Stab");
@@ -13,6 +14,7 @@ public class BaseWeapon : MonoBehaviour
 
     private void Start()
     {
+        originalRotation = transform.rotation;
         animator = GetComponentInParent<Animator>();
     }
 
