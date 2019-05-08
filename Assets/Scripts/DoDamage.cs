@@ -11,7 +11,10 @@ public class DoDamage : MonoBehaviour
     void Start()
     {
         collisions = new List<Collision>(); //Create new List
-        animator = gameObject.GetComponentInParent<Animator>();
+        if (gameObject.GetComponentInParent<Animator>() != null)
+            animator = gameObject.GetComponentInParent<Animator>();
+        else
+            animator = null;
     }
 
     private void Update()
@@ -21,6 +24,8 @@ public class DoDamage : MonoBehaviour
 
     private void CheckDamage()
     {
+        if (animator == null)
+            return;
         List<Collision> toRemove = new List<Collision>(); //Create list of colliders that needs to be removed from the list colliders 
 
         foreach(Collision c in collisions) //For each collider check if it has an entity script and remove if it does
