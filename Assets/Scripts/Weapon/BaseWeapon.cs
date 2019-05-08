@@ -14,7 +14,7 @@ public class BaseWeapon : MonoBehaviour
 
     private void Start()
     {
-        originalRotation = transform.rotation;
+        originalRotation = transform.localRotation;
         animator = GetComponentInParent<Animator>();
     }
 

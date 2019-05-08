@@ -41,7 +41,7 @@ public class TakeWeapon : MonoBehaviour
             Old_weapon.useGravity = true;
             gameObject.GetComponent<Entity>().weapon = SelectedWeapon.gameObject.GetComponent<BaseWeapon>();
             CurrentWeapon = SelectedWeapon;
-            CurrentWeapon.transform.rotation = CurrentWeapon.GetComponent<BaseWeapon>().originalRotation;
+            CurrentWeapon.transform.localRotation = CurrentWeapon.GetComponent<BaseWeapon>().originalRotation;
             CurrentWeapon.GetComponent<DoDamage>().animator = gameObject.GetComponent<Animator>();
             CurrentWeapon.GetComponent<BaseWeapon>().animator = gameObject.GetComponent<Animator>();
             SelectedWeapon = null;
