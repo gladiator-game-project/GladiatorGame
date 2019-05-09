@@ -58,7 +58,7 @@ MonoBehaviour:
     \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"Target\"
     type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n        </inputValues>\r\n
     \     </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n
-    \   <ConditionEvalNode id=\"11\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"AngleBetween\">\r\n
+    \   <ConditionEvalNode id=\"11\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"AngleBetween\">\r\n
     \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"Object
     1\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Target\"
     />\r\n          <entry name=\"Object 2\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
