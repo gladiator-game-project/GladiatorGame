@@ -543,7 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  weapon: {fileID: 9222627444107411118}
+  weapon: {fileID: 3133098319088594537}
   Alive: 1
 --- !u!114 &8731836424403359470
 MonoBehaviour:
@@ -561,6 +561,7 @@ MonoBehaviour:
   CameraSpeed: 10
   MaxCameraPitch: 45
   Camera: {fileID: 5596539356400652836}
+  fireDelay: 1
   SwordIndication: {fileID: 0}
   ShieldIndication: {fileID: 0}
   DebugMode: 0
@@ -2259,16 +2260,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
---- !u!114 &9222627444107411118 stripped
+--- !u!114 &3133098319088594537 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 677754763, guid: 2a030bff78f5b684d944779b6139ef0d,
+  m_CorrespondingSourceObject: {fileID: 6090655161758902092, guid: 2a030bff78f5b684d944779b6139ef0d,
     type: 3}
   m_PrefabInstance: {fileID: 9222627443434572069}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf6e87ee15fc1d42b596b58d5f68ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7421936760075636873 stripped
