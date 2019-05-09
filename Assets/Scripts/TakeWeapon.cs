@@ -35,6 +35,7 @@ public class TakeWeapon : MonoBehaviour
     {
         if (_currentWeapon != null)
         {
+            //change positions for weapon and rigidbody settings
             _selectedWeapon.transform.SetParent(_currentWeapon.transform.parent);
             _selectedWeapon.transform.position = _currentWeapon.transform.position;
             Rigidbody New_weapon = _selectedWeapon.GetComponent<Rigidbody>();
@@ -46,6 +47,7 @@ public class TakeWeapon : MonoBehaviour
             Old_weapon.constraints = RigidbodyConstraints.None;
             Old_weapon.useGravity = true;
             gameObject.GetComponent<Entity>().weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
+            //officialy make new weapon the current weapon
             _currentWeapon = _selectedWeapon;
             _currentWeapon.transform.localRotation = _currentWeapon.GetComponent<BaseWeapon>().originalRotation;
             _currentWeapon.GetComponent<DoDamage>().animator = gameObject.GetComponent<Animator>();
@@ -59,7 +61,7 @@ public class TakeWeapon : MonoBehaviour
         _selectedWeapon = null;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 6.0f))
+        if (Physics.Raycast(ray, out hit, 6.0f)) // 6.0 is the range of the cast
         {
             Collider[] hitColliders = Physics.OverlapSphere(hit.point, 2.01F);
             int i = 0;
