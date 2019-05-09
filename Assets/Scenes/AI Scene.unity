@@ -839,11 +839,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
-    - target: {fileID: 7271128897079937122, guid: a9daf86f16516554ebbc5be3d216d99d,
-        type: 3}
-      propertyPath: Target
-      value: 
-      objectReference: {fileID: 964590311}
     - target: {fileID: 425168470721886817, guid: a9daf86f16516554ebbc5be3d216d99d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -902,6 +897,11 @@ PrefabInstance:
     - target: {fileID: 8138115674720391370, guid: a9daf86f16516554ebbc5be3d216d99d,
         type: 3}
       propertyPath: blackboard.objectParams.Array.data[0]
+      value: 
+      objectReference: {fileID: 964590311}
+    - target: {fileID: 7271128897079937122, guid: a9daf86f16516554ebbc5be3d216d99d,
+        type: 3}
+      propertyPath: Target
       value: 
       objectReference: {fileID: 964590311}
     m_RemovedComponents: []

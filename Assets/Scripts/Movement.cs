@@ -44,11 +44,8 @@ public class Movement : MonoBehaviour
 
         x *= TowardsPosition.x < transform.position.x ? -1 : 1;
 
-       // if (Vector3.Distance(transform.position, TowardsPosition) < 3)
-      //  {
-       //     x = 0;
-       //     y = 0;
-      //  }
+        if (Vector3.Distance(transform.position, TowardsPosition) < 5.2f)
+            y = 0;
 
         _animator.SetInteger("inputx", x);
         _animator.SetInteger("inputy", y);
