@@ -11,10 +11,7 @@ public class DoDamage : MonoBehaviour
     void Start()
     {
         _collisions = new List<Collision>(); //Create new List
-        if (gameObject.GetComponentInParent<Animator>() != null)
-            animator = gameObject.GetComponentInParent<Animator>();
-        else
-            animator = null;
+        animator = gameObject.GetComponentInParent<Animator>();
     }
 
     private void Update()

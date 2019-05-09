@@ -14,11 +14,7 @@ public class TakeWeapon : MonoBehaviour
     void Start()
     {
         btnText = TextBar.GetComponent<Text>();
-
-        if (gameObject.GetComponent<Entity>().weapon != null)
-            _currentWeapon = gameObject.GetComponent<Entity>().weapon.gameObject;
-        else
-            _currentWeapon = null;
+        _currentWeapon = gameObject.GetComponent<Entity>().weapon.gameObject;
     }
 
     // Update is called once per frame
@@ -75,8 +71,6 @@ public class TakeWeapon : MonoBehaviour
                 }
                 i++;
             }
-            btnText.text = "";
-            return false;
         }
         btnText.text = "";
         return false;
