@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  weapon: {fileID: 1650857567228613883}
+  weapon: {fileID: 4787146823980614716}
   Alive: 1
 --- !u!114 &7271128897079937122
 MonoBehaviour:
@@ -2177,6 +2177,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 425168470721886755}
     m_Modifications:
+    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
+        type: 3}
+      propertyPath: m_Name
+      value: Knife_final_model Variant
+      objectReference: {fileID: 0}
     - target: {fileID: 1800699754331969964, guid: 2a030bff78f5b684d944779b6139ef0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2247,11 +2252,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.002
       objectReference: {fileID: 0}
-    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
-        type: 3}
-      propertyPath: m_Name
-      value: Knife_final_model Variant
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
 --- !u!4 &1014533496659507932 stripped
@@ -2260,15 +2260,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1650857566819378032}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1650857567228613883 stripped
+--- !u!114 &4787146823980614716 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 677754763, guid: 2a030bff78f5b684d944779b6139ef0d,
+  m_CorrespondingSourceObject: {fileID: 6090655161758902092, guid: 2a030bff78f5b684d944779b6139ef0d,
     type: 3}
   m_PrefabInstance: {fileID: 1650857566819378032}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf6e87ee15fc1d42b596b58d5f68ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

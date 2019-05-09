@@ -31,8 +31,8 @@ public class DoDamage : MonoBehaviour
             {
                 Instantiate(damageEffect, c.contacts[0].point, Quaternion.FromToRotation(Vector3.up, c.contacts[0].normal));
                 Entity healthScript = c.gameObject.GetComponent<Entity>(); // Call entity script of the hit entity
-                int damage = 20; //Amount of damage
-                healthScript.LoseHealth(damage); // Call the LoseHealth function from entity script
+                float damage = 20f; //Amount of damage
+                healthScript.Health -= damage; // Call the LoseHealth function from entity script
                 toRemove.Add(c); //Add collider in a list to remove it, so it can be removed after the for each loop
             }
         }

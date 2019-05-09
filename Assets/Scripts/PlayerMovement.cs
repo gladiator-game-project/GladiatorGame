@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject ShieldIndication;
     public bool DebugMode = false;
 
+    private bool lShiftDown = false;
+    // Speed amplifier when the shift key is down.
+    public float movementAmp = 1.6f;
+
     void Start()
     {
         _mousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
@@ -48,15 +52,47 @@ public class PlayerMovement : MonoBehaviour
         UpdateShield();
     }
 
+    /// <summary>
+    /// Checks if the player is holding down the shift key to sprint.
+    /// Moreover it will speed up the running animation when the player
+    /// is holding down the shift key.
+    /// </summary>
+    /// <returns>The movement speed if whilst keeping sprinting in account.</returns>
+    private float HandleSprinting()
+    {
+        float movementSpeed = MovementSpeed;
+
+        // Change the boolean of the left shift button being down.
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            lShiftDown = true;
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+            lShiftDown = false;
+
+        float sprintStamReq = 0.3f; // Stamina requirement for sprinting.
+        // If left shift is down increase movement speed and anim speed.
+        if (lShiftDown && _entity.Stamina - sprintStamReq > 0f)
+        {
+            movementSpeed *= movementAmp;
+            _animator.SetFloat("MovementAmp", movementAmp);
+            _entity.Stamina -= sprintStamReq;
+        }
+        else _animator.SetFloat("MovementAmp", 1.0f);
+
+        return movementSpeed;
+    }
+
     private void UpdateKeyMovement()
     {
-        var xInput = transform.right * Input.GetAxis("Horizontal");
-        var zInput = transform.forward * Input.GetAxis("Vertical");
+        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 movementDirection = (xInput + zInput) * MovementSpeed;
+        var xInput = transform.right * horizontal;
+        var zInput = transform.forward * vertical;
 
-        _animator.SetInteger("inputx", (int)Input.GetAxis("Horizontal"));
-        _animator.SetInteger("inputy", (int)Input.GetAxis("Vertical"));
+        Vector3 movementDirection = (xInput + zInput) * HandleSprinting();
+
+        _animator.SetInteger("inputx", (int)horizontal);
+        _animator.SetInteger("inputy", (int)vertical);
         _rigidBody.velocity = movementDirection;
     }
 

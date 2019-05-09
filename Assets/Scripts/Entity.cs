@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] public int maxHealth;
-    [SerializeField] public int maxStamina;
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float maxStamina;
 
     [SerializeField] public BaseWeapon weapon;
     private Animator _animator;
-    private int health;
-    private int stamina;
-    public bool _hasShield = true;
+    private float health;
+    private float stamina;
+    public bool _hasShield;
     public bool Alive;
 
     public void Attack(PlayerMovement.Direction direction)
@@ -57,43 +57,41 @@ public class Entity : MonoBehaviour
 
     }
 
-    private int normalize(int value, int max)
+    public bool LoseStamina(float stamina)
+    {
+        if (Stamina - stamina > 0)
+        {
+            Stamina -= stamina;
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Keeps the value between the max and above 0.
+    /// </summary>
+    /// <param name="value">Value to normalize.</param>
+    /// <param name="max">Stop increasing at the max.</param>
+    /// <returns></returns>
+    private float Normalize(float value, float max)
     {
         if (value >= max) return max;
         else if (value <= 0) return 0;
         else return value;
     }
 
-    public int Health
+    public float Health
     {
         get { return health; }
-        set { health = normalize(value, maxHealth); }
+        set { health = Normalize(value, maxHealth); }
     }
 
-    public int Stamina
+    public float Stamina
     {
         get { return stamina; }
-        set { stamina = normalize(value, maxStamina); }
-    }
-
-
-    public bool LoseStamina(int staminaLoss) // this method can be called on when the player does an action and needs to lose stamina
-    {
-        if ((stamina - staminaLoss) >= 0) // if new stamina would be bigger than 0, then its okay.
-        {
-            stamina = stamina - staminaLoss; // then change the stamina
-            return true;
-        }
-        else // if new stamina would be lower than 0 not allowed
-        {
-            return false;
-        }
-    }
-
-    public void LoseHealth(int healthLoss)
-    {
-        health = health - healthLoss; // Changes the current health
-        Debug.Log(gameObject.name + "now has " + health);
+        set { stamina = Normalize(value, maxStamina); }
     }
 
     // Start is called before the first frame update
@@ -109,14 +107,7 @@ public class Entity : MonoBehaviour
 
     private void RegainStamina()
     {
-        if ((stamina + 10) > maxStamina) // make sure it doesnt exceed maximum
-        {
-            stamina = maxStamina; // set stamina
-        }
-        else
-        {
-            stamina = stamina + 20; // set new stamina
-        }
+        Stamina += 20;
     }
 
     // Update is called once per frame
