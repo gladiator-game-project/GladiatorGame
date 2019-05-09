@@ -16,4 +16,17 @@ public class PlayerStats : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
+    public void AddMoney(float money)
+    {
+        Coins += money;
+    }
+
+    public void LoseMoney(float money)
+    {
+        if ((Coins - money) < 0)
+            return;
+        else
+            Coins -= money;
+    }
 }
