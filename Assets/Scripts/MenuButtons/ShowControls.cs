@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class ShowControls : MonoBehaviour, IPointerClickHandler
 {
-    private float _clickTime;      
-    private int _clickCount = 0; 
     public bool onClick = true;      
-    public bool onDoubleClick = false; 
     private GameObject ControlsPanel;
 
     // Use this for initialization
