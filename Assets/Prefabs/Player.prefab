@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 8731836424403359470}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -561,6 +561,7 @@ MonoBehaviour:
   CameraSpeed: 10
   MaxCameraPitch: 45
   Camera: {fileID: 5596539356400652836}
+  fireDelay: 1
   SwordIndication: {fileID: 0}
   ShieldIndication: {fileID: 0}
   DebugMode: 0
@@ -2257,6 +2258,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 430059796, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
+      propertyPath: damageEffect
+      value: 
+      objectReference: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
 --- !u!114 &9222627444107411118 stripped
