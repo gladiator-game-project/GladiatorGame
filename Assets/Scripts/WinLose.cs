@@ -8,6 +8,7 @@ public class WinLose : MonoBehaviour
     private GameObject Player;
     private Entity entityscript;
     private PlayerMovement Movementscript;
+    private TakeWeapon TakeWeaponscript;
     public GameObject YouWinText;
     private Text YouWinLose;
     public GameObject RestartButton;
@@ -18,6 +19,7 @@ public class WinLose : MonoBehaviour
         entityscript = Player.GetComponent<Entity>();
         YouWinLose = YouWinText.GetComponent<Text>();
         Movementscript = Player.GetComponent<PlayerMovement>();
+        TakeWeaponscript = Player.GetComponent<TakeWeapon>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class WinLose : MonoBehaviour
             Cursor.visible = true;
             YouWinLose.text = "Game Over";
             Movementscript.enabled = false;
+            TakeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
         }
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -53,6 +56,7 @@ public class WinLose : MonoBehaviour
             Cursor.visible = true;
             YouWinLose.text = "You win!";
             Movementscript.enabled = false;
+            TakeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
         }
     }
