@@ -8,8 +8,10 @@ public class Entity : MonoBehaviour
     [SerializeField] public int maxStamina;
 
     [SerializeField] public BaseWeapon weapon;
+    private Animator _animator;
     private int health;
     private int stamina;
+    public bool _hasShield = true;
     public bool Alive;
 
     public void Attack(PlayerMovement.Direction direction)
@@ -26,6 +28,33 @@ public class Entity : MonoBehaviour
                 weapon.AttackDefault();
                 break;
         }
+    }
+
+    public void LowerDefense()
+    {
+        if (_hasShield)
+        {
+            _animator.SetBool("HoldShield", false);
+        }
+        else
+        {
+            _animator.SetBool("HoldSword", false);
+        }
+    }
+
+    public void RaiseDefense()
+    {
+        if (_hasShield)
+        {
+            _animator.SetTrigger("RaiseShield");
+            _animator.SetBool("HoldShield", true);
+        }
+        else
+        {
+            _animator.SetTrigger("RaiseSword");
+            _animator.SetBool("HoldSword", true);
+        }
+
     }
 
     private int normalize(int value, int max)
@@ -74,6 +103,7 @@ public class Entity : MonoBehaviour
         Stamina = maxStamina;
         Alive = true;
         InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+        _animator = GetComponent<Animator>();
     }
 
 

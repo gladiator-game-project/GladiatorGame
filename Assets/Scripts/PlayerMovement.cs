@@ -120,8 +120,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateShield() // update attack function, which checks for attacks and what direction
     {
+        //check if mouse was raised previous frame
         if (_holdSecondMouseDown == false)
         {
+            _entity.LowerDefense();
             cooldown -= Time.deltaTime;
             if (cooldown <= 0f)
                 seconds = 0f;
@@ -133,11 +135,12 @@ public class PlayerMovement : MonoBehaviour
             _holdSecondMouseDown = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
+            _entity.RaiseDefense();
             if (DebugMode)
                 ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
 
-        if (_holdSecondMouseDown)
+        if (_holdSecondMouseDown) //if mouse still down
         {
             Vector2 MousePos = Input.mousePosition;
             Vector2 MousePosCenter = new Vector2(Screen.width / 2, (Screen.height / 2) + 20); // +20 because unity is 20 off with mouse pos
@@ -154,14 +157,11 @@ public class PlayerMovement : MonoBehaviour
                 seconds++;
                 float BlockStaminaLoss = seconds * factor;
                 Debug.Log(BlockStaminaLoss);
-                if(_entity.LoseStamina((int)BlockStaminaLoss))
-                {
-                    //TODO: shield animation, etc.
-                }
+                _entity.LoseStamina((int)BlockStaminaLoss);
             }
         }
 
-        if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown == true)
+        if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown == true)//if mouse not down
         {
             _holdSecondMouseDown = false;
             Cursor.lockState = CursorLockMode.Locked;
