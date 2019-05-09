@@ -18,23 +18,8 @@ public class ExitGame : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
-        // get interval between this click and the previous one (check for double click)
-        float interval = data.clickTime - clickTime;
-
-        // if this is double click, change click count
-        if (interval < 0.5 && interval > 0 && clickCount != 2)
-        {
-            clickCount = 2;
-        }
-        else
-        {
-            clickCount = 1;
-        }
-        // reset click time
-        clickTime = data.clickTime;
-
         // single click
-        if (onClick && clickCount == 1)
+        if (onClick)
             Application.Quit();
     }
 }

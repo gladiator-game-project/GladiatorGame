@@ -19,23 +19,8 @@ public class StartGame : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
-        // get interval between this click and the previous one (check for double click)
-        float interval = data.clickTime - _clickTime;
-
-        // if this is double click, change click count
-        if (interval < 0.5 && interval > 0 && _clickCount != 2)
-        {
-            _clickCount = 2;
-        }
-        else
-        {
-            _clickCount = 1;
-        }
-        // reset click time
-        _clickTime = data.clickTime;
-
         // single click
-        if (onClick && _clickCount == 1)
+        if (onClick)
             SceneManager.LoadScene(1); // Load scene
     }
 }
