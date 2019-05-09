@@ -7,7 +7,7 @@ namespace Assets.Scripts.Behaviour.Actions
 {
     [Action("Gladiator/Movement/ToTargetCircle")]
     [Help("Moves towards the target combat circle with a small offset to the right")]
-    public class MoveToTargetCircle : GOAction
+    public class ToTargetCircle : GOAction
     {
         [InParam("Target")]
         [Help("Target to check the distance")]
