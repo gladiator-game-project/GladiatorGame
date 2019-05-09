@@ -2189,6 +2189,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife_final_model Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6090655161758902092, guid: 2a030bff78f5b684d944779b6139ef0d,
+        type: 3}
+      propertyPath: currentAnim
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1800699754331969964, guid: 2a030bff78f5b684d944779b6139ef0d,
         type: 3}
       propertyPath: m_LocalPosition.x
