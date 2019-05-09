@@ -3,9 +3,9 @@ using Pada1.BBCore;
 using UnityEngine;
 using BBUnity.Actions;
 
-[Action("Gladiator/AttackPlayer")]
-[Help("Attacks the player")]
-public class AttackPlayer : GOAction
+[Action("Gladiator/Defend")]
+[Help("Pulls up the shield")]
+public class Defend : GOAction
 {
     private Entity _entity;
 
@@ -16,11 +16,7 @@ public class AttackPlayer : GOAction
 
     public override TaskStatus OnUpdate()
     {
-        if (_entity != null)
-        {
-            _entity.LoseHealth(1);
-            return TaskStatus.COMPLETED;
-        }
+        //TODO
         return TaskStatus.FAILED;
     }
 
