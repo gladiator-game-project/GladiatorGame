@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TakeWeapon : MonoBehaviour
 {
     private GameObject CurrentWeapon;
     private GameObject SelectedWeapon;
+
+    public GameObject TextBar;
+    private Text BtnText;
     // Start is called before the first frame update
     void Start()
     {
+        BtnText = TextBar.GetComponent<Text>();
+
         if (gameObject.GetComponent<Entity>().weapon != null)
             CurrentWeapon = gameObject.GetComponent<Entity>().weapon.gameObject;
         else
@@ -62,13 +68,15 @@ public class TakeWeapon : MonoBehaviour
                 if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != CurrentWeapon)
                 {
                     SelectedWeapon = hitColliders[i].gameObject;
+                    BtnText.text = "Press E to pick up " + hitColliders[i].name;
                     return true;
                 }
                 i++;
             }
+            BtnText.text = "";
             return false;
         }
+        BtnText.text = "";
         return false;
-            
     }
 }
