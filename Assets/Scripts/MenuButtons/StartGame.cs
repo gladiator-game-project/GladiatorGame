@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour, IPointerClickHandler
 {
-    private float clickTime;
-    private int clickCount = 0;
+    private float _clickTime;
+    private int _clickCount = 0;
     public bool onClick = true;
     public bool onDoubleClick = false;
     private Text BtnText;
@@ -25,22 +25,22 @@ public class StartGame : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData data)
     {
         // get interval between this click and the previous one (check for double click)
-        float interval = data.clickTime - clickTime;
+        float interval = data.clickTime - _clickTime;
 
         // if this is double click, change click count
-        if (interval < 0.5 && interval > 0 && clickCount != 2)
+        if (interval < 0.5 && interval > 0 && _clickCount != 2)
         {
-            clickCount = 2;
+            _clickCount = 2;
         }
         else
         {
-            clickCount = 1;
+            _clickCount = 1;
         }
         // reset click time
-        clickTime = data.clickTime;
+        _clickTime = data.clickTime;
 
         // single click
-        if (onClick && clickCount == 1)
+        if (onClick && _clickCount == 1)
             SceneManager.LoadScene(1); // Load scene
 
     }
