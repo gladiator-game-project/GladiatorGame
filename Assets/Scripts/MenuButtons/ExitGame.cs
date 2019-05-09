@@ -16,10 +16,6 @@ public class ExitGame : MonoBehaviour, IPointerClickHandler
         BtnText = transform.gameObject.GetComponentInChildren<Text>();
     }
 
-    public void Update()
-    {
-
-    }
     public void OnPointerClick(PointerEventData data)
     {
         // get interval between this click and the previous one (check for double click)
@@ -40,6 +36,5 @@ public class ExitGame : MonoBehaviour, IPointerClickHandler
         // single click
         if (onClick && clickCount == 1)
             Application.Quit();
-
     }
 }

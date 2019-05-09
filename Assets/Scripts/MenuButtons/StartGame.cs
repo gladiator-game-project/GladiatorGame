@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class StartGame : MonoBehaviour, IPointerClickHandler
 {
     private float _clickTime;
@@ -18,10 +17,6 @@ public class StartGame : MonoBehaviour, IPointerClickHandler
         BtnText = transform.gameObject.GetComponentInChildren<Text>();
     }
 
-    public void Update()
-    {
-
-    }
     public void OnPointerClick(PointerEventData data)
     {
         // get interval between this click and the previous one (check for double click)
@@ -42,6 +37,5 @@ public class StartGame : MonoBehaviour, IPointerClickHandler
         // single click
         if (onClick && _clickCount == 1)
             SceneManager.LoadScene(1); // Load scene
-
     }
 }
