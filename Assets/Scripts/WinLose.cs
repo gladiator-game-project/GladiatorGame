@@ -12,6 +12,7 @@ public class WinLose : MonoBehaviour
     public GameObject YouWinText;
     private Text _youWinLose;
     public GameObject RestartButton;
+    private PlayerStats _playerStats;
     // Start is called before the first frame update
     void Start()
     {

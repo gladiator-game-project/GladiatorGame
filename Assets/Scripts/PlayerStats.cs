@@ -6,20 +6,14 @@ public class PlayerStats : MonoBehaviour
 {
     public float Coins;
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        //TODO: Playerprefs to save coins
-        Coins = 0.0f; // begin coins
+        //TODO: Add playerprefs to save coins
+        Coins = 0.0f; //can change
     }
 
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
