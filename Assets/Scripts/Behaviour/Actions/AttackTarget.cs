@@ -17,7 +17,7 @@ public class AttackTarget : GOAction
 
         if (entity != null)
         {
-            entity.LoseHealth(1);
+            entity.Health -= 1;
             return TaskStatus.COMPLETED;
         }
         return TaskStatus.FAILED;
