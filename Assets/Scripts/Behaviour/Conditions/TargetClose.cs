@@ -10,9 +10,13 @@ public class TargetClose : GOCondition
     [Help("Target to check the distance")]
     public GameObject Target;
 
+    [InParam("Distance")]
+    [Help("The distance")]
+    public float Distance;
+
     public override bool Check()
     {
         var distance = Vector3.Distance(gameObject.transform.position, Target.transform.position);
-        return distance < 3.2f;
+        return distance < Distance;
     }
 }
