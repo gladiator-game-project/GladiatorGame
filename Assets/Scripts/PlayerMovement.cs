@@ -83,13 +83,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateKeyMovement()
     {
-        var xInput = transform.right * Input.GetAxis("Horizontal");
-        var zInput = transform.forward * Input.GetAxis("Vertical");
+        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = Input.GetAxisRaw("Vertical");
+
+        var xInput = transform.right * horizontal;
+        var zInput = transform.forward * vertical;
 
         Vector3 movementDirection = (xInput + zInput) * HandleSprinting();
 
-        _animator.SetInteger("inputx", (int)Input.GetAxis("Horizontal"));
-        _animator.SetInteger("inputy", (int)Input.GetAxis("Vertical"));
+        _animator.SetInteger("inputx", (int)horizontal);
+        _animator.SetInteger("inputy", (int)vertical);
         _rigidBody.velocity = movementDirection;
     }
 

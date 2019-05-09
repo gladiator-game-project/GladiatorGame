@@ -11,16 +11,25 @@ public class AttackTarget : GOAction
     [Help("Target to check the distance")]
     public GameObject Target;
 
+    private Entity _entity;
+    private Animator _anim;
+
+    public override void OnStart()
+    {
+        _entity = gameObject.GetComponent<Entity>();
+        _anim = gameObject.GetComponent<Animator>();
+    }
+
     public override TaskStatus OnUpdate()
     {
-        Entity entity = Target.GetComponent<Entity>();
-
-        if (entity != null)
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsTag("attack") == false && _entity.LoseStamina(40))
         {
-            entity.Health -= 1;
-            return TaskStatus.COMPLETED;
+            _entity.Attack(PlayerMovement.Direction.Left);
+            return TaskStatus.RUNNING;
         }
-        return TaskStatus.FAILED;
+
+
+        return TaskStatus.COMPLETED;
     }
 
 }

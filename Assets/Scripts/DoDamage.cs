@@ -5,12 +5,12 @@ using UnityEngine;
 public class DoDamage : MonoBehaviour
 {
     public GameObject damageEffect;
-    private List<Collision> collisions; //Declare list with all colliders that are colliding with the weapon.
-    private Animator animator; // Declare the animator of the weapon
+    private List<Collision> _collisions; //Declare list with all colliders that are colliding with the weapon.
+    public Animator animator; // Declare the animator of the weapon
 
     void Start()
     {
-        collisions = new List<Collision>(); //Create new List
+        _collisions = new List<Collision>(); //Create new List
         animator = gameObject.GetComponentInParent<Animator>();
     }
 
@@ -21,9 +21,11 @@ public class DoDamage : MonoBehaviour
 
     private void CheckDamage()
     {
+        if (animator == null)
+            return;
         List<Collision> toRemove = new List<Collision>(); //Create list of colliders that needs to be removed from the list colliders 
 
-        foreach(Collision c in collisions) //For each collider check if it has an entity script and remove if it does
+        foreach(Collision c in _collisions) //For each collider check if it has an entity script and remove if it does
         {
             if(c.gameObject.GetComponent<Entity>() != null && animator.GetCurrentAnimatorStateInfo(0).IsTag("attack")) // Also check if animation is playing
             {
@@ -37,20 +39,20 @@ public class DoDamage : MonoBehaviour
 
         foreach(Collision c in toRemove)
         {
-            collisions.Remove(c); //Remove from collider list
+            _collisions.Remove(c); //Remove from collider list
         }
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collisions.Contains(collision))
-            collisions.Add(collision); //Add collider in list if the weapon hits something
+        if (!_collisions.Contains(collision))
+            _collisions.Add(collision); //Add collider in list if the weapon hits something
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collisions.Contains(collision))
-            collisions.Remove(collision); //Remove collider when its not hitting stuff anymore.
+        if (_collisions.Contains(collision))
+            _collisions.Remove(collision); //Remove collider when its not hitting stuff anymore.
     }
 }
