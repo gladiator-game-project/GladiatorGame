@@ -13,13 +13,23 @@ public class Entity : MonoBehaviour
     [SerializeField] private GameObject Hand;
     private float health;
     private float stamina;
-<<<<<<< HEAD
     public bool _hasShield;
-    public bool Alive;
-=======
     private float courage;
     public bool Alive = true;
->>>>>>> master
+
+    public void Start()
+    {
+        Health = maxHealth;
+        Stamina = maxStamina;
+        courage = 100;
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+    }
+
+    public void Update()
+    {
+        UpdateDeath();
+        UpdateWeapon();
+    }
 
     public float Health
     {
@@ -27,7 +37,12 @@ public class Entity : MonoBehaviour
         set { health = Mathf.Clamp(value, 0, maxHealth); }
     }
 
-<<<<<<< HEAD
+    public float Stamina
+    {
+        get { return stamina; }
+        set { stamina = Mathf.Clamp(value, 0, maxStamina); }
+    }
+
     public void LowerDefense()
     {
         if (_hasShield)
@@ -55,46 +70,19 @@ public class Entity : MonoBehaviour
 
     }
 
-    public bool LoseStamina(float stamina)
-=======
-    public float Stamina
->>>>>>> master
-    {
-        get { return stamina; }
-        set { stamina = Mathf.Clamp(value, 0, maxStamina); }
-    }
-
     public float Courage
     {
         get => courage + health - 100;
     }
 
-
-    public void Start()
-    {
-        Health = maxHealth;
-        Stamina = maxStamina;
-        courage = 100;
-        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
-    }
-
-    public void Update()
-    {
-        UpdateDeath();
-        UpdateWeapon();
-    }
-
     public void Attack(PlayerMovement.Direction direction)
     {
-<<<<<<< HEAD
         Health = maxHealth;
         Stamina = maxStamina;
         Alive = true;
         InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
         _animator = GetComponent<Animator>();
-=======
         weapon.Attack(direction);
->>>>>>> master
     }
 
     public bool LoseStamina(float stamina)
