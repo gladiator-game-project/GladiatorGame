@@ -19,6 +19,7 @@ public class Entity : MonoBehaviour
 
     public void Start()
     {
+        _animator = GetComponent<Animator>();
         Health = maxHealth;
         Stamina = maxStamina;
         courage = 100;
