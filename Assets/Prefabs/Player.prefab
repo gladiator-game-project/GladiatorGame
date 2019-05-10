@@ -698,6 +698,7 @@ MonoBehaviour:
   maxStamina: 100
   weapon: {fileID: 3133098319088594537}
   Hand: {fileID: 6355714995787343066}
+  _hasShield: 0
   Alive: 1
 --- !u!114 &8731836424403359470
 MonoBehaviour:
