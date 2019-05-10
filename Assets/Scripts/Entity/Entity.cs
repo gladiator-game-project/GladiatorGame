@@ -8,11 +8,29 @@ public class Entity : MonoBehaviour
     [SerializeField] public float maxStamina;
 
     [SerializeField] public BaseWeapon weapon;
+    private Animator _animator;
+
     [SerializeField] private GameObject Hand;
     private float health;
     private float stamina;
+    public bool _hasShield;
     private float courage;
     public bool Alive = true;
+
+    public void Start()
+    {
+        _animator = GetComponent<Animator>();
+        Health = maxHealth;
+        Stamina = maxStamina;
+        courage = 100;
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+    }
+
+    public void Update()
+    {
+        UpdateDeath();
+        UpdateWeapon();
+    }
 
     public float Health
     {
@@ -26,28 +44,45 @@ public class Entity : MonoBehaviour
         set { stamina = Mathf.Clamp(value, 0, maxStamina); }
     }
 
+    public void LowerDefense()
+    {
+        if (_hasShield)
+        {
+            _animator.SetBool("HoldShield", false);
+        }
+        else
+        {
+            _animator.SetBool("HoldSword", false);
+        }
+    }
+
+    public void RaiseDefense()
+    {
+        if (_hasShield)
+        {
+            _animator.SetTrigger("RaiseShield");
+            _animator.SetBool("HoldShield", true);
+        }
+        else
+        {
+            _animator.SetTrigger("RaiseSword");
+            _animator.SetBool("HoldSword", true);
+        }
+
+    }
+
     public float Courage
     {
         get => courage + health - 100;
     }
 
-
-    public void Start()
+    public void Attack(PlayerMovement.Direction direction)
     {
         Health = maxHealth;
         Stamina = maxStamina;
-        courage = 100;
+        Alive = true;
         InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
-    }
-
-    public void Update()
-    {
-        UpdateDeath();
-        UpdateWeapon();
-    }
-
-    public void Attack(PlayerMovement.Direction direction)
-    {
+        _animator = GetComponent<Animator>();
         weapon.Attack(direction);
     }
 
