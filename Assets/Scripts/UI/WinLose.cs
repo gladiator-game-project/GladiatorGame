@@ -12,17 +12,16 @@ public class WinLose : MonoBehaviour
     public GameObject YouWinText;
     private Text _youWinLose;
     public GameObject RestartButton;
-    // Start is called before the first frame update
+
     void Start()
     {
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
         _entityscript = _player.GetComponent<Entity>();
         _youWinLose = YouWinText.GetComponent<Text>();
         _movementscript = _player.GetComponent<PlayerMovement>();
         _takeWeaponscript = _player.GetComponent<TakeWeapon>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         CheckGameStatus();
@@ -39,6 +38,7 @@ public class WinLose : MonoBehaviour
             _takeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
         }
+
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         bool allDeath = true; // assume all are death
         foreach (GameObject Enemy in Enemies)

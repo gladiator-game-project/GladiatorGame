@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Weapon
-  - NPC
   layers:
   - Default
   - TransparentFX
