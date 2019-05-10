@@ -61,6 +61,7 @@ public class WinLose : MonoBehaviour
             _takeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
             _playerStats.AddMoney(20.0f);
+            //TODO: add system so the winning money can change
         }
     }
 }
