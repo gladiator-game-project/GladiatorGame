@@ -27,9 +27,7 @@ namespace Assets.Scripts.Behaviour.Actions
 
             trans = gameObject.transform;
             tTrans = Target.transform;
-
-
-
+                       
             _distanceToTarget = Vector3.Distance(trans.position, tTrans.position) + 0.3f;
         }
 

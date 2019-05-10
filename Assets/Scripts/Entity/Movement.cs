@@ -32,9 +32,6 @@ public class Movement : MonoBehaviour
 
     private void MoveModel()
     {
-        Debug.DrawLine(transform.position,-transform.forward + transform.position + GetAnglePoint(-xAngleCutOff), Color.red);
-        Debug.DrawLine(transform.position, -transform.forward + transform.position + GetAnglePoint(xAngleCutOff), Color.red);
-
         if (angle > xAngleCutOff && angle < 65)
             return;
 
@@ -47,8 +44,10 @@ public class Movement : MonoBehaviour
         int x = angle > 65 && angle < 105 ? 1 : 0;
         int y = angle < xAngleCutOff ? 1 : angle > 175 ? -1 : 0;
 
-        x *= TowardsPosition.x < transform.position.x ? -1 : 1;
-
+        //Check whether the x position of TowardsPosition is left or right of the AI
+        var i = transform.InverseTransformPoint(TowardsPosition);
+        x *= i.x < 0 ? -1 : 1;
+                
         if (Vector3.Distance(transform.position, TowardsPosition) < 5.2f)
             y = 0;
 
