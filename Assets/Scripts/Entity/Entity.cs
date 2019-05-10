@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour
 
     [SerializeField] public BaseWeapon weapon;
     private Animator _animator;
+
+    [SerializeField] private GameObject Hand;
     private float health;
     private float stamina;
     public bool _hasShield;
@@ -16,18 +18,7 @@ public class Entity : MonoBehaviour
 
     public void Attack(PlayerMovement.Direction direction)
     {
-        switch (direction)
-        {
-            case PlayerMovement.Direction.Left:
-                weapon.AttackLeft();
-                break;
-            case PlayerMovement.Direction.Right:
-                weapon.AttackRight();
-                break;
-            default:
-                weapon.AttackDefault();
-                break;
-        }
+        weapon.Attack(direction);
     }
 
     public void LowerDefense()
@@ -114,6 +105,7 @@ public class Entity : MonoBehaviour
     void Update()
     {
         UpdateDeath();
+        UpdateWeapon();
     }
 
     private void UpdateDeath()
@@ -121,6 +113,17 @@ public class Entity : MonoBehaviour
         if (health <= 0)
         {
             Alive = false;
+        }
+    }
+
+    private void UpdateWeapon()
+    {
+        if (weapon == null)
+        {
+            GameObject knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
+            knucklesPrefab.transform.parent = Hand.transform;
+            weapon = knucklesPrefab.GetComponent<BaseWeapon>();
+            weapon.currentType = BaseWeapon.AttackType.Punch;
         }
     }
 
