@@ -129,14 +129,24 @@ ModelImporter:
     400122: Spine2
     2100000: Material
     4300000: Body
-    7400000: Armature|IdleKnife
-    7400002: Armature|Punch
-    7400004: Armature|Run
-    7400006: Armature|SlashLeft
-    7400008: Armature|SlashRight
-    7400010: Armature|Stab
-    7400012: Armature|StrafeLeft
-    7400014: Armature|StrafeRight
+    7400000: Armature|HoldShieldRaised
+    7400002: Armature|HoldSword
+    7400004: Armature|IdleKnife
+    7400006: Armature|LowerShield
+    7400008: Armature|LowerSword
+    7400010: Armature|Punch
+    7400012: Armature|RaiseShield
+    7400014: Armature|RaiseSword
+    7400016: Armature|Run
+    7400018: Armature|RunAngledLeft
+    7400020: Armature|RunAngledRight
+    7400022: Armature|ShieldImpact
+    7400024: Armature|SlashLeft
+    7400026: Armature|SlashRight
+    7400028: Armature|Stab
+    7400030: Armature|StrafeLeft
+    7400032: Armature|StrafeRight
+    7400034: Armature|SwordImpact
     9500000: //RootNode
     13700000: Body
     2186277476908879412: ImportLogs
