@@ -13,14 +13,21 @@ public class Entity : MonoBehaviour
     [SerializeField] private GameObject Hand;
     private float health;
     private float stamina;
+<<<<<<< HEAD
     public bool _hasShield;
     public bool Alive;
+=======
+    private float courage;
+    public bool Alive = true;
+>>>>>>> master
 
-    public void Attack(PlayerMovement.Direction direction)
+    public float Health
     {
-        weapon.Attack(direction);
+        get { return health; }
+        set { health = Mathf.Clamp(value, 0, maxHealth); }
     }
 
+<<<<<<< HEAD
     public void LowerDefense()
     {
         if (_hasShield)
@@ -49,71 +56,62 @@ public class Entity : MonoBehaviour
     }
 
     public bool LoseStamina(float stamina)
-    {
-        if (Stamina - stamina > 0)
-        {
-            Stamina -= stamina;
-            return true;
-        } else
-        {
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Keeps the value between the max and above 0.
-    /// </summary>
-    /// <param name="value">Value to normalize.</param>
-    /// <param name="max">Stop increasing at the max.</param>
-    /// <returns></returns>
-    private float Normalize(float value, float max)
-    {
-        if (value >= max) return max;
-        else if (value <= 0) return 0;
-        else return value;
-    }
-
-    public float Health
-    {
-        get { return health; }
-        set { health = Normalize(value, maxHealth); }
-    }
-
+=======
     public float Stamina
+>>>>>>> master
     {
         get { return stamina; }
-        set { stamina = Normalize(value, maxStamina); }
+        set { stamina = Mathf.Clamp(value, 0, maxStamina); }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public float Courage
     {
+        get => courage + health - 100;
+    }
+
+
+    public void Start()
+    {
+        Health = maxHealth;
+        Stamina = maxStamina;
+        courage = 100;
+        InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+    }
+
+    public void Update()
+    {
+        UpdateDeath();
+        UpdateWeapon();
+    }
+
+    public void Attack(PlayerMovement.Direction direction)
+    {
+<<<<<<< HEAD
         Health = maxHealth;
         Stamina = maxStamina;
         Alive = true;
         InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
         _animator = GetComponent<Animator>();
+=======
+        weapon.Attack(direction);
+>>>>>>> master
     }
 
+    public bool LoseStamina(float stamina)
+    {
+        Stamina -= Stamina - stamina > 0 ? stamina : 0;
+        return Stamina - stamina > 0;
+    }
 
     private void RegainStamina()
     {
         Stamina += 20;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateDeath();
-        UpdateWeapon();
-    }
-
     private void UpdateDeath()
     {
         if (health <= 0)
-        {
             Alive = false;
-        }
     }
 
     private void UpdateWeapon()
