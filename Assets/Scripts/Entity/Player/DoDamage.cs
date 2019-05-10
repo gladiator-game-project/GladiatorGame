@@ -27,7 +27,8 @@ public class DoDamage : MonoBehaviour
 
         foreach(Collision c in _collisions) //For each collider check if it has an entity script and remove if it does
         {
-            if(c.gameObject.GetComponent<Entity>() != null && animator.GetCurrentAnimatorStateInfo(0).IsTag("attack")) // Also check if animation is playing
+            Debug.Log(c.gameObject.GetComponent<Entity>());
+            if (c.gameObject.GetComponent<Entity>() != null && animator.GetCurrentAnimatorStateInfo(0).IsTag("attack")) // Also check if animation is playing
             {
                 Instantiate(damageEffect, c.contacts[0].point, Quaternion.FromToRotation(Vector3.up, c.contacts[0].normal));
                 Entity healthScript = c.gameObject.GetComponent<Entity>(); // Call entity script of the hit entity
