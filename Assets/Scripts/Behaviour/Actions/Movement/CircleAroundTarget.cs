@@ -25,27 +25,32 @@ namespace Assets.Scripts.Behaviour.Actions
         {
             _movement = gameObject.GetComponent<Movement>();
 
-
             trans = gameObject.transform;
             tTrans = Target.transform;
-
-            Vector3 difference = trans.position - tTrans.position;
-            var distance = Vector3.Distance(trans.position, tTrans.position);
-
-            var angle = Mathf.Asin(difference.x / distance);
-
-            _angle = angle - 1 * Time.deltaTime;
-            _distanceToTarget = 2.5f;// Vector3.Distance(trans.position, tTrans.position);
+                       
+            _distanceToTarget = Vector3.Distance(trans.position, tTrans.position) + 0.3f;
         }
 
         public override TaskStatus OnUpdate()
         {
-            var newPos = /*(tTrans.position - tTrans.right * 2)*/ trans.position + trans.right * 2 + trans.forward / 2;
+            _angle = GetAngle();
+            var offsetDegrees = 25 * Mathf.Deg2Rad;
+            var offset = new Vector3(Mathf.Sin(_angle - offsetDegrees), 0, Mathf.Cos(_angle - offsetDegrees)) * _distanceToTarget;
 
+            var newPos = tTrans.position + offset;
+
+            _movement.Speed = 1f;
             _movement.TowardsPosition = newPos;
 
-            _angle -= 0.5f * Time.deltaTime;
             return TaskStatus.RUNNING;
+        }
+
+        private float GetAngle()
+        {
+            Vector3 difference = trans.position - tTrans.position;
+            var distance = Vector3.Distance(trans.position, tTrans.position);
+            var angle = Mathf.Atan2(difference.x, trans.position.z);
+            return angle;
         }
     }
 }
