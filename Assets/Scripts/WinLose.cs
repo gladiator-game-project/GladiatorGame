@@ -5,23 +5,22 @@ using UnityEngine.UI;
 
 public class WinLose : MonoBehaviour
 {
-    private GameObject _player;
-    private Entity _entityscript;
-    private PlayerMovement _movementscript;
-    private TakeWeapon _takeWeaponscript;
+    private GameObject Player;
+    private Entity entityscript;
+    private PlayerMovement Movementscript;
     public GameObject YouWinText;
-    private Text _youWinLose;
+    private Text YouWinLose;
     public GameObject RestartButton;
-
+    // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _entityscript = _player.GetComponent<Entity>();
-        _youWinLose = YouWinText.GetComponent<Text>();
-        _movementscript = _player.GetComponent<PlayerMovement>();
-        _takeWeaponscript = _player.GetComponent<TakeWeapon>();
+        Player = GameObject.Find("Player");
+        entityscript = Player.GetComponent<Entity>();
+        YouWinLose = YouWinText.GetComponent<Text>();
+        Movementscript = Player.GetComponent<PlayerMovement>();
     }
-    
+
+    // Update is called once per frame
     void Update()
     {
         CheckGameStatus();
@@ -29,16 +28,14 @@ public class WinLose : MonoBehaviour
 
     private void CheckGameStatus()
     {
-        if (_entityscript.Alive == false)
+        if (entityscript.Alive == false)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            _youWinLose.text = "Game Over";
-            _movementscript.enabled = false;
-            _takeWeaponscript.enabled = false;
+            YouWinLose.text = "Game Over";
+            Movementscript.enabled = false;
             RestartButton.SetActive(true);
         }
-
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         bool allDeath = true; // assume all are death
         foreach (GameObject Enemy in Enemies)
@@ -54,9 +51,8 @@ public class WinLose : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            _youWinLose.text = "You win!";
-            _movementscript.enabled = false;
-            _takeWeaponscript.enabled = false;
+            YouWinLose.text = "You win!";
+            Movementscript.enabled = false;
             RestartButton.SetActive(true);
         }
     }

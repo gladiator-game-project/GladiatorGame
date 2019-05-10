@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
-    public Animator animator;
-    public Quaternion originalRotation;
+    protected Animator animator;
 
     public enum AttackType { Stab, Punch, Slash }
 
     public AttackType currentAnim = AttackType.Punch;
 
-    private void Start()
+    protected void Start()
     {
-        originalRotation = transform.localRotation;
         animator = GetComponentInParent<Animator>();
     }
-
 
     public void Attack(PlayerMovement.Direction direction)
     {
