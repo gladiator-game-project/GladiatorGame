@@ -21,6 +21,7 @@ public class WinLose : MonoBehaviour
         _youWinLose = YouWinText.GetComponent<Text>();
         _movementscript = _player.GetComponent<PlayerMovement>();
         _takeWeaponscript = _player.GetComponent<TakeWeapon>();
+        _playerStats = GameObject.Find("GameManager").GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -59,6 +60,7 @@ public class WinLose : MonoBehaviour
             _movementscript.enabled = false;
             _takeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
+            _playerStats.AddMoney(20.0f);
         }
     }
 }

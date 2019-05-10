@@ -297,7 +297,6 @@ GameObject:
   - component: {fileID: 179325714}
   - component: {fileID: 179325713}
   - component: {fileID: 179325715}
-  - component: {fileID: 179325716}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -345,18 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   YouWinText: {fileID: 331921284}
   RestartButton: {fileID: 1964255521}
---- !u!114 &179325716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179325712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcafcf36fdffd843a2c39fddb889c04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &331921284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4710233466302319912, guid: cf043b449fe95a74bb1b0c5490b18d2a,
