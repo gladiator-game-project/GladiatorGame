@@ -9,6 +9,7 @@ public class WinLose : MonoBehaviour
     private Entity _entityscript;
     private PlayerMovement _movementscript;
     private TakeWeapon _takeWeaponscript;
+    private PlayerStats _playerstats;
     public GameObject YouWinText;
     private Text _youWinLose;
     public GameObject RestartButton;
@@ -20,6 +21,7 @@ public class WinLose : MonoBehaviour
         _youWinLose = YouWinText.GetComponent<Text>();
         _movementscript = _player.GetComponent<PlayerMovement>();
         _takeWeaponscript = _player.GetComponent<TakeWeapon>();
+        _playerstats = GameObject.Find("GameManager").GetComponent<PlayerStats>();
     }
     
     void Update()
@@ -58,6 +60,8 @@ public class WinLose : MonoBehaviour
             _movementscript.enabled = false;
             _takeWeaponscript.enabled = false;
             RestartButton.SetActive(true);
+            _playerstats.AddCoins(20.0f);
+            //TODO: MAke system to give this script the correct number of coins
         }
     }
 }
