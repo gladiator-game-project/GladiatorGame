@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8423241261091449389}
   - component: {fileID: 7080712049437626441}
   - component: {fileID: 2440948567051206237}
-  - component: {fileID: 4342335778051700270}
-  - component: {fileID: 8491774796754792837}
+  - component: {fileID: 3891813851342683508}
+  - component: {fileID: 1995163171374693257}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 50
+  field of view: 59.470486
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -84,7 +84,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5596539356400652836}
   m_Enabled: 1
---- !u!114 &4342335778051700270
+--- !u!114 &3891813851342683508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
---- !u!114 &8491774796754792837
+--- !u!114 &1995163171374693257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8731836424403359470}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2339,6 +2339,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
+        type: 3}
+      propertyPath: m_Name
+      value: Knife_final_model Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 430059796, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
+      propertyPath: damageEffect
+      value: 
+      objectReference: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}
 --- !u!4 &7421936760075636873 stripped
@@ -2347,15 +2357,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9222627443434572069}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3133098319088594537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6090655161758902092, guid: 2a030bff78f5b684d944779b6139ef0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222627443434572069}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
