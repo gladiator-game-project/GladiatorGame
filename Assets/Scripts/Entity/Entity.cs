@@ -8,24 +8,14 @@ public class Entity : MonoBehaviour
     [SerializeField] public float maxStamina;
 
     [SerializeField] public BaseWeapon weapon;
+    [SerializeField] private GameObject Hand;
     private float health;
     private float stamina;
     public bool Alive;
 
     public void Attack(PlayerMovement.Direction direction)
     {
-        switch (direction)
-        {
-            case PlayerMovement.Direction.Left:
-                weapon.AttackLeft();
-                break;
-            case PlayerMovement.Direction.Right:
-                weapon.AttackRight();
-                break;
-            default:
-                weapon.AttackDefault();
-                break;
-        }
+        weapon.Attack(direction);
     }
 
     public bool LoseStamina(float stamina)
@@ -84,6 +74,7 @@ public class Entity : MonoBehaviour
     void Update()
     {
         UpdateDeath();
+        UpdateWeapon();
     }
 
     private void UpdateDeath()
@@ -91,6 +82,17 @@ public class Entity : MonoBehaviour
         if (health <= 0)
         {
             Alive = false;
+        }
+    }
+
+    private void UpdateWeapon()
+    {
+        if (weapon == null)
+        {
+            GameObject knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
+            knucklesPrefab.transform.parent = Hand.transform;
+            weapon = knucklesPrefab.GetComponent<BaseWeapon>();
+            weapon.currentType = BaseWeapon.AttackType.Punch;
         }
     }
 

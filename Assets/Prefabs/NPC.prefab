@@ -1128,6 +1128,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   weapon: {fileID: 4787146823980614716}
+  Hand: {fileID: 425168470722045443}
   Alive: 1
 --- !u!114 &7271128897079937122
 MonoBehaviour:
@@ -1142,6 +1143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowardsPosition: {x: 0, y: 0, z: 0}
+  Target: {fileID: 0}
 --- !u!1 &425168470722045509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,6 +2147,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 425168470721886755}
     m_Modifications:
+    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
+        type: 3}
+      propertyPath: m_Name
+      value: Knife_final_model Variant
+      objectReference: {fileID: 0}
     - target: {fileID: 1800699754331969964, guid: 2a030bff78f5b684d944779b6139ef0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2214,11 +2221,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1800699754331538828, guid: 2a030bff78f5b684d944779b6139ef0d,
-        type: 3}
-      propertyPath: m_Name
-      value: Knife_final_model Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a030bff78f5b684d944779b6139ef0d, type: 3}

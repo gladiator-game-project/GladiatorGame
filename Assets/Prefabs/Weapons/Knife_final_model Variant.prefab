@@ -42,7 +42,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageEffect: {fileID: 0}
---- !u!114 &677754763
+  animator: {fileID: 0}
+--- !u!114 &2598672743348341934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,9 +52,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1800699754331538828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf6e87ee15fc1d42b596b58d5f68ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  currentType: 0
 --- !u!1001 &1800699754331570984
 PrefabInstance:
   m_ObjectHideFlags: 0
