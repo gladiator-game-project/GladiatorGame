@@ -1,4 +1,5 @@
-﻿using Pada1.BBCore.Tasks;
+﻿using Assets.Scripts.Entities;
+using Pada1.BBCore.Tasks;
 using Pada1.BBCore;
 using UnityEngine;
 using BBUnity.Actions;

@@ -1,30 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Entities;
 
-public class StaminaBar : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    private Entity _entityScript;
-    private Image _imgComponent;
-
-    void Start()
+    public class StaminaBar : MonoBehaviour
     {
-        _entityScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
-        _imgComponent = GetComponent<Image>();
-    }
+        private Entity _entityScript;
+        private Image _imgComponent;
 
-    void Update()
-    {
-        CheckWidth();
-    }
+        void Start()
+        {
+            _entityScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Entities.Entity>();
+            _imgComponent = GetComponent<Image>();
+        }
 
-    private void CheckWidth()
-    {
-        float currentStamina = _entityScript.Stamina;
-        float maxStamina = _entityScript.maxStamina;
-        float promille = currentStamina / maxStamina;
-        float fillAmount = 1 - promille;
-        _imgComponent.fillAmount = fillAmount;
+        void Update()
+        {
+            CheckWidth();
+        }
+
+        private void CheckWidth()
+        {
+            float currentStamina = _entityScript.Stamina;
+            float maxStamina = _entityScript.MaxStamina;
+            float promille = currentStamina / maxStamina;
+            float fillAmount = 1 - promille;
+            _imgComponent.fillAmount = fillAmount;
+        }
     }
 }

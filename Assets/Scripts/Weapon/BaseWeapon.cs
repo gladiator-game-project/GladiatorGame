@@ -1,32 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Entities;
 using UnityEngine;
 
-public class BaseWeapon : MonoBehaviour
+namespace Assets.Scripts.Weapon
 {
-    public Animator animator;
-    public Quaternion originalRotation;
-
-    public enum AttackType { Stab,Slash,Punch}
-
-    public AttackType currentType;
-
-    private void Start()
+    public class BaseWeapon : MonoBehaviour
     {
-        originalRotation = transform.localRotation;
-        animator = GetComponentInParent<Animator>();
-    }
+        public Animator Animator;
+        public Quaternion OriginalRotation;
 
-    //default animation if a entity does not have a weapon.
-    public void Attack(PlayerMovement.Direction direction)
-    {
-        if(currentType == AttackType.Slash)
+        public enum AttackType { STAB,SLASH,PUNCH}
+
+        public AttackType CurrentType;
+
+        private void Start()
         {
-            animator.SetTrigger("Slash" + direction);
+            OriginalRotation = transform.localRotation;
+            Animator = GetComponentInParent<Animator>();
         }
-        else
+
+        /// <summary>
+        /// Set the correct animation based on the direction
+        /// </summary>
+        /// <param name="direction"></param>
+        public void Attack(PlayerMovement.Direction direction)
         {
-            animator.SetTrigger(currentType.ToString());
+            if(CurrentType == AttackType.SLASH)
+                Animator.SetTrigger("Slash" + direction);
+            else
+                Animator.SetTrigger(CurrentType.ToString());
+            
         }
     }
 }

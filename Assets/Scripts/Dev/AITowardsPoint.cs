@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Entities;
 using UnityEngine;
 
-public class AITowardsPoint : MonoBehaviour
+namespace Assets.Scripts.Dev
 {
-    public Movement NPCMovement;
-    void Start()
+    public class AITowardsPoint : MonoBehaviour
     {
-    }
+        public Movement NPCMovement;
 
-    void Update()
-    {
-        transform.position = NPCMovement.TowardsPosition;
+        void Update()
+        {
+            transform.position = NPCMovement.TowardsPosition;
+        }
     }
 }

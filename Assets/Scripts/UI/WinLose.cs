@@ -1,63 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
+using Assets.Scripts.Entities;
+using Assets.Scripts.Entities.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WinLose : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    private GameObject _player;
-    private Entity _entityscript;
-    private PlayerMovement _movementscript;
-    private TakeWeapon _takeWeaponscript;
-    public GameObject YouWinText;
-    private Text _youWinLose;
-    public GameObject RestartButton;
-
-    void Start()
+    public class WinLose : MonoBehaviour
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _entityscript = _player.GetComponent<Entity>();
-        _youWinLose = YouWinText.GetComponent<Text>();
-        _movementscript = _player.GetComponent<PlayerMovement>();
-        _takeWeaponscript = _player.GetComponent<TakeWeapon>();
-    }
+        private GameObject _player;
+        private Entities.Entity _entityscript;
+        private PlayerMovement _movementscript;
+        private TakeWeapon _takeWeaponscript;
+        public GameObject YouWinText;
+        private Text _youWinLose;
+        public GameObject RestartButton;
+
+        void Start()
+        {
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _entityscript = _player.GetComponent<Entities.Entity>();
+            _youWinLose = YouWinText.GetComponent<Text>();
+            _movementscript = _player.GetComponent<PlayerMovement>();
+            _takeWeaponscript = _player.GetComponent<TakeWeapon>();
+        }
     
-    void Update()
-    {
-        CheckGameStatus();
-    }
-
-    private void CheckGameStatus()
-    {
-        if (_entityscript.Alive == false)
+        void Update()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            _youWinLose.text = "Game Over";
-            _movementscript.enabled = false;
-            _takeWeaponscript.enabled = false;
-            RestartButton.SetActive(true);
+            CheckGameStatus();
         }
 
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        bool allDeath = true; // assume all are death
-        foreach (GameObject Enemy in Enemies)
+        private void CheckGameStatus()
         {
-            if (Enemy.GetComponent<Entity>().Alive == true)
+            if (_entityscript.Alive == false)
             {
-                allDeath = false;                               // find one alive, then change the bool
-                break;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                _youWinLose.text = "Game Over";
+                _movementscript.enabled = false;
+                _takeWeaponscript.enabled = false;
+                RestartButton.SetActive(true);
             }
-        }
 
-        if (allDeath == true)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            _youWinLose.text = "You win!";
-            _movementscript.enabled = false;
-            _takeWeaponscript.enabled = false;
-            RestartButton.SetActive(true);
+            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            bool allDeath = enemies.All(enemy => enemy.GetComponent<Entities.Entity>().Alive != true); // assume all are death
+
+            if (allDeath)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                _youWinLose.text = "You win!";
+                _movementscript.enabled = false;
+                _takeWeaponscript.enabled = false;
+                RestartButton.SetActive(true);
+            }
         }
     }
 }

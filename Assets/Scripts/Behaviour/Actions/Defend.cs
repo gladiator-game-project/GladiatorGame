@@ -1,23 +1,26 @@
-﻿using Pada1.BBCore.Tasks;
+﻿using BBUnity.Actions;
 using Pada1.BBCore;
+using Pada1.BBCore.Tasks;
 using UnityEngine;
-using BBUnity.Actions;
 
-[Action("Gladiator/Defend")]
-[Help("Pulls up the shield")]
-public class Defend : GOAction
+namespace Assets.Scripts.Behaviour.Actions
 {
-    private Entity _entity;
-
-    public override void OnStart()
+    [Action("Gladiator/Defend")]
+    [Help("Pulls up the shield")]
+    public class Defend : GOAction
     {
-        _entity = GameObject.Find("Player").GetComponent<Entity>();
-    }
+        private Entities.Entity _entity;
 
-    public override TaskStatus OnUpdate()
-    {
-        //TODO
-        return TaskStatus.FAILED;
-    }
+        public override void OnStart()
+        {
+            _entity = GameObject.Find("Player").GetComponent<Entities.Entity>();
+        }
 
+        public override TaskStatus OnUpdate()
+        {
+            //TODO
+            return TaskStatus.FAILED;
+        }
+
+    }
 }

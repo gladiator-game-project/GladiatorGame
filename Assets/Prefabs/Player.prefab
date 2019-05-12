@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 5253106948713594615}
   - component: {fileID: 8300857447751944797}
   - component: {fileID: 8731836424403359470}
+  - component: {fileID: 15768691636065859}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -694,11 +695,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74ef9a4c4f22e34b9fde3b9a8a57439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxStamina: 100
-  weapon: {fileID: 3133098319088594537}
+  MaxHealth: 0
+  MaxStamina: 0
   Hand: {fileID: 6355714995787343066}
-  _hasShield: 0
+  Weapon: {fileID: 0}
+  HasShield: 0
   Alive: 1
 --- !u!114 &8731836424403359470
 MonoBehaviour:
@@ -716,11 +717,23 @@ MonoBehaviour:
   CameraSpeed: 10
   MaxCameraPitch: 45
   Camera: {fileID: 5596539356400652836}
-  fireDelay: 1
   SwordIndication: {fileID: 0}
   ShieldIndication: {fileID: 0}
   DebugMode: 0
-  movementAmp: 1.6
+  MovementAmp: 1.6
+--- !u!114 &15768691636065859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355714995787343000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextBar: {fileID: 0}
 --- !u!1 &6355714995787343004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,15 +2563,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9222627443434572069}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3133098319088594537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6090655161758902092, guid: 2a030bff78f5b684d944779b6139ef0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222627443434572069}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
