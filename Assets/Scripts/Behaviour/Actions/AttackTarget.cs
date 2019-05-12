@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Entities;
+using Assets.Scripts.Entities.Player;
 using BBUnity.Actions;
 using Pada1.BBCore;
 using Pada1.BBCore.Tasks;

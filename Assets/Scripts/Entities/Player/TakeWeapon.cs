@@ -6,56 +6,51 @@ namespace Assets.Scripts.Entities.Player
 {
     public class TakeWeapon : MonoBehaviour
     {
+        private Entity _playerEntity;
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
 
-        public GameObject TextBar;
-        private Text _btnText;
-        // Start is called before the first frame update
-        void Start()
+        public GameObject PickupImage;
+
+        public void Start()
         {
-            _btnText = TextBar.GetComponent<Text>();
-            _currentWeapon = gameObject.GetComponent<Entities.Entity>().Weapon.gameObject;
+            _playerEntity = gameObject.GetComponent<Entity>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Update()
         {
             if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Grab weapon");
                 SwitchWeapon();
-            }
         }
 
         private void SwitchWeapon()
         {
-            if (_currentWeapon != null)
-            {
-                //change positions for weapon and rigidbody settings
-                _selectedWeapon.transform.SetParent(_currentWeapon.transform.parent);
-                _selectedWeapon.transform.position = _currentWeapon.transform.position;
+            _currentWeapon = _playerEntity.Weapon.gameObject;
 
-                var newWeapon = _selectedWeapon.GetComponent<Rigidbody>();
-                newWeapon.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ |
-                                         RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-                newWeapon.useGravity = false;
+            if (_currentWeapon == null)
+                return;
 
-                _currentWeapon.transform.parent = null;
+            //change positions for weapon and rigidbody settings
+            _selectedWeapon.transform.SetParent(_currentWeapon.transform.parent);
+            _selectedWeapon.transform.position = _currentWeapon.transform.position;
 
-                var oldWeapon = _currentWeapon.GetComponent<Rigidbody>();
-                oldWeapon.constraints = RigidbodyConstraints.None;
-                oldWeapon.useGravity = true;
+            var newWeapon = _selectedWeapon.GetComponent<Rigidbody>();
+            newWeapon.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ |
+                                    RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            newWeapon.useGravity = false;
 
-                gameObject.GetComponent<Entities.Entity>().Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
-                
-                //officialy make new weapon the current weapon
-                _currentWeapon = _selectedWeapon;
-                _currentWeapon.transform.localRotation = _currentWeapon.GetComponent<BaseWeapon>().OriginalRotation;
-                _currentWeapon.GetComponent<DoDamage>().Animator = gameObject.GetComponent<Animator>();
-                _currentWeapon.GetComponent<BaseWeapon>().Animator = gameObject.GetComponent<Animator>();
-                _selectedWeapon = null;
-            }
+            _currentWeapon.transform.parent = null;
+
+            var oldWeapon = _currentWeapon.GetComponent<Rigidbody>();
+            oldWeapon.constraints = RigidbodyConstraints.None;
+            oldWeapon.useGravity = true;
+
+            gameObject.GetComponent<Entity>().Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
+
+            //officialy make new weapon the current weapon
+            _currentWeapon = _selectedWeapon;
+            _currentWeapon.transform.localEulerAngles = _currentWeapon.GetComponent<BaseWeapon>().Rotation;
+            _selectedWeapon = null;
         }
 
         private bool CheckForWeapon()
@@ -68,18 +63,19 @@ namespace Assets.Scripts.Entities.Player
                 var hitColliders = Physics.OverlapSphere(hit.point, 2.01F);
                 var i = 0;
 
-                while (i < hitColliders.Length) 
+                while (i < hitColliders.Length)
                 {
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
-                        _btnText.text = "Press E to pick up " + hitColliders[i].name;
+                        PickupImage.SetActive(true);
+                        //_btnText.text = "Press E to pick up " + hitColliders[i].name;
                         return true;
                     }
                     i++;
                 }
             }
-            _btnText.text = "";
+            PickupImage.SetActive(false);
             return false;
         }
     }

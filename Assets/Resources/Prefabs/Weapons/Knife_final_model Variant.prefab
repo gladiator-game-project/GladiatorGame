@@ -24,25 +24,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800699754331538828}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7594377, y: 0.47805396, z: 1.8527757}
-  m_Center: {x: -0.08904505, y: -0.04929366, z: -1.5446498}
---- !u!114 &430059796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800699754331538828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageEffect: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
-    type: 3}
+  m_Size: {x: 0.8, y: 0.5, z: 1.8}
+  m_Center: {x: 0, y: 0, z: -1.6}
 --- !u!114 &6090655161758902092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,7 +41,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAnim: 0
+  Animator: {fileID: 0}
+  OriginalRotation: {x: 0, y: 0, z: 0, w: 0}
+  CurrentType: 0
 --- !u!1001 &1800699754331570984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,33 +55,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife_final_model Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.611
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.33899057
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9403979
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.022979882
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.014460025
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_RootOrder
@@ -101,27 +93,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 178.085
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 357.547
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 140.313
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1833001
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1833002
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1833
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aabea2ebe768b6f428149ac162c574d4, type: 3}

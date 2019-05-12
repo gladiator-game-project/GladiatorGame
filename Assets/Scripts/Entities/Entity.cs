@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Weapon;
+﻿using System.Linq;
+using Assets.Scripts.Entities.Player;
+using Assets.Scripts.Weapon;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -10,29 +12,13 @@ namespace Assets.Scripts.Entities
 
         public GameObject Hand;
         public BaseWeapon Weapon;
-        private Animator _animator;
 
-        public bool HasShield;
         public bool Alive = true;
 
+        private AnimationHandler _animHandler;
         private float _health;
         private float _stamina;
         private float _courage;
-
-        public void Start()
-        {
-            _animator = GetComponent<Animator>();
-            Health = MaxHealth;
-            Stamina = MaxStamina;
-            _courage = 100;
-            InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
-        }
-
-        public void Update()
-        {
-            UpdateDeath();
-            UpdateWeapon();
-        }
 
         public float Health
         {
@@ -46,37 +32,32 @@ namespace Assets.Scripts.Entities
             set => _stamina = Mathf.Clamp(value, 0, MaxStamina);
         }
 
-        public void LowerDefense()
-        {
-            _animator.SetBool(HasShield ? "HoldShield" : "HoldSword", false);
-        }
+        public float Courage =>
+            _courage + _health - 100;
 
-        public void RaiseDefense()
-        {
-            if (HasShield)
-            {
-                _animator.SetTrigger("RaiseShield");
-                _animator.SetBool("HoldShield", true);
-            }
-            else
-            {
-                _animator.SetTrigger("RaiseSword");
-                _animator.SetBool("HoldSword", true);
-            }
-
-        }
-
-        public float Courage => _courage + _health - 100;
-
-        public void Attack(PlayerMovement.Direction direction)
+        public void Start()
         {
             Health = MaxHealth;
             Stamina = MaxStamina;
-            Alive = true;
+            _courage = 100;
+            _animHandler = GetComponent<AnimationHandler>();
             InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
-            _animator = GetComponent<Animator>();
-            Weapon.Attack(direction);
         }
+
+        public void Update()
+        {
+            UpdateDeath();
+            UpdateWeapon();
+        }
+
+        public void RaiseDefense() =>
+            _animHandler.RaiseDefense();
+
+        public void LowerDefense() =>
+            _animHandler.LowerDefense();
+
+        public void Attack(PlayerMovement.Direction direction) =>
+            _animHandler.Attack(Weapon.CurrentType, direction);
 
         public bool LoseStamina(float stamina)
         {
@@ -84,27 +65,29 @@ namespace Assets.Scripts.Entities
             return Stamina - stamina > 0;
         }
 
-        private void RegainStamina()
-        {
+        private void RegainStamina() =>
             Stamina += 20;
-        }
 
         private void UpdateDeath()
         {
-            if (_health <= 0)
-                Alive = false;
+            if (_health >= 0)
+                return;
+
+            Alive = false;
+            _animHandler.SetEnabled(false);
         }
 
         private void UpdateWeapon()
         {
-            if (Weapon == null)
-            {
-                GameObject knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
-                knucklesPrefab.transform.parent = Hand.transform;
-                Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
-                Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
-            }
-        }
+            if (Weapon != null)
+                return;
 
+            var knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
+            knucklesPrefab.transform.parent = Hand.transform;
+            knucklesPrefab.transform.localPosition = new Vector3(0.0f, 0.002f, 0.0f);
+
+            Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
+            Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
+        }
     }
 }

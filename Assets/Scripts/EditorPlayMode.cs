@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-public class EditorPlayMode : MonoBehaviour
+namespace Assets.Scripts
 {
+    public class EditorPlayMode : MonoBehaviour
+    {
+        void Update()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                EditorApplication.isPlaying = false;
+                Cursor.lockState = CursorLockMode.None;
+            }
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-            EditorApplication.isPlaying = false;
+            if (Input.GetKey(KeyCode.P))
+            {
+                EditorApplication.isPaused = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+        }
     }
 }

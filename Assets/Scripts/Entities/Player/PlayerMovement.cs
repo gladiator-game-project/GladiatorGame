@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Entities
+namespace Assets.Scripts.Entities.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -15,10 +15,10 @@ namespace Assets.Scripts.Entities
         private readonly float _fireDelay = 1.0f; // Seconds to wait
         private float _fireTimestamp;
         private float _cooldown = 3;
-        private Animator _animator;
 
         private Rigidbody _rigidBody;
-        private Entities.Entity _entity;
+        private Entity _entity;
+        private AnimationHandler _animHandler;
 
         private bool _holdMouseDown;
         private bool _holdSecondMouseDown;
@@ -36,10 +36,10 @@ namespace Assets.Scripts.Entities
         void Start()
         {
             _mousePosCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20); // +20 because unity is 20 off with mouse pos
+            _animHandler = GetComponent<AnimationHandler>();
             _rigidBody = GetComponent<Rigidbody>();
-            _entity = GetComponent<global::Assets.Scripts.Entities.Entity>();
+            _entity = GetComponent<Entity>();
             _fireTimestamp = Time.realtimeSinceStartup + _fireDelay;
-            _animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -72,11 +72,11 @@ namespace Assets.Scripts.Entities
             if (_lShiftDown && _entity.Stamina - sprintStamReq > 0f)
             {
                 movementSpeed *= MovementAmp;
-                _animator.SetFloat("MovementAmp", MovementAmp);
+                _animHandler.SetSprinting(MovementAmp);
                 _entity.Stamina -= sprintStamReq;
             }
             else
-                _animator.SetFloat("MovementAmp", 1.0f);
+                _animHandler.SetSprinting(1.0f);
 
             return movementSpeed;
         }
@@ -91,8 +91,7 @@ namespace Assets.Scripts.Entities
 
             Vector3 movementDirection = (xInput + zInput) * HandleSprinting();
 
-            _animator.SetInteger("inputx", (int)horizontal);
-            _animator.SetInteger("inputy", (int)vertical);
+            _animHandler.SetMovement(horizontal, vertical);
             _rigidBody.velocity = movementDirection;
         }
 
@@ -170,9 +169,12 @@ namespace Assets.Scripts.Entities
             {
                 _cooldown = 3f;
                 _holdSecondMouseDown = true;
+
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = false;
+
                 _entity.RaiseDefense();
+
                 if (DebugMode)
                     ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
             }

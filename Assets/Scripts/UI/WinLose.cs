@@ -43,7 +43,7 @@ namespace Assets.Scripts.UI
             }
 
             var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            bool allDeath = enemies.All(enemy => enemy.GetComponent<Entities.Entity>().Alive != true); // assume all are death
+            bool allDeath = enemies.All(enemy => enemy.GetComponent<Entity>().Alive == false); // assume all are death
 
             if (allDeath)
             {

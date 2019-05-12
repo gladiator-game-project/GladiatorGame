@@ -5,30 +5,23 @@ namespace Assets.Scripts.Weapon
 {
     public class BaseWeapon : MonoBehaviour
     {
-        public Animator Animator;
-        public Quaternion OriginalRotation;
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public GameObject DamageEffect;
 
         public enum AttackType { STAB,SLASH,PUNCH}
 
         public AttackType CurrentType;
 
-        private void Start()
+        public void Start()
         {
-            OriginalRotation = transform.localRotation;
-            Animator = GetComponentInParent<Animator>();
+            transform.localPosition = Position;
+            transform.localEulerAngles = Rotation;
         }
 
-        /// <summary>
-        /// Set the correct animation based on the direction
-        /// </summary>
-        /// <param name="direction"></param>
-        public void Attack(PlayerMovement.Direction direction)
+        public void OnCollisionEnter(Collision col)
         {
-            if(CurrentType == AttackType.SLASH)
-                Animator.SetTrigger("Slash" + direction);
-            else
-                Animator.SetTrigger(CurrentType.ToString());
-            
+            Instantiate(DamageEffect, col.contacts[0].point, Quaternion.FromToRotation(Vector3.up, col.contacts[0].normal));
         }
     }
 }
