@@ -7,18 +7,51 @@ namespace Assets.Scripts.Entities.Player
 {
     public class DamageHandler : MonoBehaviour
     {
-        private AnimationHandler _animHandler;
         private List<Collider> _colliders; //The list with all colliders that are colliding with the weapon.
+
+        private float _damageImmunity = 1f;
+        private float _damageImmunityTimer;
+        private bool _isImmune;
 
         void Start()
         {
             _colliders = new List<Collider>(); //Create new List
-            _animHandler = gameObject.GetComponentInParent<AnimationHandler>();
         }
 
         private void Update()
         {
-            CheckDamage();
+            if (_isImmune == false)
+                CheckDamage();
+            else
+                UpdateTimer();
+        }
+
+        public void OnTriggerEnter(Collider col)
+        {
+            var obj = col.GetComponentInParent<AnimationHandler>();
+            var isWeapon = col.GetComponent<BaseWeapon>();
+
+            if (obj == null || isWeapon == null)
+                return;
+
+            if (gameObject != obj.gameObject && _colliders.Contains(col) == false)
+                _colliders.Add(col);
+        }
+
+        public void OnTriggerExit(Collider col)
+        {
+            if (_colliders.Contains(col))
+                _colliders.Remove(col);
+        }
+
+        private void UpdateTimer()
+        {
+            if (_damageImmunityTimer >= _damageImmunity)
+            {
+                _isImmune = false;
+                _damageImmunityTimer = 0;
+            }
+            _damageImmunityTimer += Time.deltaTime;
         }
 
         private void CheckDamage()
@@ -30,28 +63,11 @@ namespace Assets.Scripts.Entities.Player
                     const float damage = 20f; //Amount of damage
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script
+                    _isImmune = true;
+                    break;
                 }
             }
-
             _colliders = new List<Collider>();
-        }
-
-        public void OnTriggerEnter(Collider col)
-        {
-            var obj = col.GetComponentInParent<AnimationHandler>();
-            var isWeapon = col.GetComponent<BaseWeapon>();
-
-            if (obj == null || isWeapon == null)
-                return;
-
-            if (gameObject != obj.gameObject)
-                _colliders.Add(col);
-        }
-
-        public void OnTriggerExit(Collider col)
-        {
-            if (_colliders.Contains(col))
-                _colliders.Remove(col);
         }
     }
 }

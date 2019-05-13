@@ -41,8 +41,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
-  OriginalRotation: {x: 0, y: 0, z: 0, w: 0}
+  Position: {x: 0.0004, y: 0.00159, z: -0.00051}
+  Rotation: {x: -14.646, y: -73.92, z: 77.339}
+  DamageEffect: {fileID: 0}
   CurrentType: 0
 --- !u!1001 &1800699754331570984
 PrefabInstance:

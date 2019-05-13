@@ -49,7 +49,9 @@ namespace Assets.Scripts.Entities.Player
 
             //officialy make new weapon the current weapon
             _currentWeapon = _selectedWeapon;
-            _currentWeapon.transform.localEulerAngles = _currentWeapon.GetComponent<BaseWeapon>().Rotation;
+            var baseWeapon = _currentWeapon.GetComponent<BaseWeapon>();
+            _currentWeapon.transform.localPosition = baseWeapon.Position;
+            _currentWeapon.transform.localEulerAngles = baseWeapon.Rotation;
             _selectedWeapon = null;
         }
 
@@ -65,6 +67,9 @@ namespace Assets.Scripts.Entities.Player
 
                 while (i < hitColliders.Length)
                 {
+                    if (hit.transform.GetComponentInParent<Entity>() != null)
+                        break;
+
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;

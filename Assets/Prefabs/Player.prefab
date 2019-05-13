@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 59.470486
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 8005684840871694386}
   - component: {fileID: 8731836424403359470}
   - component: {fileID: 15768691636065859}
+  - component: {fileID: 515668152319200440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -727,8 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageEffect: {fileID: 0}
-  Animator: {fileID: 0}
 --- !u!114 &8731836424403359470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,6 +761,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupImage: {fileID: 0}
+--- !u!136 &515668152319200440
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355714995787343000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: -0.25, y: 2, z: 0.15}
 --- !u!1 &6355714995787343004
 GameObject:
   m_ObjectHideFlags: 0

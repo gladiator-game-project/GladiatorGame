@@ -70,7 +70,7 @@ namespace Assets.Scripts.Entities
 
         private void UpdateDeath()
         {
-            if (_health >= 0)
+            if (Health > 0)
                 return;
 
             Alive = false;

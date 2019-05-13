@@ -56,7 +56,10 @@ namespace Assets.Scripts.Entities
 
         private void RotateModel()
         {
-            var newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, Time.deltaTime * _rotationSpeed * Mathf.Deg2Rad, 0.0f);
+            var pos = new Vector3(transform.position.x, 0, transform.position.z);
+            var targetPos = new Vector3(Target.transform.position.x, 0, Target.transform.position.z);
+
+            var newDir = Vector3.RotateTowards(transform.forward, targetPos - pos, Time.deltaTime * _rotationSpeed * Mathf.Deg2Rad, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
 

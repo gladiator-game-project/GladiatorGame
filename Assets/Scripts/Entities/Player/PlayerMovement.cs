@@ -112,6 +112,9 @@ namespace Assets.Scripts.Entities.Player
 
         private void UpdateAttack() // update attack function, which checks for attacks and what direction
         {
+            if (_animHandler.IsAnimationRunning("attack"))
+                return;
+
             if (Input.GetMouseButtonDown(0)) // if the left mouse button is pressed
             {
                 _holdMouseDown = true;
@@ -204,7 +207,9 @@ namespace Assets.Scripts.Entities.Player
             {
                 _holdSecondMouseDown = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
+
+                if (DebugMode)
+                    ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
             }
         }
 
