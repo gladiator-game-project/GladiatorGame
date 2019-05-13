@@ -52,6 +52,13 @@ namespace Assets.Scripts.Entities.Player
             var baseWeapon = _currentWeapon.GetComponent<BaseWeapon>();
             _currentWeapon.transform.localPosition = baseWeapon.Position;
             _currentWeapon.transform.localEulerAngles = baseWeapon.Rotation;
+
+            //The weapon should ignore the entity colliders
+            var playerColliders = GetComponentsInChildren<Collider>();
+
+            foreach (var col in playerColliders)
+                Physics.IgnoreCollision(_currentWeapon.GetComponent<Collider>(), col);
+            
             _selectedWeapon = null;
         }
 

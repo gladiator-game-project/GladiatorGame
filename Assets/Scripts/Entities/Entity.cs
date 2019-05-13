@@ -88,6 +88,18 @@ namespace Assets.Scripts.Entities
 
             Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
             Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
+
+
+            var playerColliders = GetComponentsInChildren<Collider>();
+            foreach (var col in playerColliders)
+            {
+                var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
+
+                foreach (var knuckleCollider in knuckleColliders)
+                {
+                    Physics.IgnoreCollision(knuckleCollider, col);
+                }
+            }
         }
     }
 }
