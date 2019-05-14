@@ -1,32 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Entities;
 using UnityEngine;
 
-public class BaseWeapon : MonoBehaviour
+namespace Assets.Scripts.Weapon
 {
-    public Animator animator;
-    public Quaternion originalRotation;
-
-    public enum AttackType { Stab,Slash,Punch}
-
-    public AttackType currentType;
-
-    private void Start()
+    public class BaseWeapon : MonoBehaviour
     {
-        originalRotation = transform.localRotation;
-        animator = GetComponentInParent<Animator>();
-    }
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public GameObject DamageEffect;
 
-    //default animation if a entity does not have a weapon.
-    public void Attack(PlayerMovement.Direction direction)
-    {
-        if(currentType == AttackType.Slash)
+        public enum AttackType { STAB,SLASH,PUNCH}
+
+        public AttackType CurrentType;
+
+        public void Start()
         {
-            animator.SetTrigger("Slash" + direction);
+            transform.localPosition = Position;
+            transform.localEulerAngles = Rotation;
         }
-        else
+
+        public void OnCollisionEnter(Collision col)
         {
-            animator.SetTrigger(currentType.ToString());
+            Instantiate(DamageEffect, col.contacts[0].point, Quaternion.FromToRotation(Vector3.up, col.contacts[0].normal));
         }
     }
 }

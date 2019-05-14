@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1800699754331969964}
   - component: {fileID: 8085775812401542860}
-  - component: {fileID: 430059796}
   - component: {fileID: 5509028363464162835}
+  - component: {fileID: 5788789782379366793}
   - component: {fileID: 68200610248766231}
   m_Layer: 0
   m_Name: knuckles
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800699754331538828}
-  m_LocalRotation: {x: -0.33899057, y: 0.9403979, z: -0.022979882, w: 0.014460025}
-  m_LocalPosition: {x: 0.261, y: -0.194, z: 0.611}
-  m_LocalScale: {x: 0.2471435, y: 0.24714366, z: 0.24714339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 178.085, y: 357.547, z: 140.313}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8085775812401542860
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44,27 +44,26 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &430059796
-MonoBehaviour:
+--- !u!135 &5509028363464162835
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800699754331538828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageEffect: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
-    type: 3}
---- !u!135 &5509028363464162835
+  serializedVersion: 2
+  m_Radius: 0.08
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &5788789782379366793
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +74,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.07
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &68200610248766231
 MonoBehaviour:
@@ -89,4 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab27d369d0034aa4e9b8016147d2900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAnim: 1
+  Position: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0}
+  DamageEffect: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
+    type: 3}
+  CurrentType: 0
