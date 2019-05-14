@@ -21,16 +21,16 @@ namespace Assets.Scripts.Entities
 
         public void SetIdle(BaseWeapon.AttackType type)
         {
-            _animator.SetBool("HasFists", false);
-            _animator.SetBool("HasKnife", false);
-
             switch (type)
             {
                 case BaseWeapon.AttackType.PUNCH:
-                    _animator.SetBool("HasFists", true);
+                    _animator.SetFloat("IdleStance", 0);
                     break;
                 case BaseWeapon.AttackType.STAB:
-                    _animator.SetBool("HasKnife", true);
+                    _animator.SetFloat("IdleStance", 1);
+                    break;
+                default:
+                    _animator.SetFloat("IdleStance", 0);
                     break;
             }
         }
@@ -45,8 +45,8 @@ namespace Assets.Scripts.Entities
         /// <param name="vertical"></param>
         public void SetMovement(float horizontal, float vertical)
         {
-            _animator.SetInteger("inputx", (int)horizontal);
-            _animator.SetInteger("inputy", (int)vertical);
+            _animator.SetFloat("inputx", (int)horizontal);
+            _animator.SetFloat("inputy", (int)vertical);
         }
 
         /// <summary>

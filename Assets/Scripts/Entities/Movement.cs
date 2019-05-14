@@ -50,8 +50,8 @@ namespace Assets.Scripts.Entities
             if (Vector3.Distance(transform.position, TowardsPosition) < 5.2f)
                 y = 0;
 
-            _animator.SetInteger("inputx", x);
-            _animator.SetInteger("inputy", y);
+            _animator.SetFloat("inputx", x);
+            _animator.SetFloat("inputy", y);
         }
 
         private void RotateModel()
