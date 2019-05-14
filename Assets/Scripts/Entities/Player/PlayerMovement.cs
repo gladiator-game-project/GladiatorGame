@@ -107,7 +107,7 @@ namespace Assets.Scripts.Entities.Player
 
 
             _pitch = Mathf.Clamp(_pitch, -MaxCameraPitch, MaxCameraPitch);
-            Camera.transform.localEulerAngles = new Vector3(-_pitch, 0, 0);
+            Camera.transform.localEulerAngles = new Vector3(-_pitch, Camera.transform.localEulerAngles.y, Camera.transform.localEulerAngles.z);
         }
 
         private void UpdateAttack() // update attack function, which checks for attacks and what direction

@@ -21,6 +21,7 @@ namespace Assets.Scripts.Entities.Player
         {
             if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
                 SwitchWeapon();
+            UpdateWeapon();
         }
 
         private void SwitchWeapon()
@@ -89,6 +90,31 @@ namespace Assets.Scripts.Entities.Player
             }
             PickupImage.SetActive(false);
             return false;
+        }
+
+        private void UpdateWeapon()
+        {
+            if (_playerEntity.Weapon != null)
+                return;
+
+            var knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
+            knucklesPrefab.transform.parent = _playerEntity.Hand.transform;
+            knucklesPrefab.transform.localPosition = new Vector3(0.0f, 0.002f, 0.0f);
+
+            _playerEntity.Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
+            _playerEntity.Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
+
+
+            var playerColliders = GetComponentsInChildren<Collider>();
+            foreach (var col in playerColliders)
+            {
+                var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
+
+                foreach (var knuckleCollider in knuckleColliders)
+                {
+                    Physics.IgnoreCollision(knuckleCollider, col);
+                }
+            }
         }
     }
 }
