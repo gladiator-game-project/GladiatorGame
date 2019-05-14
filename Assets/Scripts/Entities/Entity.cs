@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Entities.Player;
 using Assets.Scripts.Weapon;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Assets.Scripts.Entities
 {
     public class Entity : MonoBehaviour
     {
+        public List<string> UsingStamina;
+
         public float MaxHealth;
         public float MaxStamina;
 
@@ -41,6 +44,7 @@ namespace Assets.Scripts.Entities
             Stamina = MaxStamina;
             _courage = 100;
             _animHandler = GetComponent<AnimationHandler>();
+            UsingStamina = new List<string>();
             InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
         }
 
@@ -65,8 +69,12 @@ namespace Assets.Scripts.Entities
             return Stamina - stamina > 0;
         }
 
-        private void RegainStamina() =>
-            Stamina += 20;
+        private void RegainStamina()
+        {
+            if (UsingStamina.Count == 0)
+                Stamina += 20;
+        }
+            
 
         private void UpdateDeath()
         {
