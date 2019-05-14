@@ -23,6 +23,8 @@ namespace Assets.Scripts.Entities
         private float _stamina;
         private float _courage;
 
+        private float _timer;
+
         public float Health
         {
             get => _health;
@@ -45,13 +47,14 @@ namespace Assets.Scripts.Entities
             _courage = 100;
             _animHandler = GetComponent<AnimationHandler>();
             UsingStamina = new List<string>();
-            InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+            _timer = 0.0f;
         }
 
         public void Update()
         {
             UpdateDeath();
             UpdateWeapon();
+            UpdateStaminaRegen();
         }
 
         public void RaiseDefense() =>
@@ -69,11 +72,22 @@ namespace Assets.Scripts.Entities
             return Stamina - stamina > 0;
         }
 
-        private void RegainStamina()
+        private void UpdateStaminaRegen()
         {
-            if (UsingStamina.Count == 0)
-                Stamina += 20;
+            if (UsingStamina.Count != 0)
+            {
+                _timer = 0.0f;
+                CancelInvoke("RegainStamina");
+            }
+            else
+                _timer += Time.deltaTime;
+
+            if ((_timer % 60) == 5F)
+                InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
         }
+
+        private void RegainStamina() =>
+            Stamina += 20;
             
 
         private void UpdateDeath()
