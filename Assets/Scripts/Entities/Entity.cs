@@ -88,7 +88,7 @@ namespace Assets.Scripts.Entities
 
             Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
             Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
-
+            _animHandler.SetIdle(Weapon.CurrentType);
 
             var playerColliders = GetComponentsInChildren<Collider>();
             foreach (var col in playerColliders)

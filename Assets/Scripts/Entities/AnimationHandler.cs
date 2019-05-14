@@ -19,6 +19,22 @@ namespace Assets.Scripts.Entities
         {
         }
 
+        public void SetIdle(BaseWeapon.AttackType type)
+        {
+            _animator.SetBool("HasFists", false);
+            _animator.SetBool("HasKnife", false);
+
+            switch (type)
+            {
+                case BaseWeapon.AttackType.PUNCH:
+                    _animator.SetBool("HasFists", true);
+                    break;
+                case BaseWeapon.AttackType.STAB:
+                    _animator.SetBool("HasKnife", true);
+                    break;
+            }
+        }
+
         public bool IsAnimationRunning(string animTag) =>
             _animator.GetCurrentAnimatorStateInfo(0).IsTag(animTag);
 
