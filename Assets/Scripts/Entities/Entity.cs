@@ -24,6 +24,7 @@ namespace Assets.Scripts.Entities
         private float _courage;
 
         private float _timer;
+        private bool _startedStamina = false;
 
         public float Health
         {
@@ -78,12 +79,17 @@ namespace Assets.Scripts.Entities
             {
                 _timer = 0.0f;
                 CancelInvoke("RegainStamina");
+                _startedStamina = false;
             }
             else
                 _timer += Time.deltaTime;
 
-            if ((_timer % 60) == 5F)
-                InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+            int seconds = (int)_timer % 60;
+            if (seconds == 5 && !_startedStamina) // change that 5 to cooldown seconds
+            {
+                InvokeRepeating("RegainStamina", 0.0f, 2.0f); // repeat function
+                _startedStamina = true;
+            }
         }
 
         private void RegainStamina() =>
