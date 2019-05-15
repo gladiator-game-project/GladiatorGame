@@ -15,8 +15,11 @@ namespace Assets.Scripts.Weapon
 
         public void Start()
         {
-            transform.localPosition = Position;
-            transform.localEulerAngles = Rotation;
+            if(GetComponentInParent<Entity>() != null)
+            {
+                transform.localPosition = Position;
+                transform.localEulerAngles = Rotation;
+            }
         }
 
         public void OnCollisionEnter(Collision col)

@@ -37,11 +37,13 @@ namespace Assets.Scripts.Entities
 
         public void Start()
         {
+            _animHandler = GetComponent<AnimationHandler>();
             Health = MaxHealth;
             Stamina = MaxStamina;
             _courage = 100;
-            _animHandler = GetComponent<AnimationHandler>();
             InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+            UpdateWeapon();
+            _animHandler.SetIdle(Weapon.CurrentType);
         }
 
         public void Update()

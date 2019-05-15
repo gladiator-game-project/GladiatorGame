@@ -19,6 +19,22 @@ namespace Assets.Scripts.Entities
         {
         }
 
+        public void SetIdle(BaseWeapon.AttackType type)
+        {
+            switch (type)
+            {
+                case BaseWeapon.AttackType.PUNCH:
+                    _animator.SetFloat("IdleStance", 0);
+                    break;
+                case BaseWeapon.AttackType.STAB:
+                    _animator.SetFloat("IdleStance", 1);
+                    break;
+                default:
+                    _animator.SetFloat("IdleStance", 0);
+                    break;
+            }
+        }
+
         public bool IsAnimationRunning(string animTag) =>
             _animator.GetCurrentAnimatorStateInfo(0).IsTag(animTag);
 
