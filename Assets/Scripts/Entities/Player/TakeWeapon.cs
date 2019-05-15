@@ -9,12 +9,14 @@ namespace Assets.Scripts.Entities.Player
         private Entity _playerEntity;
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
+        private AnimationHandler _animHandler;
 
         public GameObject PickupImage;
 
         public void Start()
         {
             _playerEntity = gameObject.GetComponent<Entity>();
+            _animHandler = GetComponent<AnimationHandler>();
         }
 
         public void Update()
@@ -46,20 +48,24 @@ namespace Assets.Scripts.Entities.Player
             oldWeapon.constraints = RigidbodyConstraints.None;
             oldWeapon.useGravity = true;
 
-            gameObject.GetComponent<Entity>().Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
+            Entity entity = gameObject.GetComponent<Entity>();
+            entity.Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
+
+            _animHandler.SetIdle(entity.Weapon.CurrentType);
+
 
             //officialy make new weapon the current weapon
             _currentWeapon = _selectedWeapon;
             var baseWeapon = _currentWeapon.GetComponent<BaseWeapon>();
             _currentWeapon.transform.localPosition = baseWeapon.Position;
-            _currentWeapon.transform.localEulerAngles = baseWeapon.Rotation;
+            _currentWeapon.transform.localRotation = Quaternion.Euler(baseWeapon.Rotation);
 
             //The weapon should ignore the entity colliders
             var playerColliders = GetComponentsInChildren<Collider>();
 
             foreach (var col in playerColliders)
                 Physics.IgnoreCollision(_currentWeapon.GetComponent<Collider>(), col);
-            
+
             _selectedWeapon = null;
         }
 
@@ -76,7 +82,13 @@ namespace Assets.Scripts.Entities.Player
                 while (i < hitColliders.Length)
                 {
                     if (hit.transform.GetComponentInParent<Entity>() != null)
-                        break;
+                    {
+                        if (hit.transform.GetComponentInParent<Entity>().CompareTag("Enemy") || hit.transform.GetComponentInParent<Entity>().CompareTag("Player"))
+                        {
+                            break;
+                        }
+                    }
+
 
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {

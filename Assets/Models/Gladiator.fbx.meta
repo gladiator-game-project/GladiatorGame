@@ -131,22 +131,23 @@ ModelImporter:
     4300000: Body
     7400000: Armature|HoldShieldRaised
     7400002: Armature|HoldSword
-    7400004: Armature|IdleKnife
-    7400006: Armature|LowerShield
-    7400008: Armature|LowerSword
-    7400010: Armature|Punch
-    7400012: Armature|RaiseShield
-    7400014: Armature|RaiseSword
-    7400016: Armature|Run
-    7400018: Armature|RunAngledLeft
-    7400020: Armature|RunAngledRight
-    7400022: Armature|ShieldImpact
-    7400024: Armature|SlashLeft
-    7400026: Armature|SlashRight
-    7400028: Armature|Stab
-    7400030: Armature|StrafeLeft
-    7400032: Armature|StrafeRight
-    7400034: Armature|SwordImpact
+    7400004: Armature|IdleFist
+    7400006: Armature|IdleKnife
+    7400008: Armature|LowerShield
+    7400010: Armature|LowerSword
+    7400012: Armature|Punch
+    7400014: Armature|RaiseShield
+    7400016: Armature|RaiseSword
+    7400018: Armature|Run
+    7400020: Armature|RunAngledLeft
+    7400022: Armature|RunAngledRight
+    7400024: Armature|ShieldImpact
+    7400026: Armature|SlashLeft
+    7400028: Armature|SlashRight
+    7400030: Armature|Stab
+    7400032: Armature|StrafeLeft
+    7400034: Armature|StrafeRight
+    7400036: Armature|SwordImpact
     9500000: //RootNode
     13700000: Body
     2186277476908879412: ImportLogs
@@ -189,7 +190,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -211,6 +212,34 @@ ModelImporter:
       takeName: Armature|HoldSword
       firstFrame: 0
       lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IdleFist
+      takeName: Armature|IdleFist
+      firstFrame: 0
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -322,7 +351,7 @@ ModelImporter:
       name: Armature|Punch
       takeName: Armature|Punch
       firstFrame: 0
-      lastFrame: 10
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

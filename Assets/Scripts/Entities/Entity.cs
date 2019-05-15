@@ -43,12 +43,14 @@ namespace Assets.Scripts.Entities
 
         public void Start()
         {
+            _animHandler = GetComponent<AnimationHandler>();
             Health = MaxHealth;
             Stamina = MaxStamina;
             _courage = 100;
-            _animHandler = GetComponent<AnimationHandler>();
             UsingStamina = new List<string>();
             _timer = 0.0f;
+            UpdateWeapon();
+            _animHandler.SetIdle(Weapon.CurrentType);
         }
 
         public void Update()
