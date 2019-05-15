@@ -49,7 +49,6 @@ namespace Assets.Scripts.Entities
         public void Update()
         {
             UpdateDeath();
-            UpdateWeapon();
         }
 
         public void RaiseDefense() =>
@@ -77,31 +76,6 @@ namespace Assets.Scripts.Entities
 
             Alive = false;
             _animHandler.SetEnabled(false);
-        }
-
-        private void UpdateWeapon()
-        {
-            if (Weapon != null)
-                return;
-
-            var knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
-            knucklesPrefab.transform.parent = Hand.transform;
-            knucklesPrefab.transform.localPosition = new Vector3(0.0f, 0.002f, 0.0f);
-
-            Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
-            Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
-            _animHandler.SetIdle(Weapon.CurrentType);
-
-            var playerColliders = GetComponentsInChildren<Collider>();
-            foreach (var col in playerColliders)
-            {
-                var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
-
-                foreach (var knuckleCollider in knuckleColliders)
-                {
-                    Physics.IgnoreCollision(knuckleCollider, col);
-                }
-            }
         }
     }
 }
