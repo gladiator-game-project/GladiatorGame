@@ -34,11 +34,11 @@ namespace Assets.Scripts.Entities
         }
 
         /// <summary>
-        /// Set sprinting
+        /// Set animation speed
         /// </summary>
         /// <param name="movementAmp"></param>
-        public void SetSprinting(float movementAmp) =>
-            _animator.SetFloat("MovementAmp", movementAmp);
+        public void SetAnimationSpeed(float speed) =>
+            _animator.SetFloat("MovementAmp", speed);
 
 
         /// <summary>
