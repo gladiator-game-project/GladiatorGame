@@ -28,6 +28,7 @@ namespace Assets.Scripts.Entities.Player
 
         private void SwitchWeapon()
         {
+            var entityColliders = GetComponentsInChildren<Collider>();
             _currentWeapon = _playerEntity.Weapon.gameObject;
 
             if (_currentWeapon == null)
@@ -47,6 +48,7 @@ namespace Assets.Scripts.Entities.Player
             var oldWeapon = _currentWeapon.GetComponent<Rigidbody>();
             oldWeapon.constraints = RigidbodyConstraints.None;
             oldWeapon.useGravity = true;
+            IgnorePhysics(oldWeapon.GetComponentsInChildren<Collider>(), entityColliders, false);
 
             Entity entity = gameObject.GetComponent<Entity>();
             entity.Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
@@ -61,10 +63,9 @@ namespace Assets.Scripts.Entities.Player
             _currentWeapon.transform.localRotation = Quaternion.Euler(baseWeapon.Rotation);
 
             //The weapon should ignore the entity colliders
-            var playerColliders = GetComponentsInChildren<Collider>();
+            Collider[] weaponColliders = _currentWeapon.GetComponentsInChildren<Collider>();
+            IgnorePhysics(weaponColliders, entityColliders, true);
 
-            foreach (var col in playerColliders)
-                Physics.IgnoreCollision(_currentWeapon.GetComponent<Collider>(), col);
 
             _selectedWeapon = null;
         }
@@ -118,13 +119,18 @@ namespace Assets.Scripts.Entities.Player
 
 
             var playerColliders = GetComponentsInChildren<Collider>();
-            foreach (var col in playerColliders)
-            {
-                var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
+            var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
 
-                foreach (var knuckleCollider in knuckleColliders)
+            IgnorePhysics(knuckleColliders, playerColliders, true);
+        }
+
+        private void IgnorePhysics(Collider[] weaponColliders, Collider[] entityColliders, bool ignore)
+        {
+            foreach (var col in entityColliders)
+            {
+                foreach (var weaponCol in weaponColliders)
                 {
-                    Physics.IgnoreCollision(knuckleCollider, col);
+                    Physics.IgnoreCollision(weaponCol, col, ignore);
                 }
             }
         }
