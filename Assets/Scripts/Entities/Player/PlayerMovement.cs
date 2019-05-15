@@ -72,11 +72,11 @@ namespace Assets.Scripts.Entities.Player
             if (_lShiftDown && _entity.Stamina - sprintStamReq > 0f)
             {
                 movementSpeed *= MovementAmp;
-                _animHandler.SetSprinting(MovementAmp);
+                _animHandler.SetAnimationSpeed(MovementAmp);
                 _entity.Stamina -= sprintStamReq;
             }
             else
-                _animHandler.SetSprinting(1.0f);
+                _animHandler.SetAnimationSpeed(1.0f);
 
             return movementSpeed;
         }

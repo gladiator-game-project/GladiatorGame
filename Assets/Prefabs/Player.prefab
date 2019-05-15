@@ -699,8 +699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   MaxStamina: 100
-  Hand: {fileID: 6355714995787343066}
-  Weapon: {fileID: 0}
   Alive: 1
 --- !u!114 &1837328255110908460
 MonoBehaviour:
@@ -759,6 +757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hand: {fileID: 6355714995787343072}
+  Weapon: {fileID: 0}
   PickupImage: {fileID: 0}
 --- !u!1 &6355714995787343004
 GameObject:
