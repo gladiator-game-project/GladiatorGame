@@ -10,4 +10,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame() =>
         SceneManager.LoadScene(1);
+
+    public void ExitMatch() =>
+    SceneManager.LoadScene(0);
 }
