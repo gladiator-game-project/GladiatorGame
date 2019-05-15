@@ -10,12 +10,10 @@ namespace Assets.Scripts.Entities
         public float MaxHealth;
         public float MaxStamina;
 
-        public GameObject Hand;
-        public BaseWeapon Weapon;
-
         public bool Alive = true;
 
         private AnimationHandler _animHandler;
+        private WeaponHandler _weaponHandler;
         private float _health;
         private float _stamina;
         private float _courage;
@@ -38,12 +36,12 @@ namespace Assets.Scripts.Entities
         public void Start()
         {
             _animHandler = GetComponent<AnimationHandler>();
+            _weaponHandler = GetComponent<WeaponHandler>();
+
             Health = MaxHealth;
             Stamina = MaxStamina;
             _courage = 100;
             InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
-            UpdateWeapon();
-            _animHandler.SetIdle(Weapon.CurrentType);
         }
 
         public void Update()
@@ -58,7 +56,7 @@ namespace Assets.Scripts.Entities
             _animHandler.LowerDefense();
 
         public void Attack(PlayerMovement.Direction direction) =>
-            _animHandler.Attack(Weapon.CurrentType, direction);
+            _animHandler.Attack(_weaponHandler.Weapon.CurrentType, direction);
 
         public bool LoseStamina(float stamina)
         {
