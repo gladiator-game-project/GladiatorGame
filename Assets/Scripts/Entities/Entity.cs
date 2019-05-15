@@ -49,7 +49,6 @@ namespace Assets.Scripts.Entities
             _courage = 100;
             UsingStamina = new List<string>();
             _timer = 0.0f;
-            UpdateWeapon();
             _animHandler.SetIdle(Weapon.CurrentType);
         }
 
