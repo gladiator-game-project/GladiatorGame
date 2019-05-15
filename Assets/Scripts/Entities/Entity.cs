@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Entities.Player;
 using Assets.Scripts.Weapon;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Assets.Scripts.Entities
 {
     public class Entity : MonoBehaviour
     {
+        public List<string> UsingStamina;
+
         public float MaxHealth;
         public float MaxStamina;
 
@@ -19,6 +22,9 @@ namespace Assets.Scripts.Entities
         private float _health;
         private float _stamina;
         private float _courage;
+
+        private float _timer;
+        private bool _startedStamina = false;
 
         public float Health
         {
@@ -41,7 +47,8 @@ namespace Assets.Scripts.Entities
             Health = MaxHealth;
             Stamina = MaxStamina;
             _courage = 100;
-            InvokeRepeating("RegainStamina", 2.0f, 2.0f); // repeat function
+            UsingStamina = new List<string>();
+            _timer = 0.0f;
             UpdateWeapon();
             _animHandler.SetIdle(Weapon.CurrentType);
         }
@@ -49,6 +56,7 @@ namespace Assets.Scripts.Entities
         public void Update()
         {
             UpdateDeath();
+            UpdateStaminaRegen();
         }
 
         public void RaiseDefense() =>
@@ -66,8 +74,28 @@ namespace Assets.Scripts.Entities
             return Stamina - stamina > 0;
         }
 
+        private void UpdateStaminaRegen()
+        {
+            if (UsingStamina.Count != 0)
+            {
+                _timer = 0.0f;
+                CancelInvoke("RegainStamina");
+                _startedStamina = false;
+            }
+            else
+                _timer += Time.deltaTime;
+
+            int seconds = (int)_timer % 60;
+            if (seconds == 5 && !_startedStamina) // change that 5 to cooldown seconds
+            {
+                InvokeRepeating("RegainStamina", 0.0f, 2.0f); // repeat function
+                _startedStamina = true;
+            }
+        }
+
         private void RegainStamina() =>
             Stamina += 20;
+            
 
         private void UpdateDeath()
         {

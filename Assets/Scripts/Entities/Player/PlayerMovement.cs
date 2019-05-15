@@ -184,6 +184,8 @@ namespace Assets.Scripts.Entities.Player
 
             if (_holdSecondMouseDown) //if mouse still down
             {
+                if (!_entity.UsingStamina.Contains("blocking"))
+                    _entity.UsingStamina.Add("blocking");
                 Vector2 mousePos = Input.mousePosition;
                 var mousePosCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20); // +20 because unity is 20 off with mouse pos
 
@@ -205,6 +207,7 @@ namespace Assets.Scripts.Entities.Player
 
             if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown)//if mouse not down
             {
+                _entity.UsingStamina.Remove("blocking");
                 _holdSecondMouseDown = false;
                 Cursor.lockState = CursorLockMode.Locked;
 
