@@ -55,7 +55,7 @@ namespace Assets.Scripts.Entities
             var i = transform.InverseTransformPoint(TowardsPosition);
             x *= i.x < 0 ? -1 : 1;
 
-            if (Vector3.Distance(transform.position, TowardsPosition) < 5.2f)
+            if (Vector3.Distance(transform.position, TowardsPosition) < 1f)
                 y = 0;
 
             _animHandler.SetMovement(x, y);

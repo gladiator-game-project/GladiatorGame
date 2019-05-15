@@ -15,7 +15,6 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
         private Entities.Movement _movement;
 
-        private float _angle;
         private float _distanceToTarget;
 
         private Transform _trans;
@@ -27,27 +26,22 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
             _trans = gameObject.transform;
             _tTrans = Target.transform;
-                       
-            _distanceToTarget = Vector3.Distance(_trans.position, _tTrans.position) + 0.3f;
+
+            _distanceToTarget = Vector3.Distance(_trans.position, _tTrans.position);
         }
 
         public override TaskStatus OnUpdate()
         {
-            _angle = GetAngle();
+            var angle = Vector3.SignedAngle(_trans.position - _tTrans.position, _tTrans.forward, _tTrans.up) * Mathf.Deg2Rad;
             const float offsetDegrees = 25 * Mathf.Deg2Rad;
-            var offset = new Vector3(Mathf.Sin(_angle - offsetDegrees), 0, Mathf.Cos(_angle - offsetDegrees)) * _distanceToTarget;
+            var offset = new Vector3(Mathf.Sin(-angle - offsetDegrees), 0, Mathf.Cos(-angle - offsetDegrees)) * _distanceToTarget;
             var newPos = _tTrans.position + offset;
+
+            Debug.Log(angle * Mathf.Rad2Deg);
 
             _movement.TowardsPosition = newPos;
 
             return TaskStatus.RUNNING;
-        }
-
-        private float GetAngle()
-        {
-            Vector3 difference = _trans.position - _tTrans.position;
-            float angle = Mathf.Atan2(difference.x, _trans.position.z);
-            return angle;
         }
     }
 }
