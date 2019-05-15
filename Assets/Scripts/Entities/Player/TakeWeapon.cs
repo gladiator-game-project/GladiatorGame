@@ -57,18 +57,14 @@ namespace Assets.Scripts.Entities.Player
             _currentWeapon = _selectedWeapon;
             var baseWeapon = _currentWeapon.GetComponent<BaseWeapon>();
             _currentWeapon.transform.localPosition = baseWeapon.Position;
-
-            if(entity.Weapon.CurrentType == BaseWeapon.AttackType.STAB)
-            {
-                _currentWeapon.transform.localEulerAngles = baseWeapon.Rotation + new Vector3(40, 0);
-            }
+            _currentWeapon.transform.localRotation = Quaternion.Euler(baseWeapon.Rotation);
 
             //The weapon should ignore the entity colliders
             var playerColliders = GetComponentsInChildren<Collider>();
 
             foreach (var col in playerColliders)
                 Physics.IgnoreCollision(_currentWeapon.GetComponent<Collider>(), col);
-            
+
             _selectedWeapon = null;
         }
 
@@ -85,7 +81,13 @@ namespace Assets.Scripts.Entities.Player
                 while (i < hitColliders.Length)
                 {
                     if (hit.transform.GetComponentInParent<Entity>() != null)
-                        break;
+                    {
+                        if (hit.transform.GetComponentInParent<Entity>().CompareTag("Enemy") || hit.transform.GetComponentInParent<Entity>().CompareTag("Player"))
+                        {
+                            break;
+                        }
+                    }
+
 
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {

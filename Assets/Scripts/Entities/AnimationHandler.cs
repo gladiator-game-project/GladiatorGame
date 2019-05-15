@@ -45,8 +45,8 @@ namespace Assets.Scripts.Entities
         /// <param name="vertical"></param>
         public void SetMovement(float horizontal, float vertical)
         {
-            _animator.SetFloat("inputx", (int)horizontal);
-            _animator.SetFloat("inputy", (int)vertical);
+            _animator.SetInteger("inputx", (int)horizontal);
+            _animator.SetInteger("inputy", (int)vertical);
         }
 
         /// <summary>
