@@ -8,6 +8,7 @@ ModelImporter:
     400000: //RootNode
     400002: objMesh
     2100000: objMesh
+    2100002: objMeshMat
     2300000: objMesh
     3300000: objMesh
     4300000: objMesh
