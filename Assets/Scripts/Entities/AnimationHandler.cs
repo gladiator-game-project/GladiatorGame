@@ -29,6 +29,9 @@ namespace Assets.Scripts.Entities
                 case BaseWeapon.AttackType.STAB:
                     _animator.SetFloat("IdleStance", 1);
                     break;
+                case BaseWeapon.AttackType.SLASH:
+                    _animator.SetFloat("IdleStance", 2);
+                    break;
                 default:
                     _animator.SetFloat("IdleStance", 0);
                     break;
