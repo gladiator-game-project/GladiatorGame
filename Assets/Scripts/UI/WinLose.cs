@@ -9,9 +9,9 @@ namespace Assets.Scripts.UI
     public class WinLose : MonoBehaviour
     {
         private GameObject _player;
-        private Entities.Entity _entityscript;
+        private Entity _entityscript;
         private PlayerMovement _movementscript;
-        private TakeWeapon _takeWeaponscript;
+        private WeaponHandler _weaponHandler;
         public GameObject YouWinText;
         private Text _youWinLose;
         public GameObject RestartButton;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI
             _entityscript = _player.GetComponent<Entities.Entity>();
             _youWinLose = YouWinText.GetComponent<Text>();
             _movementscript = _player.GetComponent<PlayerMovement>();
-            _takeWeaponscript = _player.GetComponent<TakeWeapon>();
+            _weaponHandler = _player.GetComponent<WeaponHandler>();
         }
     
         void Update()
@@ -38,7 +38,7 @@ namespace Assets.Scripts.UI
                 Cursor.visible = true;
                 _youWinLose.text = "Game Over";
                 _movementscript.enabled = false;
-                _takeWeaponscript.enabled = false;
+                _weaponHandler.enabled = false;
                 RestartButton.SetActive(true);
             }
 
@@ -51,7 +51,7 @@ namespace Assets.Scripts.UI
                 Cursor.visible = true;
                 _youWinLose.text = "You win!";
                 _movementscript.enabled = false;
-                _takeWeaponscript.enabled = false;
+                _weaponHandler.enabled = false;
                 RestartButton.SetActive(true);
             }
         }

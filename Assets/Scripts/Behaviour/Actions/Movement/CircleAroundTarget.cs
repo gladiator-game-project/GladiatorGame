@@ -38,7 +38,6 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
             var offset = new Vector3(Mathf.Sin(_angle - offsetDegrees), 0, Mathf.Cos(_angle - offsetDegrees)) * _distanceToTarget;
             var newPos = _tTrans.position + offset;
 
-            _movement.Speed = 1f;
             _movement.TowardsPosition = newPos;
 
             return TaskStatus.RUNNING;

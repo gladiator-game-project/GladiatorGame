@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Entities.Player
 {
-    public class TakeWeapon : MonoBehaviour
+    public class WeaponHandler : MonoBehaviour
     {
-        private Entity _playerEntity;
+        public GameObject Hand;
+        public BaseWeapon Weapon;
+        public GameObject PickupImage;
+
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
         private AnimationHandler _animHandler;
 
-        public GameObject PickupImage;
-
         public void Start()
         {
-            _playerEntity = gameObject.GetComponent<Entity>();
             _animHandler = GetComponent<AnimationHandler>();
         }
 
@@ -24,12 +24,14 @@ namespace Assets.Scripts.Entities.Player
             if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
                 SwitchWeapon();
             UpdateWeapon();
+            _animHandler.SetIdle(Weapon.CurrentType);
         }
 
         private void SwitchWeapon()
         {
+            _currentWeapon = Weapon.gameObject;
             var entityColliders = GetComponentsInChildren<Collider>();
-            _currentWeapon = _playerEntity.Weapon.gameObject;
+
 
             if (_currentWeapon == null)
                 return;
@@ -50,10 +52,9 @@ namespace Assets.Scripts.Entities.Player
             oldWeapon.useGravity = true;
             IgnorePhysics(oldWeapon.GetComponentsInChildren<Collider>(), entityColliders, false);
 
-            Entity entity = gameObject.GetComponent<Entity>();
-            entity.Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
+            Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
 
-            _animHandler.SetIdle(entity.Weapon.CurrentType);
+            _animHandler.SetIdle(Weapon.CurrentType);
 
 
             //officialy make new weapon the current weapon
@@ -107,15 +108,15 @@ namespace Assets.Scripts.Entities.Player
 
         private void UpdateWeapon()
         {
-            if (_playerEntity.Weapon != null)
+            if (Weapon != null)
                 return;
 
             var knucklesPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/Weapons/knuckles"));
-            knucklesPrefab.transform.parent = _playerEntity.Hand.transform;
+            knucklesPrefab.transform.parent = Hand.transform;
             knucklesPrefab.transform.localPosition = new Vector3(0.0f, 0.002f, 0.0f);
 
-            _playerEntity.Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
-            _playerEntity.Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
+            Weapon = knucklesPrefab.GetComponent<BaseWeapon>();
+            Weapon.CurrentType = BaseWeapon.AttackType.PUNCH;
 
 
             var playerColliders = GetComponentsInChildren<Collider>();

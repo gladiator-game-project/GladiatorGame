@@ -7,21 +7,29 @@ namespace Assets.Scripts.Entities
         public Vector3 TowardsPosition;
         public GameObject Target;
 
-        public float Speed = 5.5f;
+        public float MovementAmp = 1f;
+        public float Speed;
+
         private const int _rotationSpeed = 35;
-        private Animator _animator;
+        private AnimationHandler _animHandler;
 
         private readonly int xAngleCutOff = 15;
 
         public void Start()
         {
-            _animator = GetComponent<Animator>();
+            _animHandler = GetComponent<AnimationHandler>();
             TowardsPosition = transform.position;
         }
 
         private float _angle;
         public void Update()
         {
+            MovementAmp = Vector3.Distance(transform.position, Target.transform.position) < 6 ? 0.3f : 1f;
+           _animHandler.SetAnimationSpeed(MovementAmp);
+
+            Speed = MovementAmp * 5.5f;
+
+
             _angle = Vector3.Angle(TowardsPosition - transform.position, transform.forward);
 
             MoveModel();
@@ -46,12 +54,11 @@ namespace Assets.Scripts.Entities
             //Check whether the x position of TowardsPosition is left or right of the AI
             var i = transform.InverseTransformPoint(TowardsPosition);
             x *= i.x < 0 ? -1 : 1;
-                
+
             if (Vector3.Distance(transform.position, TowardsPosition) < 5.2f)
                 y = 0;
 
-            _animator.SetInteger("inputx", x);
-            _animator.SetInteger("inputy", y);
+            _animHandler.SetMovement(x, y);
         }
 
         private void RotateModel()
