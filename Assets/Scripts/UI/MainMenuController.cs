@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject InGamePanel;
+    private GameObject InGamePanel;
 
     public void ExitGame() =>
         Application.Quit();
@@ -14,12 +16,16 @@ public class MainMenuController : MonoBehaviour
     public void ExitMatch() =>
         SceneManager.LoadScene(0);
 
-    public void Update()
+
+    private void Start()
+    {
+        InGamePanel = GameObject.Find("InGamePanel");
+    }
+
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             InGamePanel.SetActive(true);
         }
     }
