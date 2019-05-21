@@ -55,5 +55,12 @@ namespace Assets.Scripts.UI
                 RestartButton.SetActive(true);
             }
         }
+
+        private void SpawnEnemy(Vector3 SpawnLocation)
+        {
+            GameObject Enemy = Instantiate(Resources.Load("Prefabs/enemy", typeof(GameObject))) as GameObject;
+            Enemy.transform.position = SpawnLocation;
+            Enemy.GetComponent<Movement>().Target = _player;
+        }
     }
 }
