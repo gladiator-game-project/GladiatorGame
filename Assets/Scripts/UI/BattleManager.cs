@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class WinLose : MonoBehaviour
+    public class BattleManager : MonoBehaviour
     {
         private GameObject _player;
         private Entity _entityscript;
@@ -27,6 +27,9 @@ namespace Assets.Scripts.UI
     
         void Update()
         {
+            //For now this way. we can change this however way we like
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                SpawnEnemy(new Vector3(0,0,20));
             CheckGameStatus();
         }
 
@@ -54,6 +57,14 @@ namespace Assets.Scripts.UI
                 _weaponHandler.enabled = false;
                 RestartButton.SetActive(true);
             }
+        }
+
+        private void SpawnEnemy(Vector3 SpawnLocation)
+        {
+            GameObject Enemy = Instantiate(Resources.Load("Prefabs/NPC", typeof(GameObject))) as GameObject;
+            Enemy.transform.position = SpawnLocation;
+            Enemy.GetComponent<Movement>().Target = _player;
+            Enemy.GetComponent<BehaviorExecutor>().SetBehaviorParam("Target",_player);
         }
     }
 }
