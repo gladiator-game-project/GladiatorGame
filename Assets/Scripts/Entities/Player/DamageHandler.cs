@@ -68,7 +68,6 @@ namespace Assets.Scripts.Entities.Player
                     int damage = c.GetComponentInParent<WeaponHandler>().Weapon.damage; // retrieve damage done by the colliding weapon 
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script
-                    Debug.Log(healthScript.Health);
                     _isImmune = true;
                     break;
                 }
