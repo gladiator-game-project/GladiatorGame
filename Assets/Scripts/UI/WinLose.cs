@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class BattleManager : MonoBehaviour
+    public class WinLose : MonoBehaviour
     {
         private GameObject _player;
         private Entity _entityscript;
@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI
         void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
-            _entityscript = _player.GetComponent<Entity>();
+            _entityscript = _player.GetComponent<Entities.Entity>();
             _youWinLose = YouWinText.GetComponent<Text>();
             _movementscript = _player.GetComponent<PlayerMovement>();
             _weaponHandler = _player.GetComponent<WeaponHandler>();
@@ -27,12 +27,9 @@ namespace Assets.Scripts.UI
     
         void Update()
         {
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
-                SpawnEnemy(new Vector3(0,0,20));
             CheckGameStatus();
         }
 
-        //Check if player has won or lost yet
         private void CheckGameStatus()
         {
             if (_entityscript.Alive == false)
@@ -59,14 +56,11 @@ namespace Assets.Scripts.UI
             }
         }
 
-        //This will grab an NPC from the resources folder and places it in game
         private void SpawnEnemy(Vector3 SpawnLocation)
         {
-            GameObject Enemy = Instantiate(Resources.Load("Prefabs/NPC", typeof(GameObject))) as GameObject;
+            GameObject Enemy = Instantiate(Resources.Load("Prefabs/enemy", typeof(GameObject))) as GameObject;
             Enemy.transform.position = SpawnLocation;
-            Enemy.transform.SetParent(GameObject.Find("Entities").transform);
             Enemy.GetComponent<Movement>().Target = _player;
-            Enemy.GetComponent<BehaviorExecutor>().SetBehaviorParam("Target",_player);
         }
     }
 }
