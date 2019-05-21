@@ -59,7 +59,6 @@ namespace Assets.Scripts.Entities
 
             _courage = 100;
             _timer = 0.0f;
-
         }
 
         public void Update()

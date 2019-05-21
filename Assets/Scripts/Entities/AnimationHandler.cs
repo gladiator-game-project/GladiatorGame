@@ -29,6 +29,9 @@ namespace Assets.Scripts.Entities
                 case BaseWeapon.AttackType.STAB:
                     _animator.SetFloat("IdleStance", 1);
                     break;
+                case BaseWeapon.AttackType.SLASH:
+                    _animator.SetFloat("IdleStance", 2);
+                    break;
                 default:
                     _animator.SetFloat("IdleStance", 0);
                     break;
@@ -64,8 +67,8 @@ namespace Assets.Scripts.Entities
         /// <param name="direction"></param>
         public void Attack(BaseWeapon.AttackType attackType, PlayerMovement.Direction direction)
         {
-            if (attackType == BaseWeapon.AttackType.SLASH)
-                _animator.SetTrigger("Slash" + direction);
+            if (attackType == BaseWeapon.AttackType.SLASH && (direction == PlayerMovement.Direction.LEFT || direction == PlayerMovement.Direction.RIGHT))
+                _animator.SetTrigger("SLASH" + direction);
             else
                 _animator.SetTrigger(attackType.ToString());
         }
