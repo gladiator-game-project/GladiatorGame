@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class WinLose : MonoBehaviour
+    public class BattleManager : MonoBehaviour
     {
         private GameObject _player;
         private Entity _entityscript;
@@ -58,9 +58,10 @@ namespace Assets.Scripts.UI
 
         private void SpawnEnemy(Vector3 SpawnLocation)
         {
-            GameObject Enemy = Instantiate(Resources.Load("Prefabs/enemy", typeof(GameObject))) as GameObject;
+            GameObject Enemy = Instantiate(Resources.Load("Prefabs/NPC", typeof(GameObject))) as GameObject;
             Enemy.transform.position = SpawnLocation;
             Enemy.GetComponent<Movement>().Target = _player;
+            Enemy.GetComponent<BehaviorExecutor>().SetBehaviorParam("Target",_player);
         }
     }
 }
