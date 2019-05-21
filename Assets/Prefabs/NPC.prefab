@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 2050045111394200624}
   - component: {fileID: 1755293281679030952}
   - component: {fileID: 7271128897079937122}
+  - component: {fileID: 853509489736339761}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Enemy
@@ -1204,10 +1205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74ef9a4c4f22e34b9fde3b9a8a57439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsingStamina: []
   MaxHealth: 100
   MaxStamina: 100
-  Hand: {fileID: 425168470722045443}
-  Weapon: {fileID: 0}
   Alive: 1
 --- !u!114 &2050045111394200624
 MonoBehaviour:
@@ -1248,7 +1248,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowardsPosition: {x: 0, y: 0, z: 0}
   Target: {fileID: 0}
+  MovementAmp: 1
   Speed: 5.5
+--- !u!114 &853509489736339761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425168470722045505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: {fileID: 425168470722045443}
+  Weapon: {fileID: 0}
+  PickupImage: {fileID: 0}
 --- !u!1 &425168470722045509
 GameObject:
   m_ObjectHideFlags: 0
