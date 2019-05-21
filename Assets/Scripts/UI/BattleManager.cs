@@ -27,6 +27,9 @@ namespace Assets.Scripts.UI
     
         void Update()
         {
+            //For now this way. we can change this however way we like
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                SpawnEnemy(new Vector3(0,0,20));
             CheckGameStatus();
         }
 
