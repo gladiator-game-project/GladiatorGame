@@ -24,6 +24,12 @@ namespace Assets.Scripts.Entities
         private float _angle;
         public void Update()
         {
+            if (Target == null)
+            {
+                this.GetComponent<BehaviorExecutor>().enabled = false;
+                this.enabled = false;
+                return;
+            }
             MovementAmp = Vector3.Distance(transform.position, Target.transform.position) < 6 ? 0.3f : 1f;
            _animHandler.SetAnimationSpeed(MovementAmp);
 
