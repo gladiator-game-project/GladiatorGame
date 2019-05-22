@@ -8,7 +8,7 @@ namespace Assets.Scripts.Entities.Player
     {
         public GameObject Hand;
         public BaseWeapon Weapon;
-        public GameObject PickupImage;
+        private Image _pickupImage;
 
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
@@ -17,6 +17,7 @@ namespace Assets.Scripts.Entities.Player
         public void Start()
         {
             _animHandler = GetComponent<AnimationHandler>();
+            _pickupImage = GameObject.Find("Weapon Pickup Image").GetComponent<Image>();
         }
 
         public void Update()
@@ -95,14 +96,14 @@ namespace Assets.Scripts.Entities.Player
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
-                        PickupImage.SetActive(true);
+                        _pickupImage.enabled = true;
                         //_btnText.text = "Press E to pick up " + hitColliders[i].name;
                         return true;
                     }
                     i++;
                 }
             }
-            PickupImage.SetActive(false);
+            _pickupImage.enabled = false;
             return false;
         }
 
