@@ -102,7 +102,11 @@ namespace Assets.Scripts.Entities.Player
                     i++;
                 }
             }
-            PickupImage.SetActive(false);
+
+            if(PickupImage != null)
+            {
+                PickupImage.SetActive(false);
+            }
             return false;
         }
 
