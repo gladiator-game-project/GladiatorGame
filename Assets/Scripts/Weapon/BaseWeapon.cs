@@ -8,6 +8,7 @@ namespace Assets.Scripts.Weapon
         public Vector3 Position;
         public Vector3 Rotation;
         public GameObject DamageEffect;
+        public int damage;
 
         public enum AttackType { STAB,SLASH,PUNCH}
 

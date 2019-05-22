@@ -92,4 +92,5 @@ MonoBehaviour:
   Rotation: {x: 0, y: 0, z: 0}
   DamageEffect: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
     type: 3}
+  damage: 5
   CurrentType: 0
