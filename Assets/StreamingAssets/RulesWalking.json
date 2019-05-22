@@ -1,0 +1,193 @@
+{
+    "WalkingRules": [
+        {
+            "Rule": "Rule 1",
+            "Health": "LOW",
+            "Courage": "LOW",
+            "Angle": "LOW",
+            "Action": "FLEE"
+        },
+        {
+            "Rule": "Rule 2",
+            "Health": "LOW",
+            "Courage": "LOW",
+            "Angle": "MEDIUM",
+            "Action": "FLEE"
+        },
+        {
+            "Rule": "Rule 3",
+            "Health": "LOW",
+            "Courage": "LOW",
+            "Angle": "HIGH",
+            "Action": "FLEE"
+        },
+        {
+            "Rule": "Rule 4",
+            "Health": "LOW",
+            "Courage": "MEDIUM",
+            "Angle": "LOW",
+            "Action": "WALK_BACKWARDS"
+        },
+        {
+            "Rule": "Rule 5",
+            "Health": "LOW",
+            "Courage": "MEDIUM",
+            "Angle": "MEDIUM",
+            "Action": "WALK_BACKWARDS"
+        },
+        {
+            "Rule": "Rule 6",
+            "Health": "LOW",
+            "Courage": "MEDIUM",
+            "Angle": "HIGH",
+            "Action": "WALK_BACKWARDS"
+        },
+        {
+            "Rule": "Rule 7",
+            "Health": "LOW",
+            "Courage": "HIGH",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 8",
+            "Health": "LOW",
+            "Courage": "HIGH",
+            "Angle": "MEDIUM",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 9",
+            "Health": "LOW",
+            "Courage": "HIGH",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 10",
+            "Health": "MEDIUM",
+            "Courage": "LOW",
+            "Angle": "LOW",
+            "Action": "WALK_BACKWARDS"
+        },
+        {
+            "Rule": "Rule 11",
+            "Health": "MEDIUM",
+            "Courage": "LOW",
+            "Angle": "MEDIUM",
+            "Action": "WALK_BACKWARDS"
+        },
+        {
+            "Rule": "Rule 12",
+            "Health": "MEDIUM",
+            "Courage": "LOW",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 13",
+            "Health": "MEDIUM",
+            "Courage": "MEDIUM",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 14",
+            "Health": "MEDIUM",
+            "Courage": "MEDIUM",
+            "Angle": "MEDIUM",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 15",
+            "Health": "MEDIUM",
+            "Courage": "MEDIUM",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 16",
+            "Health": "MEDIUM",
+            "Courage": "HIGH",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 17",
+            "Health": "MEDIUM",
+            "Courage": "HIGH",
+            "Angle": "MEDIUM",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 18",
+            "Health": "MEDIUM",
+            "Courage": "HIGH",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 19",
+            "Health": "HIGH",
+            "Courage": "LOW",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 20",
+            "Health": "HIGH",
+            "Courage": "LOW",
+            "Angle": "MEDIUM",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 21",
+            "Health": "HIGH",
+            "Courage": "LOW",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 22",
+            "Health": "HIGH",
+            "Courage": "MEDIUM",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 23",
+            "Health": "HIGH",
+            "Courage": "MEDIUM",
+            "Angle": "MEDIUM",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 24",
+            "Health": "HIGH",
+            "Courage": "MEDIUM",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        },
+        {
+            "Rule": "Rule 25",
+            "Health": "HIGH",
+            "Courage": "HIGH",
+            "Angle": "LOW",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 26",
+            "Health": "HIGH",
+            "Courage": "HIGH",
+            "Angle": "MEDIUM",
+            "Action": "CIRCLE_AROUND"
+        },
+        {
+            "Rule": "Rule 27",
+            "Health": "HIGH",
+            "Courage": "HIGH",
+            "Angle": "HIGH",
+            "Action": "IDLE"
+        }
+    ]
+}
