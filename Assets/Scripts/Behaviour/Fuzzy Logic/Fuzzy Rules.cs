@@ -21,11 +21,9 @@ namespace Assets.Scripts.Behaviour.Fuzzy_Logic
 
             foreach (var r in _walkingRules.WalkingRules)
             {
-                float one, two, three;
-
-                d.TryGetValue("Health_" + r.Health, out one);
-                d.TryGetValue("Courage_" + r.Courage, out two);
-                d.TryGetValue("Angle_" + r.Angle, out three);
+                d.TryGetValue("Health_" + r.Health, out float one);
+                d.TryGetValue("Courage_" + r.Courage, out float two);
+                d.TryGetValue("Angle_" + r.Angle, out float three);
 
                 var score = Mathf.Min(one, two, three);
 

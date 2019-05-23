@@ -25,8 +25,21 @@ public class Fuzzy_Sets
                 d.Add($"{a.Name}_{av.Name}", av.GetYValue(x));
             i++;
         }
-
         return d;
+    }
+
+    public List<List<List<long>>> GetGraphPoints()
+    {
+        var list = new List<List<List<long>>>();
+
+        foreach(var a in _walkingRules.Antecedents)
+        {
+            var listList = new List<List<long>>();
+            foreach(var av in a.AntecedentValues)            
+                listList.Add(av.GraphPoints);
+            list.Add(listList);
+        }
+        return list;
     }
 }
 
@@ -52,22 +65,28 @@ public partial class AntecedentValue
 
     public float GetYValue(float x)
     {
+        //Outside of graph
         if (x < GraphPoints[0] || x > GraphPoints[3])
             return 0;
 
+        //Right Shoulder
         if (GraphPoints[0] == GraphPoints[1] && x <= GraphPoints[1])
             return 1;
 
+        //Left Shoulder
         if (GraphPoints[2] == GraphPoints[3] && x >= GraphPoints[2])
             return 1;
 
-        if (x > GraphPoints[1] && x < GraphPoints[2])
+        //Middle
+        if (x >= GraphPoints[1] && x <= GraphPoints[2])
             return 1;
 
+        //Left Triangle
         if (x <= GraphPoints[1])
             return (x - GraphPoints[0]) / (GraphPoints[1] - GraphPoints[0]);
 
-        return (x - GraphPoints[2]) / (GraphPoints[3] - GraphPoints[2]);
+        //Right Triangle
+        return (x - GraphPoints[3]) / (GraphPoints[2] - GraphPoints[3]);
     }
 }
 

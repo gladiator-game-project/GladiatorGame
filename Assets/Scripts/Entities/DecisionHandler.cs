@@ -6,35 +6,48 @@ namespace Assets.Scripts.Entities
 {
     public class DecisionHandler : MonoBehaviour
     {
-        //TODO private Entity _entity;
+        public string CurrentMovementAction;
+        public bool UseInternalValues;
 
-        private Fuzzy_Sets _sets;
-        private Fuzzy_Rules _rules;
-
+        public Fuzzy_Sets Sets { get; private set; }
 
         [Range(0, 100)] public float Health;
         [Range(0, 100)] public float Courage;
         [Range(0, 180)] public float Angle;
 
+        private Entity _entity;
+        private Fuzzy_Rules _rules;
+
 
         public void Start()
         {
-            //TODO _entity = GetComponent<Entity>();
+            _entity = GetComponent<Entity>();
 
-            _sets = new Fuzzy_Sets();
+            Sets = new Fuzzy_Sets();
             _rules = new Fuzzy_Rules();
 
-            Decide();
+            GetDecision();
         }
 
-        public void Decide()
+        public void Update()
         {
-            //1 calculate from the Sets
-            var setValues = _sets.CalculateValues(new float[] { Health, Courage, Angle });
-
-            //2 Throw into the Rules
-           Debug.Log(_rules.GetPreferredAction(setValues));
+            CurrentMovementAction = GetDecision();
         }
+
+        public string GetDecision()
+        {
+            float[] values = UseInternalValues ?
+                            new float[] { Health, Courage, Angle } : new float[] { _entity.Health, _entity.Courage, 0 }; //TODO use angle
+
+            //1 calculate from the Sets            
+            var setValues = GetSetValues(values);
+
+            //2 Throw into the Rules and get a decision
+            return _rules.GetPreferredAction(setValues);
+        }
+
+        public Dictionary<string, float> GetSetValues(float[] values) =>
+            Sets.CalculateValues(values);
     }
 
     public enum MovementBehaviour

@@ -8,10 +8,6 @@ using BBUnity.Actions;
 [Help("Stand around")]
 public class Idle : GOAction
 {
-    [InParam("Target")]
-    [Help("Target to check the distance")]
-    public GameObject Target;
-
     private Movement _movement;
 
     public override void OnStart()
