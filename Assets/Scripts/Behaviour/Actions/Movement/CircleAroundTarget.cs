@@ -15,32 +15,28 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
         private Entities.Movement _movement;
 
-        private float _distanceToTarget;
-
-        private Transform _trans;
-        private Transform _tTrans;
-
         public override void OnStart()
         {
             _movement = gameObject.GetComponent<Entities.Movement>();
-
-            _trans = gameObject.transform;
-            _tTrans = Target.transform;
-
-            _distanceToTarget = Vector3.Distance(_trans.position, _tTrans.position);
         }
 
+        private float _buffer = 1;
         public override TaskStatus OnUpdate()
         {
-            var angle = Vector3.SignedAngle(_trans.position - _tTrans.position, _tTrans.forward, _tTrans.up) * Mathf.Deg2Rad;
-            const float offsetDegrees = 25 * Mathf.Deg2Rad;
-            var offset = new Vector3(Mathf.Sin(-angle - offsetDegrees), 0, Mathf.Cos(-angle - offsetDegrees)) * _distanceToTarget;
-            var newPos = _tTrans.position + offset;
+            var newPos =
+                gameObject.transform.localPosition +
+                gameObject.transform.right * 2;
 
-            Debug.Log(angle * Mathf.Rad2Deg);
-
+            var distance = Vector3.Distance(gameObject.transform.position, Target.transform.position);
+            if (distance >= 4 + _buffer)
+            {
+                _buffer -= distance - 4;
+                newPos = Target.transform.position;
+            }
+            else
+                _buffer = 1;
+                                 
             _movement.TowardsPosition = newPos;
-
             return TaskStatus.RUNNING;
         }
     }

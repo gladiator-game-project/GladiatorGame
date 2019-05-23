@@ -35,7 +35,7 @@ namespace Assets.Scripts.Dev
         private void DrawCircle()
         {
             for (int i = 0; i < 360; i++)
-                Debug.DrawLine(transform.position + GetPoint(i) * 6, transform.position + GetPoint(i + 1) * 6, Color.green);
+                Debug.DrawLine(transform.position + GetPoint(i) * 5, transform.position + GetPoint(i + 1) * 5, Color.green);
         }
 
         private Vector3 GetPoint(int i)
