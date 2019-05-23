@@ -13,16 +13,18 @@ namespace Assets.Scripts.Entities.Player
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
         private AnimationHandler _animHandler;
+        private bool _isPlayer;
 
         public void Start()
         {
             _animHandler = GetComponent<AnimationHandler>();
             _pickupImage = GameObject.Find("Weapon Pickup Image").GetComponent<Image>();
+            _isPlayer = gameObject.tag == "Player";
         }
 
         public void Update()
         {
-            if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
+            if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E) && _isPlayer)
                 SwitchWeapon();
             UpdateWeapon();
             _animHandler.SetIdle(Weapon.CurrentType);
