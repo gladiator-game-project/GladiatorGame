@@ -13,7 +13,7 @@ namespace Assets.Scripts.Entities
         public float MaxHealth;
         public float MaxStamina;
 
-        public bool Alive = true;
+        public bool Alive = true;        
 
         private AnimationHandler _animHandler;
         private WeaponHandler _weaponHandler;
@@ -45,8 +45,11 @@ namespace Assets.Scripts.Entities
             set => _stamina = Mathf.Clamp(value, 0, MaxStamina);
         }
 
-        public float Courage =>
-            _courage + _health - 100;
+        public float Courage
+        {
+            get => _courage + _health - 100;
+            set => _courage = Mathf.Clamp(value, 0, 100);
+        }
 
         public void Start()
         {
@@ -65,7 +68,7 @@ namespace Assets.Scripts.Entities
         {
             UpdateStaminaRegen();
         }
-
+        
         public void RaiseDefense() =>
             _animHandler.RaiseDefense();
 
