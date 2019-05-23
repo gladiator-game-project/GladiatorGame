@@ -65,6 +65,7 @@ namespace Assets.Scripts.Entities.Player
             {
                 if (c.GetComponentInParent<AnimationHandler>().IsAnimationRunning("attack")) // Also check if animation is playing
                 {
+                    Debug.Log("Damage done");
                     int damage = c.GetComponentInParent<WeaponHandler>().Weapon.damage; // retrieve damage done by the colliding weapon 
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script
