@@ -58,6 +58,7 @@ MonoBehaviour:
   Rotation: {x: 27.47, y: -87.10001, z: 80.71201}
   DamageEffect: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
     type: 3}
+  damage: 10
   CurrentType: 0
 --- !u!1001 &1800699754331570984
 PrefabInstance:

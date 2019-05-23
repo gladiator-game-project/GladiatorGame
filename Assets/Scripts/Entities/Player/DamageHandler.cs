@@ -54,13 +54,18 @@ namespace Assets.Scripts.Entities.Player
             _damageImmunityTimer += Time.deltaTime;
         }
 
+        
+        /// <summary>
+        /// Checks if the entity itself is hit and by which weapon. 
+        /// Then reduces hp by the amount of damage the attacking weapon does
+        /// </summary>
         private void CheckDamage()
         {
             foreach (var c in _colliders) //For each collider check if it has an entity script and remove if it does
             {
                 if (c.GetComponentInParent<AnimationHandler>().IsAnimationRunning("attack")) // Also check if animation is playing
                 {
-                    const float damage = 20f; //Amount of damage
+                    int damage = c.GetComponentInParent<WeaponHandler>().Weapon.damage; // retrieve damage done by the colliding weapon 
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script
                     _isImmune = true;
