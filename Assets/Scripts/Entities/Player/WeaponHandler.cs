@@ -8,20 +8,23 @@ namespace Assets.Scripts.Entities.Player
     {
         public GameObject Hand;
         public BaseWeapon Weapon;
-        public GameObject PickupImage;
+        private Image _pickupImage;
 
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
         private AnimationHandler _animHandler;
+        private bool _isPlayer;
 
         public void Start()
         {
             _animHandler = GetComponent<AnimationHandler>();
+            _pickupImage = GameObject.Find("Weapon Pickup Image").GetComponent<Image>();
+            _isPlayer = gameObject.tag == "Player";
         }
 
         public void Update()
         {
-            if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
+            if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E) && _isPlayer)
                 SwitchWeapon();
             UpdateWeapon();
             _animHandler.SetIdle(Weapon.CurrentType);
@@ -30,6 +33,8 @@ namespace Assets.Scripts.Entities.Player
         private void SwitchWeapon()
         {
             _currentWeapon = Weapon.gameObject;
+            var entityColliders = GetComponentsInChildren<Collider>();
+
 
             if (_currentWeapon == null)
                 return;
@@ -48,6 +53,7 @@ namespace Assets.Scripts.Entities.Player
             var oldWeapon = _currentWeapon.GetComponent<Rigidbody>();
             oldWeapon.constraints = RigidbodyConstraints.None;
             oldWeapon.useGravity = true;
+            IgnorePhysics(oldWeapon.GetComponentsInChildren<Collider>(), entityColliders, false);
 
             Weapon = _selectedWeapon.gameObject.GetComponent<BaseWeapon>();
 
@@ -61,10 +67,9 @@ namespace Assets.Scripts.Entities.Player
             _currentWeapon.transform.localRotation = Quaternion.Euler(baseWeapon.Rotation);
 
             //The weapon should ignore the entity colliders
-            var playerColliders = GetComponentsInChildren<Collider>();
+            Collider[] weaponColliders = _currentWeapon.GetComponentsInChildren<Collider>();
+            IgnorePhysics(weaponColliders, entityColliders, true);
 
-            foreach (var col in playerColliders)
-                Physics.IgnoreCollision(_currentWeapon.GetComponent<Collider>(), col);
 
             _selectedWeapon = null;
         }
@@ -93,14 +98,14 @@ namespace Assets.Scripts.Entities.Player
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
-                        PickupImage.SetActive(true);
+                        _pickupImage.enabled = true;
                         //_btnText.text = "Press E to pick up " + hitColliders[i].name;
                         return true;
                     }
                     i++;
                 }
             }
-            PickupImage.SetActive(false);
+            _pickupImage.enabled = false;
             return false;
         }
 
@@ -118,13 +123,18 @@ namespace Assets.Scripts.Entities.Player
 
 
             var playerColliders = GetComponentsInChildren<Collider>();
-            foreach (var col in playerColliders)
-            {
-                var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
+            var knuckleColliders = knucklesPrefab.GetComponents<Collider>();
 
-                foreach (var knuckleCollider in knuckleColliders)
+            IgnorePhysics(knuckleColliders, playerColliders, true);
+        }
+
+        private void IgnorePhysics(Collider[] weaponColliders, Collider[] entityColliders, bool ignore)
+        {
+            foreach (var col in entityColliders)
+            {
+                foreach (var weaponCol in weaponColliders)
                 {
-                    Physics.IgnoreCollision(knuckleCollider, col);
+                    Physics.IgnoreCollision(weaponCol, col, ignore);
                 }
             }
         }

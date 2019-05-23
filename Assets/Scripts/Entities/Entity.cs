@@ -27,7 +27,16 @@ namespace Assets.Scripts.Entities
         public float Health
         {
             get => _health;
-            set => _health = Mathf.Clamp(value, 0, MaxHealth);
+            set
+            {
+                _health = Mathf.Clamp(value, 0, MaxHealth);
+
+                if (Health <= 0)
+                {
+                    Alive = false;
+                    _animHandler.SetEnabled(false);
+                }
+            }
         }
 
         public float Stamina
@@ -43,18 +52,17 @@ namespace Assets.Scripts.Entities
         {
             _animHandler = GetComponent<AnimationHandler>();
             _weaponHandler = GetComponent<WeaponHandler>();
+            UsingStamina = new List<string>();
 
             Health = MaxHealth;
             Stamina = MaxStamina;
+
             _courage = 100;
-            UsingStamina = new List<string>();
             _timer = 0.0f;
-            _animHandler.SetIdle(Weapon.CurrentType);
         }
 
         public void Update()
         {
-            UpdateDeath();
             UpdateStaminaRegen();
         }
 
@@ -94,15 +102,5 @@ namespace Assets.Scripts.Entities
 
         private void RegainStamina() =>
             Stamina += 20;
-            
-
-        private void UpdateDeath()
-        {
-            if (Health > 0)
-                return;
-
-            Alive = false;
-            _animHandler.SetEnabled(false);
-        }
     }
 }

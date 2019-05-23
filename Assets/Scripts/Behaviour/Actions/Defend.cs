@@ -1,4 +1,5 @@
-﻿using BBUnity.Actions;
+﻿using Assets.Scripts.Entities;
+using BBUnity.Actions;
 using Pada1.BBCore;
 using Pada1.BBCore.Tasks;
 using UnityEngine;
@@ -9,18 +10,19 @@ namespace Assets.Scripts.Behaviour.Actions
     [Help("Pulls up the shield")]
     public class Defend : GOAction
     {
-        private Entities.Entity _entity;
+        private AnimationHandler _animHandler;
 
         public override void OnStart()
         {
-            _entity = GameObject.Find("Player").GetComponent<Entities.Entity>();
+            _animHandler = gameObject.GetComponent<AnimationHandler>();
         }
 
         public override TaskStatus OnUpdate()
         {
-            //TODO
-            return TaskStatus.FAILED;
-        }
+            if (_animHandler.IsAnimationRunning("defend") == false)
+                _animHandler.RaiseDefense();
 
+            return TaskStatus.COMPLETED;
+        }
     }
 }
