@@ -15,12 +15,15 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
         private Entities.Movement _movement;
 
+        //Buffer used to prevent AI from switching behaviours too fast
+        private float _buffer = 1;
+
         public override void OnStart()
         {
             _movement = gameObject.GetComponent<Entities.Movement>();
         }
 
-        private float _buffer = 1;
+        
         public override TaskStatus OnUpdate()
         {
             var newPos =
@@ -28,6 +31,8 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
                 gameObject.transform.right * 2;
 
             var distance = Vector3.Distance(gameObject.transform.position, Target.transform.position);
+
+            //If the AI gets too far, set the target to the player
             if (distance >= 4 + _buffer)
             {
                 _buffer -= distance - 4;
@@ -35,7 +40,7 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
             }
             else
                 _buffer = 1;
-                                 
+
             _movement.TowardsPosition = newPos;
             return TaskStatus.RUNNING;
         }
