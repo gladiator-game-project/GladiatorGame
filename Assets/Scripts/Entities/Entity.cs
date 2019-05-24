@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Entities.Player;
 using Assets.Scripts.Weapon;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Entities
 {
@@ -13,7 +16,7 @@ namespace Assets.Scripts.Entities
         public float MaxHealth;
         public float MaxStamina;
 
-        public bool Alive = true;        
+        public bool Alive = true;
 
         private AnimationHandler _animHandler;
         private WeaponHandler _weaponHandler;
@@ -68,7 +71,7 @@ namespace Assets.Scripts.Entities
         {
             UpdateStaminaRegen();
         }
-        
+
         public void RaiseDefense() =>
             _animHandler.RaiseDefense();
 
@@ -105,5 +108,13 @@ namespace Assets.Scripts.Entities
 
         private void RegainStamina() =>
             Stamina += 20;
+
+        public IEnumerator EndOfBattle()
+        {
+            //_animHandler.StartVictory();
+            yield return new WaitForSeconds(3);
+            
+
+        }
     }
 }

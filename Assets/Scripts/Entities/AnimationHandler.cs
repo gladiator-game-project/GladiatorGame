@@ -7,7 +7,7 @@ namespace Assets.Scripts.Entities
     public class AnimationHandler : MonoBehaviour
     {
         public bool HasShield;
-        
+
         private Animator _animator;
 
         public void Start()
@@ -91,14 +91,16 @@ namespace Assets.Scripts.Entities
             }
         }
 
-
         /// <summary>
         /// Lower the Defence
         /// </summary>
-        public void LowerDefense() => 
+        public void LowerDefense() =>
             _animator.SetBool(HasShield ? "HoldShield" : "HoldSword", false);
 
         public void SetEnabled(bool b) =>
             _animator.enabled = b;
+
+        public void StartVictory() =>
+            _animator.SetTrigger("victory");
     }
 }
