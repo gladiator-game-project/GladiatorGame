@@ -40,7 +40,7 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
             _movement.TowardsPosition = newPos;
 
-            return TaskStatus.RUNNING;
+            return TaskStatus.COMPLETED;
         }
 
         private float GetAngle()
