@@ -40,6 +40,7 @@ namespace Assets.Scripts.Entities.Player
             _rigidBody = GetComponent<Rigidbody>();
             _entity = GetComponent<Entity>();
             _fireTimestamp = Time.realtimeSinceStartup + _fireDelay;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         void Update()
