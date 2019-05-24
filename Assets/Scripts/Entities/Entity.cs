@@ -70,10 +70,10 @@ namespace Assets.Scripts.Entities
         }
         
         public void RaiseDefense() =>
-            _animHandler.RaiseDefense();
+            _animHandler.RaiseDefence();
 
         public void LowerDefense() =>
-            _animHandler.LowerDefense();
+            _animHandler.LowerDefence();
 
         public void Attack(PlayerMovement.Direction direction) =>
             _animHandler.Attack(_weaponHandler.Weapon.CurrentType, direction);

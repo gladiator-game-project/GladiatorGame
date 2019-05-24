@@ -19,7 +19,7 @@ namespace Assets.Scripts.Behaviour.Actions
         public override TaskStatus OnUpdate()
         {
             if (_animHandler.IsAnimationRunning("defend") == false)
-                _animHandler.RaiseDefense();
+                _animHandler.RaiseDefence(1f);
 
             return TaskStatus.COMPLETED;
         }

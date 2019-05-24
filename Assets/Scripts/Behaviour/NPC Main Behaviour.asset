@@ -33,7 +33,7 @@ MonoBehaviour:
     id=\"9\" />\r\n            </guard>\r\n            <child>\r\n              <PrioritySelectorNode
     id=\"8\" />\r\n            </child>\r\n          </GuardAndNode>\r\n        </elem>\r\n
     \     </children>\r\n      <inputParams />\r\n      <outputParams />\r\n      <localParams
-    />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"29\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\"
+    />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"29\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
     name=\"Perception/IsTargetClose\">\r\n      <inputParams>\r\n        <inputValues>\r\n
     \         <entry name=\"Target\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
     blackboard=\"Target\" />\r\n          <entry name=\"Distance\" type=\"System.Single\"
@@ -43,7 +43,7 @@ MonoBehaviour:
     id=\"40\" />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode
     id=\"30\" />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ConditionEvalNode
-    id=\"9\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"AlwaysTrue\">\r\n      <inputParams
+    id=\"9\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"AlwaysTrue\">\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
     \   <PrioritySelectorNode id=\"8\">\r\n      <children>\r\n        <elem>\r\n
     \         <GuardAndNode>\r\n            <guard>\r\n              <ConditionEvalNode
@@ -76,7 +76,7 @@ MonoBehaviour:
     \           <child>\r\n              <ActionNode id=\"14\" />\r\n            </child>\r\n
     \         </GuardAndNode>\r\n        </elem>\r\n      </children>\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n
-    \   <ConditionEvalNode id=\"11\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"AngleBetween\">\r\n
+    \   <ConditionEvalNode id=\"11\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"AngleBetween\">\r\n
     \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"Object
     1\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Target\"
     />\r\n          <entry name=\"Object 2\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
@@ -88,13 +88,13 @@ MonoBehaviour:
     \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"Target\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"13\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"AlwaysTrue\">\r\n      <inputParams
+    id=\"13\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"AlwaysTrue\">\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
     \   <ActionNode id=\"12\" action=\"Gladiator/Movement/ToTargetDirectly\">\r\n
     \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"Target\"
     type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Target\" />\r\n
     \       </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
-    />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"42\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\"
+    />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"42\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
     name=\"FuzzyLogic\">\r\n      <inputParams>\r\n        <inputValues>\r\n          <entry
     name=\"DecisionHandler\" type=\"Assets.Scripts.Entities.DecisionHandler\" isBlackboard=\"True\"
     blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\" type=\"System.String\"
@@ -116,7 +116,7 @@ MonoBehaviour:
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
     \   <ActionNode id=\"45\" action=\"Gladiator/Interaction/DoNothing\">\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n
-    \   <ConditionEvalNode id=\"37\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n
+    \   <ConditionEvalNode id=\"37\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n
     \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"Entity\"
     type=\"Assets.Scripts.Entities.Entity\" isBlackboard=\"True\" blackboard=\"DecisionHandler\"
     />\r\n          <entry name=\"Action\" type=\"System.String\" isBlackboard=\"False\"
@@ -128,7 +128,7 @@ MonoBehaviour:
     \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"Target\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"34\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
+    id=\"34\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
     \       <inputValues>\r\n          <entry name=\"Entity\" type=\"Assets.Scripts.Entities.Entity\"
     isBlackboard=\"True\" blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\"
     type=\"System.String\" isBlackboard=\"False\" value=\"CIRCLE_AROUND\" />\r\n          <entry

@@ -45,7 +45,7 @@ namespace Assets.Scripts.Entities
             {
                 CurrentMovementAction = GetDecision();
                 CurrentInteractionAction = GetInteractionDecision();
-                _timer.AddTimer("update", 1f);
+                _timer.AddTimer("updater", 0.1f);
             }
 
             _timer.Update();
@@ -53,14 +53,15 @@ namespace Assets.Scripts.Entities
 
         public string GetInteractionDecision()
         {
-
             //Am I attacked? Defend
-           // if (_timer.CheckTimer("Defend"))
-           // {
-                
-            //    _timer.AddTimer("Defend", 0.3f);
-            //    return "DEFEND";
-            //}
+            if (_timer.CheckTimer("Defend"))
+            {
+                if (_movement.Target.GetComponent<AnimationHandler>().IsAnimationRunning("attack"))
+                {
+                    _timer.AddTimer("Defend", 0.3f);
+                    return "DEFEND";
+                }
+            }
 
             //Do I have enough stamina to attack
             if (_timer.CheckTimer("Attack"))
@@ -69,7 +70,7 @@ namespace Assets.Scripts.Entities
                 return "ATTACK";
             }
 
-            return "ATTACK";
+            return "IDLE";
         }
 
         public string GetDecision()
