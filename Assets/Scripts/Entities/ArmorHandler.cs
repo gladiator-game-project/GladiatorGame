@@ -12,12 +12,12 @@ public class ArmorHandler : MonoBehaviour
     void Awake()
     {
         if (!HasChest)
-            transform.Find("Armature/Hips/Spine/Chest").gameObject.SetActive(false);
+            transform.Find("Body/Chest").gameObject.SetActive(false);
         
         if(!HasSkirt)
-            transform.Find("Armature/Hips/Skirt").gameObject.SetActive(false);
+            transform.Find("Body/Skirt").gameObject.SetActive(false);
 
         if(!HasHelmet)
-            transform.Find("Armature/Hips/Spine/Spine1/Spine2/Neck/Head/Helmet").gameObject.SetActive(false);
+            transform.Find("Body/Helmet").gameObject.SetActive(false);
     }
 }
