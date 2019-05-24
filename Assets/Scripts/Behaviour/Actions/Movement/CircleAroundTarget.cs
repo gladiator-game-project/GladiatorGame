@@ -15,39 +15,34 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
         private Entities.Movement _movement;
 
-        private float _angle;
-        private float _distanceToTarget;
-
-        private Transform _trans;
-        private Transform _tTrans;
+        //Buffer used to prevent AI from switching behaviours too fast
+        private float _buffer = 1;
 
         public override void OnStart()
         {
             _movement = gameObject.GetComponent<Entities.Movement>();
-
-            _trans = gameObject.transform;
-            _tTrans = Target.transform;
-                       
-            _distanceToTarget = Vector3.Distance(_trans.position, _tTrans.position) + 0.3f;
         }
 
+        
         public override TaskStatus OnUpdate()
         {
-            _angle = GetAngle();
-            const float offsetDegrees = 25 * Mathf.Deg2Rad;
-            var offset = new Vector3(Mathf.Sin(_angle - offsetDegrees), 0, Mathf.Cos(_angle - offsetDegrees)) * _distanceToTarget;
-            var newPos = _tTrans.position + offset;
+            var newPos =
+                gameObject.transform.localPosition +
+                gameObject.transform.right * 2;
+
+            var distance = Vector3.Distance(gameObject.transform.position, Target.transform.position);
+
+            //If the AI gets too far, set the target to the player
+            if (distance >= 4 + _buffer)
+            {
+                _buffer -= distance - 4;
+                newPos = Target.transform.position;
+            }
+            else
+                _buffer = 1;
 
             _movement.TowardsPosition = newPos;
-
-            return TaskStatus.COMPLETED;
-        }
-
-        private float GetAngle()
-        {
-            Vector3 difference = _trans.position - _tTrans.position;
-            float angle = Mathf.Atan2(difference.x, _trans.position.z);
-            return angle;
+            return TaskStatus.RUNNING;
         }
     }
 }
