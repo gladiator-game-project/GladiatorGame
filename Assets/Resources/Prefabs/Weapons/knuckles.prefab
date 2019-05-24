@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5509028363464162835}
   - component: {fileID: 5788789782379366793}
   - component: {fileID: 68200610248766231}
+  - component: {fileID: 1276839017248217337}
   m_Layer: 0
   m_Name: knuckles
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MonoBehaviour:
     type: 3}
   damage: 5
   CurrentType: 0
+--- !u!114 &1276839017248217337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800699754331538828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fdff3b051f32642ac8f6448b157737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

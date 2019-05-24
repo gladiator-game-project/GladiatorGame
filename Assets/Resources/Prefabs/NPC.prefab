@@ -1033,11 +1033,11 @@ GameObject:
   - component: {fileID: 3930902490418744514}
   - component: {fileID: 8138115674720391370}
   - component: {fileID: 3977365311799370254}
-  - component: {fileID: 2050045111394200624}
   - component: {fileID: 1755293281679030952}
   - component: {fileID: 7271128897079937122}
   - component: {fileID: 853509489736339761}
   - component: {fileID: 4747679271139796201}
+  - component: {fileID: 2050045111394200624}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Enemy
@@ -1182,18 +1182,6 @@ MonoBehaviour:
   MaxHealth: 100
   MaxStamina: 100
   Alive: 1
---- !u!114 &2050045111394200624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425168470722045505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1755293281679030952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,9 +1237,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6aa85e323a0b934eaecb6e0eb764703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasHelmet: 0
+  HasHelmet: 1
   HasSkirt: 1
   HasChest: 1
+--- !u!114 &2050045111394200624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425168470722045505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsImmune: 0
 --- !u!1 &425168470722045509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,6 +2461,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.55385524
       objectReference: {fileID: 0}
+    - target: {fileID: 3380700078230167592, guid: f28bee9ab0c690543aba5c2acf155c24,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28bee9ab0c690543aba5c2acf155c24, type: 3}
 --- !u!4 &9215434229175443817 stripped
@@ -2749,6 +2755,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35012108
+      objectReference: {fileID: 0}
+    - target: {fileID: 267876232652589875, guid: cdb6a4e42d639ff4293dfeda65049c29,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb6a4e42d639ff4293dfeda65049c29, type: 3}

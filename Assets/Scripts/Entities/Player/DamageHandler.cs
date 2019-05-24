@@ -12,7 +12,7 @@ namespace Assets.Scripts.Entities.Player
 
         private float _damageImmunity = 1f;
         private float _damageImmunityTimer;
-        private bool _isImmune;
+        public bool IsImmune;
 
         void Start()
         {
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Entities.Player
 
         private void Update()
         {
-            if (_isImmune == false)
+            if (IsImmune == false)
                 CheckDamage();
             else
                 UpdateTimer();
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Entities.Player
         {
             if (_damageImmunityTimer >= _damageImmunity)
             {
-                _isImmune = false;
+                IsImmune = false;
                 _damageImmunityTimer = 0;
             }
             _damageImmunityTimer += Time.deltaTime;
@@ -69,21 +69,15 @@ namespace Assets.Scripts.Entities.Player
             {
                 if (c.GetComponentInParent<AnimationHandler>().IsAnimationRunning("attack")) // Also check if animation is playing
                 {
-                   
-                    //TODO: check if armor is it: if armor hit, return
+                    Debug.Log("Damage done");
                     int damage = c.GetComponentInParent<WeaponHandler>().Weapon.damage; // retrieve damage done by the colliding weapon 
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script
-                    _isImmune = true;
+                    IsImmune = true;
                     break;
                 }
             }
             _weaponColliders = new List<Collider>();
-        }
-
-        private void CheckArmorHit()
-        {
-
         }
     }
 }

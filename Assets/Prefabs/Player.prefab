@@ -610,11 +610,11 @@ GameObject:
   - component: {fileID: 6355714995779950430}
   - component: {fileID: 5253106948713594615}
   - component: {fileID: 8300857447751944797}
-  - component: {fileID: 1837328255110908460}
-  - component: {fileID: 8005684840871694386}
-  - component: {fileID: 8731836424403359470}
   - component: {fileID: 15768691636065859}
+  - component: {fileID: 1837328255110908460}
+  - component: {fileID: 8731836424403359470}
   - component: {fileID: 734435750909300198}
+  - component: {fileID: 8005684840871694386}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -689,6 +689,20 @@ MonoBehaviour:
   MaxHealth: 100
   MaxStamina: 100
   Alive: 1
+--- !u!114 &15768691636065859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355714995787343000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: {fileID: 6355714995787343066}
+  Weapon: {fileID: 0}
 --- !u!114 &1837328255110908460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,18 +716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasShield: 0
---- !u!114 &8005684840871694386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6355714995787343000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8731836424403359470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,20 +736,6 @@ MonoBehaviour:
   ShieldIndication: {fileID: 0}
   DebugMode: 0
   MovementAmp: 1.6
---- !u!114 &15768691636065859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6355714995787343000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8d0878b792b0e469ff78113e5afc62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hand: {fileID: 6355714995787343066}
-  Weapon: {fileID: 0}
 --- !u!114 &734435750909300198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,6 +751,19 @@ MonoBehaviour:
   HasHelmet: 0
   HasSkirt: 0
   HasChest: 0
+--- !u!114 &8005684840871694386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355714995787343000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef82b4ff6fd2c024d81dbc291eabfc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsImmune: 0
 --- !u!1 &6355714995787343004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,6 +2555,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.552562
       objectReference: {fileID: 0}
+    - target: {fileID: 3380700078230167592, guid: f28bee9ab0c690543aba5c2acf155c24,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28bee9ab0c690543aba5c2acf155c24, type: 3}
 --- !u!4 &7668898945469891226 stripped
@@ -2789,6 +2795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3827705
+      objectReference: {fileID: 0}
+    - target: {fileID: 267876232652589875, guid: cdb6a4e42d639ff4293dfeda65049c29,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdb6a4e42d639ff4293dfeda65049c29, type: 3}
