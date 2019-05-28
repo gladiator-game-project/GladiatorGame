@@ -18,6 +18,7 @@ namespace Assets.Scripts.Entities
 
         public bool Alive = true;
 
+        private NavAgentController _navController;
         private AnimationHandler _animHandler;
         private WeaponHandler _weaponHandler;
         private float _health;
@@ -56,6 +57,7 @@ namespace Assets.Scripts.Entities
 
         public void Start()
         {
+            _navController = GetComponent<NavAgentController>();
             _animHandler = GetComponent<AnimationHandler>();
             _weaponHandler = GetComponent<WeaponHandler>();
             UsingStamina = new List<string>();
@@ -112,9 +114,8 @@ namespace Assets.Scripts.Entities
         public IEnumerator EndOfBattle()
         {
             //_animHandler.StartVictory();
-            yield return new WaitForSeconds(3);
-            
-
+            yield return new WaitForSeconds(1);
+            _navController.SetDestination(new Vector3(-1, 0, -43));
         }
     }
 }

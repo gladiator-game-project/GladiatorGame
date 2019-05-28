@@ -45,8 +45,9 @@ namespace Assets.Scripts.UI
             if (_enemyList.Count == 0)
             {
                 //Win screen
-                BattleGoing = false;
+                BattleGoing = false;                
                 StartCoroutine(_player.EndOfBattle());
+                _player.GetComponent<PlayerMovement>().enabled = false;
             }
         }
 

@@ -97,15 +97,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 1
-    agentHeight: 2
+    agentRadius: 0.5
+    agentHeight: 1
     agentSlope: 33.8
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.33333334
+    cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -360,11 +360,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15768691636065859, guid: e921085373dbc384a9119a2a4d2989d6,
-        type: 3}
-      propertyPath: PickupImage
-      value: 
-      objectReference: {fileID: 875419017}
     - target: {fileID: 8300857447751944797, guid: e921085373dbc384a9119a2a4d2989d6,
         type: 3}
       propertyPath: Weapon
@@ -376,6 +371,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 244224931360510529, guid: 2444577a3617fbf4aa7d5a1c705b79f1,
         type: 3}
+    - target: {fileID: 15768691636065859, guid: e921085373dbc384a9119a2a4d2989d6,
+        type: 3}
+      propertyPath: PickupImage
+      value: 
+      objectReference: {fileID: 875419017}
     - target: {fileID: 7080712049437626441, guid: e921085373dbc384a9119a2a4d2989d6,
         type: 3}
       propertyPath: field of view
@@ -1304,6 +1304,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785299401517316088, guid: 87f58c77e0d89374f9ae8c9ecbc1aadb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785299401517316088, guid: 87f58c77e0d89374f9ae8c9ecbc1aadb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785299401517316088, guid: 87f58c77e0d89374f9ae8c9ecbc1aadb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3785299401517316090, guid: 87f58c77e0d89374f9ae8c9ecbc1aadb,
         type: 3}
