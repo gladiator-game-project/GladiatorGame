@@ -20,7 +20,7 @@ public class EnemyHandler : MonoBehaviour
         if (_entitiyscript.Alive == false)
         {
             SetRagdoll(true);
-            Destroy(this, 3f);
+            Destroy(gameObject, 3f);
         }
     }
 
