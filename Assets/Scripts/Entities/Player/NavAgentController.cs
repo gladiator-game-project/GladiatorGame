@@ -11,44 +11,54 @@ namespace Assets.Scripts.Entities.Player
 {
     public class NavAgentController : MonoBehaviour
     {
-        private Camera _mainCamera;
+        private PlayerMovement _playerMovement;
         private NavMeshAgent _agent;
+        private Camera _mainCamera;
         private bool _checkforDest;
 
         public void Start()
         {
-            _mainCamera = Camera.main;
+            _playerMovement = GetComponent<PlayerMovement>();
             _agent = GetComponent<NavMeshAgent>();
+            _mainCamera = Camera.main;
             _agent.enabled = false;
         }
 
         public void Update()
         {
-            if (_checkforDest)
-            {
-                var dist = Vector3.Distance(transform.position, _agent.destination);
+            //No destination? return
+            if (_checkforDest == false)
+                return;
 
-                if (dist < 2)
-                    _agent.enabled = false;
-            }
+            var dist = Vector3.Distance(transform.position, _agent.destination);
+
+            //Distance to target > 1? keep moving
+            if (dist > 1)
+                return;
+
+            //Restore control to the enity
+            _agent.enabled = false;
+            _checkforDest = false;
+            _playerMovement.enabled = true;
+            _playerMovement.Pitch = 0;
         }
 
         public void SetDestination(Vector3 pos)
         {
-            StartCoroutine(LerpFromTo(1f));
+            var rotation = new Vector3(0, 90, -3);
+            StartCoroutine(LerpFromTo(rotation, 1f));
 
+            _playerMovement.enabled = false;
             _agent.enabled = true;
             _agent.SetDestination(pos);
             _checkforDest = true;
-
         }
 
-        public IEnumerator LerpFromTo(float duration)
+        public IEnumerator LerpFromTo(Vector3 rotation, float duration)
         {
-            for (float t = 0f; t < duration; t += Time.deltaTime)
+            for (var t = 0f; t < duration; t += Time.deltaTime)
             {
-                // Smoothly rotate towards the target point.
-                _mainCamera.transform.localEulerAngles = Vector3.Slerp(_mainCamera.transform.localEulerAngles, new Vector3(0, 90, -3), t / duration);
+                _mainCamera.transform.localRotation = Quaternion.Slerp(_mainCamera.transform.localRotation, Quaternion.Euler(rotation), t / duration);
                 yield return 0;
             }
         }

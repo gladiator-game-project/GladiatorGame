@@ -47,7 +47,6 @@ namespace Assets.Scripts.UI
                 //Win screen
                 BattleGoing = false;                
                 StartCoroutine(_player.EndOfBattle());
-                _player.GetComponent<PlayerMovement>().enabled = false;
             }
         }
 

@@ -8,8 +8,8 @@ namespace Assets.Scripts.Entities.Player
         public int CameraSpeed = 10;
         public int MaxCameraPitch = 90;
 
+        public float Pitch;
         public GameObject Camera; // TODO Change to Head object
-        private float _pitch;
 
         private float _seconds;
         private readonly float _fireDelay = 1.0f; // Seconds to wait
@@ -97,7 +97,7 @@ namespace Assets.Scripts.Entities.Player
 
         private void UpdateCameraMovement()
         {
-            _pitch += Input.GetAxis("Mouse Y") * CameraSpeed;
+            Pitch += Input.GetAxis("Mouse Y") * CameraSpeed;
             var yInput = Input.GetAxis("Mouse X");
 
             var playerRotation = new Vector3(0, yInput * -CameraSpeed, 0);
@@ -106,8 +106,8 @@ namespace Assets.Scripts.Entities.Player
             transform.eulerAngles = transform.eulerAngles - playerRotation;
 
 
-            _pitch = Mathf.Clamp(_pitch, -MaxCameraPitch, MaxCameraPitch);
-            Camera.transform.localEulerAngles = new Vector3(-_pitch, Camera.transform.localEulerAngles.y, Camera.transform.localEulerAngles.z);
+            Pitch = Mathf.Clamp(Pitch, -MaxCameraPitch, MaxCameraPitch);
+            Camera.transform.localEulerAngles = new Vector3(-Pitch, Camera.transform.localEulerAngles.y, Camera.transform.localEulerAngles.z);
         }
 
         private void UpdateAttack() // update attack function, which checks for attacks and what direction
