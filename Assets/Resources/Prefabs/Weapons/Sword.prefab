@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 588922683219332046}
   - component: {fileID: 4732045035181088062}
   - component: {fileID: 8894634048772601455}
+  - component: {fileID: 2429718464019173634}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -141,3 +142,15 @@ MonoBehaviour:
     type: 3}
   damage: 20
   CurrentType: 1
+--- !u!114 &2429718464019173634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942982323399528416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fdff3b051f32642ac8f6448b157737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
