@@ -9,47 +9,71 @@ namespace Assets.Scripts.UI
 {
     public class BattleManager : MonoBehaviour
     {
+        private GateManager _gateManager;
         private Entity _player;
-        private List<Entity> _enemyList;
-        private bool BattleGoing;
+
+        private List<Entity> _enemyList;        
+        private bool _battleGoing;
+
 
         void Start()
         {
+            _gateManager = GetComponent<GateManager>();
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
             _enemyList = new List<Entity>();
 
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
-                SpawnEnemy(new Vector3(0, 0, 20));
-
-            BattleGoing = true;
+            StartBattle();
         }
 
         void Update()
         {
-            if (BattleGoing)
+            if (_battleGoing)
                 CheckGameStatus();
         }
 
+        /// <summary>
+        /// Start a new battle
+        /// </summary>
+        public void StartBattle()
+        {
+            //We can not start a new battle if there is one already
+            if (_battleGoing)
+                return;
+
+            SpawnEnemy(new Vector3(0, 0, 20));
+            _battleGoing = true;
+        }
+
+        /// <summary>
+        /// Check the status of the ongoing battle. 
+        /// </summary>
         private void CheckGameStatus()
         {
-            //We died
+            //Is the player Dead? end game
             if (_player.Alive == false)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                _battleGoing = false;
             }
 
             //Remove every NPC who is dead
             _enemyList.RemoveAll(enemy => enemy.GetComponent<Entity>().Alive == false);
 
+            //No more enemies? end game
             if (_enemyList.Count == 0)
             {
                 //Win screen
-                BattleGoing = false;                
+                _battleGoing = false;
+                _gateManager.SetGates(true, false);
                 StartCoroutine(_player.EndOfBattle());
             }
         }
 
+        /// <summary>
+        /// Spawns an enemy at the given location
+        /// </summary>
+        /// <param name="SpawnLocation"></param>
         private void SpawnEnemy(Vector3 SpawnLocation)
         {
             GameObject enemy = (GameObject)Instantiate(Resources.Load("Prefabs/NPC"));

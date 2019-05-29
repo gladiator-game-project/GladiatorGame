@@ -1,39 +1,29 @@
 fileFormatVersion: 2
-guid: 9a3b2fe17bce21f4db3a59098d34aedd
+guid: e1159ef90ade4d0478adc75bedcccefb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Arena
-    100002: //RootNode
-    100004: Gate
-    100006: Gate.001
-    400000: Arena
-    400002: //RootNode
-    400004: Gate
-    400006: Gate.001
+    100000: Cube
+    100002: Cube.001
+    100004: Cube.002
+    100006: //RootNode
+    400000: Cube
+    400002: Cube.001
+    400004: Cube.002
+    400006: //RootNode
     2100000: No Name
-    2300000: Arena
-    2300002: Gate
-    2300004: Gate.001
-    3300000: Arena
-    3300002: Gate
-    3300004: Gate.001
-    4300000: Gate.001
-    4300002: Gate
-    4300004: Arena
-    7400000: Gate.001|GateLowered
-    7400002: Gate.001|GateRaised
-    7400004: Gate.001|LowerGate
-    7400006: Gate.001|RaiseGate
-    7400008: Gate|GateLowered
-    7400010: Gate|GateRaised
-    7400012: Gate|LowerGate
-    7400014: Gate|RaiseGate
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.002
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    4300000: Cube.002
+    4300002: Cube
+    4300004: Cube.001
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -62,14 +52,14 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -83,8 +73,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -111,7 +101,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

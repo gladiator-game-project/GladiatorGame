@@ -115,7 +115,7 @@ namespace Assets.Scripts.Entities
         {
             //_animHandler.StartVictory();
             yield return new WaitForSeconds(1);
-            _navController.SetDestination(new Vector3(-1, 0, -43));
+            _navController.SetDestination(new Vector3(-1, 0, -46));
         }
     }
 }
