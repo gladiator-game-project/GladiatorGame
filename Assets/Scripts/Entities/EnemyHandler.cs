@@ -11,16 +11,33 @@ public class EnemyHandler : MonoBehaviour
     void Start()
     {
         _entitiyscript = GetComponent<Entity>();
-        SetRagdoll(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (_entitiyscript.Alive == false)
+            GoDie();
+    }
+ 
+    private void GoDie()
+    {
+        GameObject dead = Instantiate(Resources.Load("Prefabs/deathNPC", typeof(GameObject))) as GameObject;
+        // copy position and rotation to the children recursively:
+        CopyTransforms(transform, dead.transform);
+        Destroy(gameObject);
+        
+    }
+    private void CopyTransforms(Transform old, Transform newtransform)
+    {
+        newtransform.position = old.position;
+        newtransform.rotation = old.rotation;
+        foreach (Transform child in newtransform)
         {
-            SetRagdoll(true);
-            Destroy(gameObject, 3f);
+            // match the transform with the same name
+            var curSrc = old.Find(child.name);
+            if (curSrc)
+                CopyTransforms(curSrc, child);
         }
     }
 
