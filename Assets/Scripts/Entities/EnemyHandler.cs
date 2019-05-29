@@ -40,20 +40,4 @@ public class EnemyHandler : MonoBehaviour
                 CopyTransforms(curSrc, child);
         }
     }
-
-    void SetRagdoll(bool onoff)
-    {
-        Rigidbody[] Rigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rigidbody in Rigidbodies)
-        {
-            rigidbody.isKinematic = !onoff;
-            rigidbody.useGravity = onoff;
-        }
-        GetComponent<BehaviorExecutor>().enabled = !onoff;
-        GetComponent<AnimationHandler>().enabled = !onoff;
-        GetComponent<Movement>().enabled = !onoff;
-        GetComponent<WeaponHandler>().enabled = !onoff;
-        GetComponent<DamageHandler>().enabled = !onoff;
-        GetComponent<Animator>().enabled = !onoff;
-    }
 }
