@@ -4,7 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Entities;
 using Pada1.BBCore.Tasks;
 
-[Action("Gladiator/Movement/Flee")]
+[Action("Gladiator/Flee")]
 [Help("Run away from the target")]
 public class Flee : GOAction
 {

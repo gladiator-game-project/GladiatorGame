@@ -4,7 +4,7 @@ using Pada1.BBCore;
 using UnityEngine;
 using BBUnity.Actions;
 
-[Action("Gladiator/Movement/Idle")]
+[Action("Gladiator/Idle")]
 [Help("Stand around")]
 public class Idle : GOAction
 {
