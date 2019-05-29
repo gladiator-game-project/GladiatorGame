@@ -6,17 +6,17 @@ using Assets.Scripts.Entities;
 
 public class EnemyHandler : MonoBehaviour
 {
-    private Entity _entitiyscript;
+    private Entity _entityscript;
     // Start is called before the first frame update
     void Start()
     {
-        _entitiyscript = GetComponent<Entity>();
+        _entityscript = GetComponent<Entity>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_entitiyscript.Alive == false)
+        if (_entityscript.Alive == false)
             GoDie();
     }
  
