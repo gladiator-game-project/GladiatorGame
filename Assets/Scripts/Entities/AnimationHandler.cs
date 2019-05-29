@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Entities.Player;
+﻿using Assets.Scripts.Entities.Player;
 using Assets.Scripts.Weapon;
 using UnityEngine;
 
@@ -78,7 +77,7 @@ namespace Assets.Scripts.Entities
         /// <summary>
         /// Raise the Defence
         /// </summary>
-        public void RaiseDefence()
+        public void RaiseDefense()
         {
             if (HasShield)
             {
@@ -92,20 +91,11 @@ namespace Assets.Scripts.Entities
             }
         }
 
-        /// <summary>
-        /// Raises defence and lowers it after the given timeLength
-        /// </summary>
-        /// <param name="timeLength"></param>
-        public void RaiseDefence(float timeLength)
-        {
-            RaiseDefence();
-            StartCoroutine("LowerDefence", timeLength);
-        }
 
         /// <summary>
         /// Lower the Defence
         /// </summary>
-        public void LowerDefence() => 
+        public void LowerDefense() => 
             _animator.SetBool(HasShield ? "HoldShield" : "HoldSword", false);
 
         public void SetEnabled(bool b) =>

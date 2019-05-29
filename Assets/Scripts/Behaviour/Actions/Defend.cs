@@ -2,6 +2,7 @@
 using BBUnity.Actions;
 using Pada1.BBCore;
 using Pada1.BBCore.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Behaviour.Actions
 {
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Behaviour.Actions
         public override TaskStatus OnUpdate()
         {
             if (_animHandler.IsAnimationRunning("defend") == false)
-                _animHandler.RaiseDefence(1f);
+                _animHandler.RaiseDefense();
 
             return TaskStatus.COMPLETED;
         }
