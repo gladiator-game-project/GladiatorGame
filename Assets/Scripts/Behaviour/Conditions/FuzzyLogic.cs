@@ -14,11 +14,14 @@ public class FuzzyLogic : GOCondition
     [InParam("Action")]
     [Help("The action we want to check against")]
     public string Action;
-       
+
+    [InParam("Movement")]
+    [Help("Movement or Interaction")]
+    public bool Movement;
 
     public override bool Check()
     {
-        return DecisionHandler.CurrentMovementAction == Action;
+        return Movement ? DecisionHandler.CurrentMovementAction == Action : DecisionHandler.CurrentInteractionAction == Action;
     }
 }
 
