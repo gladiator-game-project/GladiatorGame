@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasHelmet: 0
-  HasSkirt: 0
+  HasSkirt: 1
   HasChest: 0
   HasShield: 1
 --- !u!114 &2050045111394200624
