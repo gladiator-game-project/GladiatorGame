@@ -12,17 +12,14 @@ public class ArmorHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (!HasChest)
-            transform.Find("Body/Chest").gameObject.SetActive(false);
-        
-        if(!HasSkirt)
-            transform.Find("Body/Skirt").gameObject.SetActive(false);
+        UpdateArmor();
+    }
 
-        if(!HasHelmet)
-            transform.Find("Body/Helmet").gameObject.SetActive(false);
-
-        if (!HasShield)
-            transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject.SetActive(false);
-
+    public void UpdateArmor()
+    {
+        transform.Find("Body/Chest").gameObject.SetActive(HasChest);
+        transform.Find("Body/Skirt").gameObject.SetActive(HasSkirt);
+        transform.Find("Body/Helmet").gameObject.SetActive(HasHelmet);
+        transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject.SetActive(HasShield);
     }
 }
