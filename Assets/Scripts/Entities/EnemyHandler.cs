@@ -23,11 +23,23 @@ public class EnemyHandler : MonoBehaviour
     private void GoDie()
     {
         GameObject dead = Instantiate(Resources.Load("Prefabs/deathNPC", typeof(GameObject))) as GameObject;
+        CopyArmorSettings(dead.GetComponent<ArmorHandler>());
         // copy position and rotation to the children recursively:
         CopyTransforms(transform, dead.transform);
         Destroy(gameObject);
         
     }
+
+    private void CopyArmorSettings(ArmorHandler _armorHandlerDead)
+    {
+        ArmorHandler _armorHandlerAlive = GetComponent<ArmorHandler>();
+        _armorHandlerDead.HasChest = _armorHandlerAlive.HasChest;
+        _armorHandlerDead.HasHelmet = _armorHandlerAlive.HasHelmet;
+        _armorHandlerDead.HasSkirt = _armorHandlerAlive.HasSkirt;
+        _armorHandlerDead.HasShield = _armorHandlerAlive.HasShield;
+        _armorHandlerDead.UpdateArmor();
+    }
+
     private void CopyTransforms(Transform old, Transform newtransform)
     {
         newtransform.position = old.position;
