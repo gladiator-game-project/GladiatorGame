@@ -5,131 +5,131 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Armature
     100002: Body
-    100004: Cube
+    100004: Chest
     100006: //RootNode
     100008: Head
     100010: Head_end
-    100012: Hips
-    100014: LeftArm
-    100016: LeftFoot
-    100018: LeftFoot_end
-    100020: LeftHand
-    100022: LeftIndex1
-    100024: LeftIndex2
-    100026: LeftIndex2_end
-    100028: LeftLeg
-    100030: LeftLowerArm
-    100032: LeftMiddle1
-    100034: LeftMiddle2
-    100036: LeftMiddle2_end
-    100038: LeftPink1
-    100040: LeftPink2
-    100042: LeftPink2_end
-    100044: LeftRing1
-    100046: LeftRing2
-    100048: LeftRing2_end
-    100050: LeftShoulder
-    100052: LeftThumb1
-    100054: LeftThumb2
-    100056: LeftThumb2_end
-    100058: LeftUpLeg
-    100060: Neck
-    100062: RightArm
-    100064: RightFoot
-    100066: RightForeArm
-    100068: RightHand
-    100070: RightIndex1
-    100072: RightIndex2
-    100074: RightIndex3
-    100076: RightIndex3_end
-    100078: RightLeg
-    100080: RightMiddle1
-    100082: RightMiddle2
-    100084: RightMiddle3
-    100086: RightMiddle3_end
-    100088: RightPink1
-    100090: RightPink2
-    100092: RightPink3
-    100094: RightPink3_end
-    100096: RightRing1
-    100098: RightRing2
-    100100: RightRing3
-    100102: RightRing3_end
-    100104: RightShoulder
-    100106: RightThumb1
-    100108: RightThumb2
-    100110: RightThumb3
-    100112: RightThumb3_end
-    100114: RightToe
-    100116: RightToe_end
-    100118: RightUpLeg
-    100120: Skirt
-    100122: Sphere
+    100012: Helmet
+    100014: Hips
+    100016: LeftArm
+    100018: LeftFoot
+    100020: LeftFoot_end
+    100022: LeftHand
+    100024: LeftIndex1
+    100026: LeftIndex2
+    100028: LeftIndex2_end
+    100030: LeftLeg
+    100032: LeftLowerArm
+    100034: LeftMiddle1
+    100036: LeftMiddle2
+    100038: LeftMiddle2_end
+    100040: LeftPink1
+    100042: LeftPink2
+    100044: LeftPink2_end
+    100046: LeftRing1
+    100048: LeftRing2
+    100050: LeftRing2_end
+    100052: LeftShoulder
+    100054: LeftThumb1
+    100056: LeftThumb2
+    100058: LeftThumb2_end
+    100060: LeftUpLeg
+    100062: Neck
+    100064: RightArm
+    100066: RightFoot
+    100068: RightForeArm
+    100070: RightHand
+    100072: RightIndex1
+    100074: RightIndex2
+    100076: RightIndex3
+    100078: RightIndex3_end
+    100080: RightLeg
+    100082: RightMiddle1
+    100084: RightMiddle2
+    100086: RightMiddle3
+    100088: RightMiddle3_end
+    100090: RightPink1
+    100092: RightPink2
+    100094: RightPink3
+    100096: RightPink3_end
+    100098: RightRing1
+    100100: RightRing2
+    100102: RightRing3
+    100104: RightRing3_end
+    100106: RightShoulder
+    100108: RightThumb1
+    100110: RightThumb2
+    100112: RightThumb3
+    100114: RightThumb3_end
+    100116: RightToe
+    100118: RightToe_end
+    100120: RightUpLeg
+    100122: Skirt
     100124: Spine
     100126: Spine1
     100128: Spine2
     400000: Armature
     400002: Body
-    400004: Cube
+    400004: Chest
     400006: //RootNode
     400008: Head
     400010: Head_end
-    400012: Hips
-    400014: LeftArm
-    400016: LeftFoot
-    400018: LeftFoot_end
-    400020: LeftHand
-    400022: LeftIndex1
-    400024: LeftIndex2
-    400026: LeftIndex2_end
-    400028: LeftLeg
-    400030: LeftLowerArm
-    400032: LeftMiddle1
-    400034: LeftMiddle2
-    400036: LeftMiddle2_end
-    400038: LeftPink1
-    400040: LeftPink2
-    400042: LeftPink2_end
-    400044: LeftRing1
-    400046: LeftRing2
-    400048: LeftRing2_end
-    400050: LeftShoulder
-    400052: LeftThumb1
-    400054: LeftThumb2
-    400056: LeftThumb2_end
-    400058: LeftUpLeg
-    400060: Neck
-    400062: RightArm
-    400064: RightFoot
-    400066: RightForeArm
-    400068: RightHand
-    400070: RightIndex1
-    400072: RightIndex2
-    400074: RightIndex3
-    400076: RightIndex3_end
-    400078: RightLeg
-    400080: RightMiddle1
-    400082: RightMiddle2
-    400084: RightMiddle3
-    400086: RightMiddle3_end
-    400088: RightPink1
-    400090: RightPink2
-    400092: RightPink3
-    400094: RightPink3_end
-    400096: RightRing1
-    400098: RightRing2
-    400100: RightRing3
-    400102: RightRing3_end
-    400104: RightShoulder
-    400106: RightThumb1
-    400108: RightThumb2
-    400110: RightThumb3
-    400112: RightThumb3_end
-    400114: RightToe
-    400116: RightToe_end
-    400118: RightUpLeg
-    400120: Skirt
-    400122: Sphere
+    400012: Helmet
+    400014: Hips
+    400016: LeftArm
+    400018: LeftFoot
+    400020: LeftFoot_end
+    400022: LeftHand
+    400024: LeftIndex1
+    400026: LeftIndex2
+    400028: LeftIndex2_end
+    400030: LeftLeg
+    400032: LeftLowerArm
+    400034: LeftMiddle1
+    400036: LeftMiddle2
+    400038: LeftMiddle2_end
+    400040: LeftPink1
+    400042: LeftPink2
+    400044: LeftPink2_end
+    400046: LeftRing1
+    400048: LeftRing2
+    400050: LeftRing2_end
+    400052: LeftShoulder
+    400054: LeftThumb1
+    400056: LeftThumb2
+    400058: LeftThumb2_end
+    400060: LeftUpLeg
+    400062: Neck
+    400064: RightArm
+    400066: RightFoot
+    400068: RightForeArm
+    400070: RightHand
+    400072: RightIndex1
+    400074: RightIndex2
+    400076: RightIndex3
+    400078: RightIndex3_end
+    400080: RightLeg
+    400082: RightMiddle1
+    400084: RightMiddle2
+    400086: RightMiddle3
+    400088: RightMiddle3_end
+    400090: RightPink1
+    400092: RightPink2
+    400094: RightPink3
+    400096: RightPink3_end
+    400098: RightRing1
+    400100: RightRing2
+    400102: RightRing3
+    400104: RightRing3_end
+    400106: RightShoulder
+    400108: RightThumb1
+    400110: RightThumb2
+    400112: RightThumb3
+    400114: RightThumb3_end
+    400116: RightToe
+    400118: RightToe_end
+    400120: RightUpLeg
+    400122: Skirt
     400124: Spine
     400126: Spine1
     400128: Spine2
@@ -138,39 +138,40 @@ ModelImporter:
     2100004: Material.001
     4300000: Body
     4300002: Skirt
-    4300004: Sphere
-    4300006: Cube
+    4300004: Helmet
+    4300006: Chest
     7400000: Armature|HoldShieldRaised
     7400002: Armature|HoldSword
     7400004: Armature|IdleFist
-    7400006: Armature|IdleKnife
-    7400008: Armature|IdleSword
-    7400010: Armature|LowerShield
-    7400012: Armature|LowerSword
-    7400014: Armature|Punch
-    7400016: Armature|RaiseShield
-    7400018: Armature|RaiseSword
-    7400020: Armature|Run
-    7400022: Armature|RunAngledLeft
-    7400024: Armature|RunAngledRight
-    7400026: Armature|RunBackwards
-    7400028: Armature|RunBackwardsLeft
-    7400030: Armature|RunBackwardsRight
-    7400032: Armature|ShieldImpact
-    7400034: Armature|SlashCenter
-    7400036: Armature|SlashLeft
-    7400038: Armature|SlashRight
-    7400040: Armature|Stab
-    7400042: Armature|StrafeLeft
-    7400044: Armature|StrafeRight
-    7400046: Armature|SwordImpact
-    7400048: Armature|T-Pose
-    7400050: Armature|WalkBackwards
+    7400006: Armature|IdleFistShield
+    7400008: Armature|IdleKnife
+    7400010: Armature|IdleSword
+    7400012: Armature|LowerShield
+    7400014: Armature|LowerSword
+    7400016: Armature|Punch
+    7400018: Armature|RaiseShield
+    7400020: Armature|RaiseSword
+    7400022: Armature|Run
+    7400024: Armature|RunAngledLeft
+    7400026: Armature|RunAngledRight
+    7400028: Armature|RunBackwards
+    7400030: Armature|RunBackwardsLeft
+    7400032: Armature|RunBackwardsRight
+    7400034: Armature|ShieldImpact
+    7400036: Armature|SlashCenter
+    7400038: Armature|SlashLeft
+    7400040: Armature|SlashRight
+    7400042: Armature|Stab
+    7400044: Armature|StrafeLeft
+    7400046: Armature|StrafeRight
+    7400048: Armature|SwordImpact
+    7400050: Armature|T-Pose
+    7400052: Armature|WalkBackwards
     9500000: //RootNode
     13700000: Body
-    13700002: Cube
-    13700004: Skirt
-    13700006: Sphere
+    13700002: Chest
+    13700004: Helmet
+    13700006: Skirt
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -211,7 +212,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -259,6 +260,34 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|IdleFist
       takeName: Armature|IdleFist
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IdleFistShield
+      takeName: Armature|IdleFistShield
       firstFrame: 0
       lastFrame: 22
       wrapMode: 0
