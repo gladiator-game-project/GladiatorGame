@@ -171,13 +171,16 @@ namespace Assets.Scripts.Entities.Player
 
             if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
             {
+                if (_entity.LoseStamina(_seconds * 2f))
+                    _entity.RaiseDefense();
+                else
+                    return;
                 _cooldown = 3f;
                 _holdSecondMouseDown = true;
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = false;
 
-                _entity.RaiseDefense();
 
                 if (DebugMode)
                     ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
@@ -202,19 +205,30 @@ namespace Assets.Scripts.Entities.Player
 
                     _seconds++;
                     float blockStaminaLoss = _seconds * factor;
-                    _entity.LoseStamina((int)blockStaminaLoss);
+                    if (!_entity.LoseStamina((int)blockStaminaLoss))
+                    {
+                        EndShield();
+                        return;
+                    }
+
                 }
             }
 
             if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown)//if mouse not down
             {
-                _entity.UsingStamina.Remove("blocking");
-                _holdSecondMouseDown = false;
-                Cursor.lockState = CursorLockMode.Locked;
-
-                if (DebugMode)
-                    ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
+                EndShield();
             }
+        }
+
+        private void EndShield()
+        {
+            _entity.LowerDefense();
+            _entity.UsingStamina.Remove("blocking");
+            _holdSecondMouseDown = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            if (DebugMode)
+                ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
 
         private static Direction WhichDirection6(Vector2 newPos, Vector2 mousePosCenter) // Function  to check direction
