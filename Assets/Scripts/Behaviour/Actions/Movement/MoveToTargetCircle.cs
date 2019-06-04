@@ -26,7 +26,7 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
             _movement.TowardsPosition = newPos;
 
             var dist = Vector3.Distance(gameObject.transform.position, Target.transform.position);
-            return dist > 3 ? TaskStatus.RUNNING : TaskStatus.FAILED;
+            return dist > 3 ? TaskStatus.COMPLETED : TaskStatus.FAILED;
         }
     }
 }

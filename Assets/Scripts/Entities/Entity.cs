@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.Entities.Player;
-using Assets.Scripts.Weapon;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.Entities
 {
@@ -22,7 +18,7 @@ namespace Assets.Scripts.Entities
         private AnimationHandler _animHandler;
         private WeaponHandler _weaponHandler;
         private float _health;
-        private float _stamina;
+        public float _stamina;
         private float _courage;
 
         private float _timer;
@@ -75,18 +71,19 @@ namespace Assets.Scripts.Entities
         }
 
         public void RaiseDefense() =>
-            _animHandler.RaiseDefense();
+            _animHandler.RaiseDefence();
 
         public void LowerDefense() =>
-            _animHandler.LowerDefense();
+            _animHandler.LowerDefence();
 
         public void Attack(PlayerMovement.Direction direction) =>
             _animHandler.Attack(_weaponHandler.Weapon.CurrentType, direction);
 
         public bool LoseStamina(float stamina)
         {
-            Stamina -= Stamina - stamina > 0 ? stamina : 0;
-            return Stamina - stamina > 0;
+            bool enoughStamina = Stamina - stamina >= 0;
+            Stamina -= enoughStamina ? stamina : 0;
+            return enoughStamina;
         }
 
         private void UpdateStaminaRegen()
@@ -103,13 +100,13 @@ namespace Assets.Scripts.Entities
             int seconds = (int)_timer % 60;
             if (seconds == 5 && !_startedStamina) // change that 5 to cooldown seconds
             {
-                InvokeRepeating("RegainStamina", 0.0f, 2.0f); // repeat function
+                InvokeRepeating("RegainStamina", 0.0f, 0.1f); // repeat function
                 _startedStamina = true;
             }
         }
 
         private void RegainStamina() =>
-            Stamina += 20;
+            Stamina += 1;
 
         public IEnumerator EndOfBattle()
         {

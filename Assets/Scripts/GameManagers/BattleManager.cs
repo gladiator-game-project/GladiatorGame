@@ -10,16 +10,18 @@ namespace Assets.Scripts.GameManagers
     public class BattleManager : MonoBehaviour
     {
         private GateManager _gateManager;
-        private Entity _player;
+        private GameObject _player;
+        private Entity _playerEntity;
 
-        private List<Entity> _enemyList;        
+        private List<Entity> _enemyList;
         private bool _battleGoing;
 
 
         void Start()
         {
             _gateManager = GetComponent<GateManager>();
-            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _playerEntity = _player.GetComponent<Entity>();
             _enemyList = new List<Entity>();
         }
 
@@ -48,7 +50,7 @@ namespace Assets.Scripts.GameManagers
         private void CheckGameStatus()
         {
             //Is the player Dead? end game
-            if (_player.Alive == false)
+            if (_playerEntity.Alive == false)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -56,15 +58,22 @@ namespace Assets.Scripts.GameManagers
             }
 
             //Remove every NPC who is dead
-            _enemyList.RemoveAll(enemy => enemy.GetComponent<Entity>().Alive == false);
+            var deadEnemies = _enemyList.Where(enemy => enemy.GetComponent<Entity>().Alive == false);
 
+            //Instantiate a ragdoll
+            foreach (var enemy in deadEnemies)
+                enemy.GetComponent<RagdollCreator>().CreateRagDoll();
+
+            //Remove enemy from list
+            _enemyList.RemoveAll(enemy => enemy.GetComponent<Entity>().Alive == false);
+                        
             //No more enemies? end game
             if (_enemyList.Count == 0)
             {
                 //Win screen
                 _battleGoing = false;
                 _gateManager.SetGates(true, false);
-                StartCoroutine(_player.EndOfBattle());
+                StartCoroutine(_playerEntity.EndOfBattle());
             }
         }
 
