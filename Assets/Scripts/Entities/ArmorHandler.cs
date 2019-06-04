@@ -7,6 +7,7 @@ public class ArmorHandler : MonoBehaviour
     public bool HasHelmet;
     public bool HasSkirt;
     public bool HasChest;
+    public bool HasShield;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,5 +20,9 @@ public class ArmorHandler : MonoBehaviour
 
         if(!HasHelmet)
             transform.Find("Body/Helmet").gameObject.SetActive(false);
+
+        if (!HasShield)
+            transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject.SetActive(false);
+
     }
 }

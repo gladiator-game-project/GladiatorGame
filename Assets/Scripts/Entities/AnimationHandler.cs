@@ -9,14 +9,17 @@ namespace Assets.Scripts.Entities
         public bool HasShield;
 
         private Animator _animator;
+        private ArmorHandler _armorHandler;
 
         public void Start()
         {
             _animator = GetComponent<Animator>();
+            _armorHandler = GetComponent<ArmorHandler>();
         }
 
         public void Update()
         {
+            HasShield = _armorHandler.HasShield;
         }
 
         public void SetIdle(BaseWeapon.AttackType type)
@@ -24,7 +27,10 @@ namespace Assets.Scripts.Entities
             switch (type)
             {
                 case BaseWeapon.AttackType.PUNCH:
-                    _animator.SetFloat("IdleStance", 0);
+                    if(HasShield)
+                        _animator.SetFloat("IdleStance", 3);
+                    else
+                        _animator.SetFloat("IdleStance", 0);
                     break;
                 case BaseWeapon.AttackType.STAB:
                     _animator.SetFloat("IdleStance", 1);

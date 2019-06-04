@@ -13,7 +13,7 @@ public class BlockingHandler : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Armor")
+        if(other.CompareTag("Armor") || other.CompareTag("Shield"))
         {
             other.GetComponentInParent<DamageHandler>().IsImmune = true;
         }
