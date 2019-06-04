@@ -8,7 +8,6 @@ namespace Assets.Scripts.Entities.Player
     public class DamageHandler : MonoBehaviour
     {
         private List<Collider> _weaponColliders; //The list with all colliders that are colliding with the weapon.
-        private List<Collider> _armorColliders;
 
         private float _damageImmunity = 1f;
         private float _damageImmunityTimer;
@@ -17,7 +16,6 @@ namespace Assets.Scripts.Entities.Player
         void Start()
         {
             _weaponColliders = new List<Collider>();
-            _armorColliders = new List<Collider>();
         }
 
         private void Update()
@@ -69,7 +67,6 @@ namespace Assets.Scripts.Entities.Player
             {
                 if (c.GetComponentInParent<AnimationHandler>().IsAnimationRunning("attack")) // Also check if animation is playing
                 {
-                    Debug.Log("Damage done");
                     int damage = c.GetComponentInParent<WeaponHandler>().Weapon.damage; // retrieve damage done by the colliding weapon 
                     var healthScript = GetComponent<Entity>(); // Call entity script of the hit entity
                     healthScript.Health -= damage; // Call the LoseHealth function from entity script

@@ -143,29 +143,30 @@ ModelImporter:
     7400000: Armature|HoldShieldRaised
     7400002: Armature|HoldSword
     7400004: Armature|IdleFist
-    7400006: Armature|IdleKnife
-    7400008: Armature|IdleSword
-    7400010: Armature|LowerShield
-    7400012: Armature|LowerSword
-    7400014: Armature|Punch
-    7400016: Armature|RaiseShield
-    7400018: Armature|RaiseSword
-    7400020: Armature|Run
-    7400022: Armature|RunAngledLeft
-    7400024: Armature|RunAngledRight
-    7400026: Armature|RunBackwards
-    7400028: Armature|RunBackwardsLeft
-    7400030: Armature|RunBackwardsRight
-    7400032: Armature|ShieldImpact
-    7400034: Armature|SlashCenter
-    7400036: Armature|SlashLeft
-    7400038: Armature|SlashRight
-    7400040: Armature|Stab
-    7400042: Armature|StrafeLeft
-    7400044: Armature|StrafeRight
-    7400046: Armature|SwordImpact
-    7400048: Armature|T-Pose
-    7400050: Armature|WalkBackwards
+    7400006: Armature|IdleFistShield
+    7400008: Armature|IdleKnife
+    7400010: Armature|IdleSword
+    7400012: Armature|LowerShield
+    7400014: Armature|LowerSword
+    7400016: Armature|Punch
+    7400018: Armature|RaiseShield
+    7400020: Armature|RaiseSword
+    7400022: Armature|Run
+    7400024: Armature|RunAngledLeft
+    7400026: Armature|RunAngledRight
+    7400028: Armature|RunBackwards
+    7400030: Armature|RunBackwardsLeft
+    7400032: Armature|RunBackwardsRight
+    7400034: Armature|ShieldImpact
+    7400036: Armature|SlashCenter
+    7400038: Armature|SlashLeft
+    7400040: Armature|SlashRight
+    7400042: Armature|Stab
+    7400044: Armature|StrafeLeft
+    7400046: Armature|StrafeRight
+    7400048: Armature|SwordImpact
+    7400050: Armature|T-Pose
+    7400052: Armature|WalkBackwards
     9500000: //RootNode
     13700000: Body
     13700002: Chest
@@ -211,7 +212,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -259,6 +260,34 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|IdleFist
       takeName: Armature|IdleFist
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IdleFistShield
+      takeName: Armature|IdleFistShield
       firstFrame: 0
       lastFrame: 22
       wrapMode: 0
