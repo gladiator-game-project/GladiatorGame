@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public class BlockingHandler : MonoBehaviour
-{    
+{
 
     /// <summary>
     /// This method checks if the weapon has collided with armor. If so, the isImmune variable is set to true, so the entity does not receive damage.
@@ -13,9 +13,12 @@ public class BlockingHandler : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Armor") || other.CompareTag("Shield"))
+        if (other.CompareTag("Armor") || other.CompareTag("Shield"))
         {
-            other.GetComponentInParent<DamageHandler>().IsImmune = true;
+            var damageHandler = other.GetComponent<DamageHandler>();
+            if (damageHandler != null)
+                damageHandler.IsImmune = true;
         }
+
     }
 }

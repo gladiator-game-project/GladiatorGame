@@ -42,7 +42,7 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
                 _buffer = 1;
 
             _movement.TowardsPosition = newPos;
-            return TaskStatus.RUNNING;
+            return TaskStatus.COMPLETED;
         }
     }
 }

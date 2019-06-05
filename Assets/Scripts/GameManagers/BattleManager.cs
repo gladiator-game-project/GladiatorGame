@@ -87,7 +87,13 @@ namespace Assets.Scripts.GameManagers
             enemy.transform.position = SpawnLocation;
             enemy.GetComponent<Movement>().Target = _player.gameObject;
 
-            BehaviorExecutor behaviour = enemy.GetComponent<BehaviorExecutor>();
+            var armorHandler = enemy.GetComponent<ArmorHandler>();
+            armorHandler.HasChest = Random.Range(0, 2) == 0;
+            armorHandler.HasHelmet = Random.Range(0, 2) == 0;
+            armorHandler.HasShield = Random.Range(0, 4) <= 1;
+            armorHandler.UpdateArmor();
+
+            var behaviour = enemy.GetComponent<BehaviorExecutor>();
             behaviour.SetBehaviorParam("Target", _player);
 
             _enemyList.Add(enemy.GetComponent<Entity>());

@@ -15,7 +15,7 @@ MonoBehaviour:
   brickName: Assets/Scripts/Behaviour/NPC Main Behaviour.asset
   xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
     version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
-    id=\"0\" guid=\"5037678be0bbcdd4e9f145fd5b6c9554\" nextId=\"38\">\r\n      <root>\r\n
+    id=\"0\" guid=\"5037678be0bbcdd4e9f145fd5b6c9554\" nextId=\"40\">\r\n      <root>\r\n
     \       <RepeatDecorator id=\"2\" />\r\n      </root>\r\n      <inputParams>\r\n
     \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"False\" />\r\n          <entry name=\"NPC\" type=\"UnityEngine.GameObject\"
@@ -58,6 +58,9 @@ MonoBehaviour:
     \             <ConditionEvalNode id=\"32\" />\r\n            </guard>\r\n            <child>\r\n
     \             <ActionNode id=\"24\" />\r\n            </child>\r\n          </GuardAndNode>\r\n
     \       </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n
+    \             <ConditionEvalNode id=\"39\" />\r\n            </guard>\r\n            <child>\r\n
+    \             <ActionNode id=\"38\" />\r\n            </child>\r\n          </GuardAndNode>\r\n
+    \       </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n
     \             <ConditionEvalNode id=\"33\" />\r\n            </guard>\r\n            <child>\r\n
     \             <ActionNode id=\"26\" />\r\n            </child>\r\n          </GuardAndNode>\r\n
     \       </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
@@ -98,20 +101,22 @@ MonoBehaviour:
     isBlackboard=\"False\" value=\"ATTACK\" />\r\n          <entry name=\"Movement\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"False\" />\r\n        </inputValues>\r\n
     \     </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
-    \   <ActionNode id=\"24\" action=\"Gladiator/AttackTarget\">\r\n      <inputParams>\r\n
-    \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Target\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
+    \   <ActionNode id=\"24\" action=\"Gladiator/Interaction/Attack\">\r\n      <inputParams
+    />\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n
+    \   <ConditionEvalNode id=\"39\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"AlwaysTrue\">\r\n
+    \     <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
+    \   <ActionNode id=\"38\" action=\"Gladiator/Interaction/DoNothing\">\r\n      <inputParams
+    />\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n
+    \   <ConditionEvalNode id=\"33\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n
+    \     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"DecisionHandler\"
+    type=\"Assets.Scripts.Entities.DecisionHandler\" isBlackboard=\"True\" blackboard=\"DecisionHandler\"
+    />\r\n          <entry name=\"Action\" type=\"System.String\" isBlackboard=\"False\"
+    value=\"DEFEND\" />\r\n          <entry name=\"Movement\" type=\"System.Boolean\"
+    isBlackboard=\"False\" value=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
+    \     <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n
+    \   <ActionNode id=\"26\" action=\"Gladiator/Defend\">\r\n      <inputParams />\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"33\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
-    \       <inputValues>\r\n          <entry name=\"DecisionHandler\" type=\"Assets.Scripts.Entities.DecisionHandler\"
-    isBlackboard=\"True\" blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\"
-    type=\"System.String\" isBlackboard=\"False\" value=\"DEFEND\" />\r\n          <entry
-    name=\"Movement\" type=\"System.Boolean\" isBlackboard=\"False\" value=\"False\"
-    />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n
-    \     <localParams />\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"26\"
-    action=\"Gladiator/Defend\">\r\n      <inputParams />\r\n      <outputParams />\r\n
-    \     <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"37\"
-    policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
+    id=\"37\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
     \       <inputValues>\r\n          <entry name=\"Entity\" type=\"Assets.Scripts.Entities.Entity\"
     isBlackboard=\"True\" blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\"
     type=\"System.String\" isBlackboard=\"False\" value=\"FLEE\" />\r\n          <entry
@@ -123,7 +128,7 @@ MonoBehaviour:
     \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"Target\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"34\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
+    id=\"34\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
     \       <inputValues>\r\n          <entry name=\"Entity\" type=\"Assets.Scripts.Entities.Entity\"
     isBlackboard=\"True\" blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\"
     type=\"System.String\" isBlackboard=\"False\" value=\"CIRCLE_AROUND\" />\r\n          <entry
@@ -170,123 +175,134 @@ MonoBehaviour:
     />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"35\"
     />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"36\" />\r\n
     \       </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"37\" />\r\n
-    \       </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n
-    \         <RepeatDecorator id=\"2\" />\r\n          <PrioritySelectorNode id=\"3\"
-    />\r\n          <SequenceNode id=\"28\" />\r\n          <ConditionEvalNode id=\"29\"
-    />\r\n          <PrioritySelectorNode id=\"8\" />\r\n          <ConditionEvalNode
-    id=\"9\" />\r\n          <ActionNode id=\"10\" />\r\n          <ConditionEvalNode
-    id=\"11\" />\r\n          <ActionNode id=\"12\" />\r\n          <ConditionEvalNode
-    id=\"13\" />\r\n          <ActionNode id=\"14\" />\r\n          <ConditionEvalNode
-    id=\"32\" />\r\n          <ActionNode id=\"22\" />\r\n          <ConditionEvalNode
-    id=\"33\" />\r\n          <ActionNode id=\"24\" />\r\n          <PrioritySelectorNode
-    id=\"31\" />\r\n          <ActionNode id=\"26\" />\r\n          <PrioritySelectorNode
-    id=\"30\" />\r\n          <ConditionEvalNode id=\"34\" />\r\n          <ConditionEvalNode
-    id=\"35\" />\r\n          <ActionNode id=\"36\" />\r\n          <ConditionEvalNode
-    id=\"37\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n
-    \   <RepeatDecorator id=\"2\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"622.946 9.000107\" name=\"Repeat\" description=\"Repeats
-    the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <RepeatDecorator id=\"2\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </RepeatDecorator>\r\n    <PrioritySelectorNode id=\"3\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"567.947 154.8333\"
-    name=\"Priority Selector\" description=\"\" cardinality=\"1\" hasParent=\"True\">\r\n
-    \         <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"3\"
-    />\r\n          <RepeatDecorator id=\"2\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"29\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"555.667 583.6667\"
-    name=\"Perception/IsTargetClose\" description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n
-    \         <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode id=\"29\"
-    />\r\n          <PrioritySelectorNode id=\"3\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </ConditionEvalNode>\r\n    <SequenceNode id=\"28\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"-318.3334 301.6666\"
-    name=\"Sequence\" description=\"Executes all its children in sequence until all
-    of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <SequenceNode id=\"28\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </SequenceNode>\r\n    <ConditionEvalNode id=\"9\">\r\n      <_data>\r\n        <data
-    breakpoint=\"0\" selected=\"False\" position=\"1679.073 769.8336\" name=\"AlwaysTrue\"
-    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ConditionEvalNode id=\"9\" />\r\n          <PrioritySelectorNode
-    id=\"3\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n
-    \   <PrioritySelectorNode id=\"8\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"735.072 295.8333\" name=\"Priority Selector\" description=\"\"
-    cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n
-    \         <PrioritySelectorNode id=\"8\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </PrioritySelectorNode>\r\n    <PrioritySelectorNode id=\"31\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"-502.3333 537.6666\"
-    name=\"Priority Selector\" description=\"\" cardinality=\"1\" hasParent=\"True\">\r\n
+    \       </elem>\r\n        <elem>\r\n          <ActionNode id=\"38\" />\r\n        </elem>\r\n
+    \       <elem>\r\n          <ConditionEvalNode id=\"39\" />\r\n        </elem>\r\n
+    \     </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n          <RepeatDecorator
+    id=\"2\" />\r\n          <PrioritySelectorNode id=\"3\" />\r\n          <SequenceNode
+    id=\"28\" />\r\n          <ConditionEvalNode id=\"29\" />\r\n          <PrioritySelectorNode
+    id=\"8\" />\r\n          <ConditionEvalNode id=\"9\" />\r\n          <ActionNode
+    id=\"10\" />\r\n          <ConditionEvalNode id=\"11\" />\r\n          <ActionNode
+    id=\"12\" />\r\n          <ConditionEvalNode id=\"13\" />\r\n          <ActionNode
+    id=\"14\" />\r\n          <ConditionEvalNode id=\"32\" />\r\n          <ActionNode
+    id=\"22\" />\r\n          <ConditionEvalNode id=\"33\" />\r\n          <ActionNode
+    id=\"24\" />\r\n          <PrioritySelectorNode id=\"31\" />\r\n          <ActionNode
+    id=\"26\" />\r\n          <PrioritySelectorNode id=\"30\" />\r\n          <ConditionEvalNode
+    id=\"34\" />\r\n          <ConditionEvalNode id=\"35\" />\r\n          <ActionNode
+    id=\"36\" />\r\n          <ConditionEvalNode id=\"37\" />\r\n          <ActionNode
+    id=\"38\" />\r\n          <ConditionEvalNode id=\"39\" />\r\n        </nodes>\r\n
+    \     </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"2\">\r\n      <_data>\r\n
+    \       <data breakpoint=\"0\" selected=\"False\" position=\"1452.946 -134.9999\"
+    name=\"Repeat\" description=\"Repeats the execution of its child node\" cardinality=\"1\"
+    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator
+    id=\"2\" />\r\n        </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n
+    \   <PrioritySelectorNode id=\"3\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"1397.947 10.8333\" name=\"Priority Selector\" description=\"\"
+    cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <PrioritySelectorNode id=\"3\" />\r\n          <RepeatDecorator id=\"2\"
+    />\r\n        </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
+    id=\"29\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"1465.667 367.6667\" name=\"Perception/IsTargetClose\" description=\"Eval\"
+    cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <ConditionEvalNode id=\"29\" />\r\n          <PrioritySelectorNode id=\"3\"
+    />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode
+    id=\"28\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"591.6666 85.6666\" name=\"Sequence\" description=\"Executes all its
+    children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n
     \         <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"28\" />\r\n
-    \         <SequenceNode id=\"28\" />\r\n        </data>\r\n      </_data>\r\n
+    \       </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ConditionEvalNode
+    id=\"9\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"2509.073 625.8336\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
+    id=\"9\" />\r\n          <PrioritySelectorNode id=\"3\" />\r\n        </data>\r\n
+    \     </_data>\r\n    </ConditionEvalNode>\r\n    <PrioritySelectorNode id=\"8\">\r\n
+    \     <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1565.072
+    151.8333\" name=\"Priority Selector\" description=\"\" cardinality=\"1\" hasParent=\"False\">\r\n
+    \         <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"8\"
+    />\r\n        </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <PrioritySelectorNode
+    id=\"31\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"249.6667 333.6666\" name=\"Priority Selector\" description=\"\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <SequenceNode
+    id=\"28\" />\r\n          <SequenceNode id=\"28\" />\r\n        </data>\r\n      </_data>\r\n
     \   </PrioritySelectorNode>\r\n    <PrioritySelectorNode id=\"30\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"155.667 537.6666\"
+    \       <data breakpoint=\"0\" selected=\"False\" position=\"985.667 393.6666\"
     name=\"Priority Selector\" description=\"\" cardinality=\"1\" hasParent=\"True\">\r\n
     \         <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"30\"
     />\r\n          <SequenceNode id=\"28\" />\r\n        </data>\r\n      </_data>\r\n
     \   </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"11\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"True\" position=\"1503.072 1241.833\"
+    \       <data breakpoint=\"0\" selected=\"False\" position=\"2333.072 1097.833\"
     name=\"AngleBetween\" description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n
     \         <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode id=\"11\"
     />\r\n          <PrioritySelectorNode id=\"8\" />\r\n        </data>\r\n      </_data>\r\n
     \   </ConditionEvalNode>\r\n    <ActionNode id=\"10\">\r\n      <_data>\r\n        <data
-    breakpoint=\"0\" selected=\"False\" position=\"613.071 511.8336\" name=\"Gladiator/Movement/ToTargetCircle\"
+    breakpoint=\"0\" selected=\"False\" position=\"1443.071 367.8336\" name=\"Gladiator/Movement/ToTargetCircle\"
     description=\"Moves towards the target combat circle with a small offset to the
     right\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\"
     />\r\n          <ActionNode id=\"10\" />\r\n        </data>\r\n      </_data>\r\n
     \   </ActionNode>\r\n    <ConditionEvalNode id=\"13\">\r\n      <_data>\r\n        <data
-    breakpoint=\"0\" selected=\"False\" position=\"2121.073 1211.833\" name=\"AlwaysTrue\"
+    breakpoint=\"0\" selected=\"False\" position=\"2951.073 1067.833\" name=\"AlwaysTrue\"
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ConditionEvalNode id=\"13\" />\r\n          <PrioritySelectorNode
     id=\"8\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n
     \   <ActionNode id=\"12\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"905.072 517.8337\" name=\"Gladiator/Movement/ToTargetDirectly\"
+    selected=\"False\" position=\"1735.072 373.8337\" name=\"Gladiator/Movement/ToTargetDirectly\"
     description=\"Moves towards the target in a straight line\" cardinality=\"0\"
     hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"12\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode
     id=\"32\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-578.6666 1318\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
+    position=\"241.3334 1174\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
     id=\"32\" />\r\n          <PrioritySelectorNode id=\"31\" />\r\n        </data>\r\n
     \     </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"24\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"-615.4999 672.8334\"
-    name=\"Gladiator/AttackTarget\" description=\"Attacks the target\" cardinality=\"0\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
-    id=\"24\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"33\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"225.667 1393.667\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
-    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
-    id=\"33\" />\r\n          <PrioritySelectorNode id=\"31\" />\r\n        </data>\r\n
-    \     </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"26\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"-358.3333 699.6667\"
-    name=\"Gladiator/Defend\" description=\"Pulls up the shield\" cardinality=\"0\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
-    id=\"26\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"37\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"113.6667 1417.667\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
-    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
-    id=\"37\" />\r\n          <PrioritySelectorNode id=\"30\" />\r\n        </data>\r\n
-    \     </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"36\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"-96.33331 711.6667\"
-    name=\"Gladiator/Flee\" description=\"Run away from the target\" cardinality=\"0\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
-    id=\"36\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"34\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"927.334 1534\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
-    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
-    id=\"34\" />\r\n          <PrioritySelectorNode id=\"30\" />\r\n        </data>\r\n
-    \     </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"22\">\r\n      <_data>\r\n
-    \       <data breakpoint=\"0\" selected=\"False\" position=\"116.5 718.8334\"
-    name=\"Gladiator/Movement/CircleAroundTarget\" description=\"Circles around the
-    target\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\"
-    />\r\n          <ActionNode id=\"22\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </ActionNode>\r\n    <ConditionEvalNode id=\"35\">\r\n      <_data>\r\n        <data
-    breakpoint=\"0\" selected=\"False\" position=\"1620.762 1559.144\" name=\"FuzzyLogic\"
+    \       <data breakpoint=\"0\" selected=\"False\" position=\"204.5001 528.8334\"
+    name=\"Gladiator/Interaction/Attack\" description=\"Plays the attack animation\"
+    cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <ActionNode id=\"24\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n
+    \   <ConditionEvalNode id=\"39\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"932 1200\" name=\"AlwaysTrue\" description=\"Eval\"
+    cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <ConditionEvalNode id=\"39\" />\r\n          <PrioritySelectorNode id=\"31\"
+    />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode
+    id=\"38\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"522 526\" name=\"Gladiator/Interaction/DoNothing\" description=\"Does
+    nothing\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\"
+    />\r\n          <ActionNode id=\"38\" />\r\n        </data>\r\n      </_data>\r\n
+    \   </ActionNode>\r\n    <ConditionEvalNode id=\"33\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"985.667 1227.667\" name=\"FuzzyLogic\"
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ConditionEvalNode id=\"35\" />\r\n          <PrioritySelectorNode
+    id=\"0\" />\r\n          <ConditionEvalNode id=\"33\" />\r\n          <PrioritySelectorNode
+    id=\"31\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n
+    \   <ActionNode id=\"26\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"401.6667 533.6667\" name=\"Gladiator/Defend\" description=\"Pulls
+    up the shield\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ActionNode id=\"26\" />\r\n        </data>\r\n      </_data>\r\n
+    \   </ActionNode>\r\n    <ConditionEvalNode id=\"37\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"943.6667 1273.667\" name=\"FuzzyLogic\"
+    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ConditionEvalNode id=\"37\" />\r\n          <PrioritySelectorNode
     id=\"30\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n
-    \   <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"380.215 732.4053\" name=\"Gladiator/Idle\" description=\"Stand
-    around\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\"
-    />\r\n          <ActionNode id=\"14\" />\r\n        </data>\r\n      </_data>\r\n
-    \   </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
+    \   <ActionNode id=\"36\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"733.6667 567.6667\" name=\"Gladiator/Flee\" description=\"Run
+    away from the target\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ActionNode id=\"36\" />\r\n        </data>\r\n      </_data>\r\n
+    \   </ActionNode>\r\n    <ConditionEvalNode id=\"34\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"1757.334 1390\" name=\"FuzzyLogic\"
+    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ConditionEvalNode id=\"34\" />\r\n          <PrioritySelectorNode
+    id=\"30\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n
+    \   <ActionNode id=\"22\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"946.5 574.8334\" name=\"Gladiator/Movement/CircleAroundTarget\"
+    description=\"Circles around the target\" cardinality=\"0\" hasParent=\"False\">\r\n
+    \         <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"22\" />\r\n
+    \       </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode
+    id=\"35\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"2450.762 1415.144\" name=\"FuzzyLogic\" description=\"Eval\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
+    id=\"35\" />\r\n          <PrioritySelectorNode id=\"30\" />\r\n        </data>\r\n
+    \     </_data>\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"14\">\r\n      <_data>\r\n
+    \       <data breakpoint=\"0\" selected=\"False\" position=\"1210.215 588.4053\"
+    name=\"Gladiator/Idle\" description=\"Stand around\" cardinality=\"0\" hasParent=\"False\">\r\n
+    \         <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n
+    \       </data>\r\n      </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
   zoom: 0.5
   subslist: []
   _guid: 5037678be0bbcdd4e9f145fd5b6c9554
