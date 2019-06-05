@@ -41,7 +41,8 @@ public class RestartButton : MonoBehaviour, IPointerClickHandler
         // single click
         if (onClick && clickCount == 1)
         {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex); // reload scene
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }
 
     }

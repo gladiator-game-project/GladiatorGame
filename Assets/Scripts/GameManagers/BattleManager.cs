@@ -16,6 +16,8 @@ namespace Assets.Scripts.GameManagers
         private List<Entity> _enemyList;
         private bool _battleGoing;
 
+        public GameObject LoseText;
+        public GameObject RestartButton;
 
         void Start()
         {
@@ -52,6 +54,9 @@ namespace Assets.Scripts.GameManagers
             //Is the player Dead? end game
             if (_playerEntity.Alive == false)
             {
+                _player.GetComponent<PlayerMovement>().enabled = false;
+                RestartButton.SetActive(true);
+                LoseText.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 _battleGoing = false;

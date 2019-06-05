@@ -38,13 +38,19 @@ namespace Assets.Scripts.Entities
 
             _angle = Vector3.Angle(TowardsPosition - transform.position, transform.forward);
 
-            MoveModel();
             RotateModel();
+
+            //return so the ai does not move while attacking
+            if (_animHandler.IsAnimationRunning("attack"))
+                return;
+
+            MoveModel();
             AnimateModel();
         }
 
         private void MoveModel()
         {
+           
             if (_angle > xAngleCutOff && _angle < 65)
                 return;
 

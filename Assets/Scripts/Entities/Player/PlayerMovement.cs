@@ -84,6 +84,13 @@ namespace Assets.Scripts.Entities.Player
 
         private void UpdateKeyMovement()
         {
+            //if attacking, disable movement
+            if (_animHandler.IsAnimationRunning("attack"))
+            {
+                _rigidBody.velocity = new Vector3();
+                return;
+            }
+
             var horizontal = Input.GetAxisRaw("Horizontal");
             var vertical = Input.GetAxisRaw("Vertical");
 
