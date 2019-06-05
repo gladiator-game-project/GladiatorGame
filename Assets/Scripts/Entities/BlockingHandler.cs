@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Entities.Player;
+﻿using Assets.Scripts.Entities;
+using Assets.Scripts.Entities.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,12 @@ public class BlockingHandler : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Armor") || other.CompareTag("Shield"))
+        if (other.CompareTag("Armor") || other.CompareTag("Shield") || other.CompareTag("Weapon"))
         {
-            var damageHandler = other.GetComponent<DamageHandler>();
+            var damageHandler = other.GetComponentInParent<DamageHandler>();
             if (damageHandler != null)
                 damageHandler.IsImmune = true;
+            
         }
-
     }
 }
