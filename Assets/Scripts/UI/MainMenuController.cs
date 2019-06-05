@@ -7,26 +7,31 @@ public class MainMenuController : MonoBehaviour
 {
     private GameObject InGamePanel;
 
-    public void ExitGame() =>
-        Application.Quit();
-
-    public void StartGame() =>
-        SceneManager.LoadScene(1);
-
-    public void ExitMatch() =>
-        SceneManager.LoadScene(0);
-
-
-    private void Start()
+    public void Start()
     {
         InGamePanel = GameObject.Find("InGamePanel");
     }
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
             InGamePanel.SetActive(true);
         }
     }
+
+    public void ExitGame() =>
+        Application.Quit();
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+    }
+
+
+    public void ExitMatch() =>
+        SceneManager.LoadScene(0);
+
+
 }

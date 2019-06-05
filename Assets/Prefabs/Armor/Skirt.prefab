@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skirt
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c372ab1339a4b9a4ebab7bc172f5a713, type: 3}
+      propertyPath: m_TagString
+      value: Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c372ab1339a4b9a4ebab7bc172f5a713, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

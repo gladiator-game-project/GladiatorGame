@@ -7,7 +7,6 @@ TagManager:
   - Enemy
   - Weapon
   - Armor
-  - Shield
   layers:
   - Default
   - TransparentFX
@@ -19,7 +18,7 @@ TagManager:
   - 
   - PostProcessing
   - menuBackground
-  - 
+  - PhysicsIgnore
   - 
   - 
   - 

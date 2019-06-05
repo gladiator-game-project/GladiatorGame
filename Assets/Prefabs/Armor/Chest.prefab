@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ea1037e06aca6ee459c7a0ac732baa2d, type: 3}
+      propertyPath: m_TagString
+      value: Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ea1037e06aca6ee459c7a0ac732baa2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4747679271139796201}
   - component: {fileID: 2050045111394200624}
   - component: {fileID: 619824150359160176}
+  - component: {fileID: 351005306095576408}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Enemy
@@ -238,7 +239,7 @@ MonoBehaviour:
     objectParams:
     - {fileID: 0}
     - {fileID: 425168470722045505}
-    - {fileID: 0}
+    - {fileID: 351005306095576408}
     objectParamsNames:
     - Target
     - NPC
@@ -373,6 +374,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f85298f547d0f4bbb6ec8d83ecbfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &351005306095576408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425168470722045505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d337e06701d0b4c90cd51acc2961cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentMovementAction: 
+  UseInternalValues: 0
+  Health: 0
+  Courage: 0
+  Angle: 0
 --- !u!1 &2607939726962949238
 GameObject:
   m_ObjectHideFlags: 0

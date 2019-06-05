@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Entities.Player;
-using Assets.Scripts.Weapon;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -13,12 +12,13 @@ namespace Assets.Scripts.Entities
         public float MaxHealth;
         public float MaxStamina;
 
-        public bool Alive = true;        
+        public bool Alive = true;
 
+        private NavAgentController _navController;
         private AnimationHandler _animHandler;
         private WeaponHandler _weaponHandler;
         private float _health;
-        private float _stamina;
+        public float _stamina;
         private float _courage;
 
         private float _timer;
@@ -53,6 +53,7 @@ namespace Assets.Scripts.Entities
 
         public void Start()
         {
+            _navController = GetComponent<NavAgentController>();
             _animHandler = GetComponent<AnimationHandler>();
             _weaponHandler = GetComponent<WeaponHandler>();
             UsingStamina = new List<string>();
@@ -68,20 +69,21 @@ namespace Assets.Scripts.Entities
         {
             UpdateStaminaRegen();
         }
-        
+
         public void RaiseDefense() =>
-            _animHandler.RaiseDefense();
+            _animHandler.RaiseDefence();
 
         public void LowerDefense() =>
-            _animHandler.LowerDefense();
+            _animHandler.LowerDefence();
 
         public void Attack(PlayerMovement.Direction direction) =>
             _animHandler.Attack(_weaponHandler.Weapon.CurrentType, direction);
 
         public bool LoseStamina(float stamina)
         {
-            Stamina -= Stamina - stamina > 0 ? stamina : 0;
-            return Stamina - stamina > 0;
+            bool enoughStamina = Stamina - stamina >= 0;
+            Stamina -= enoughStamina ? stamina : 0;
+            return enoughStamina;
         }
 
         private void UpdateStaminaRegen()
@@ -98,12 +100,19 @@ namespace Assets.Scripts.Entities
             int seconds = (int)_timer % 60;
             if (seconds == 5 && !_startedStamina) // change that 5 to cooldown seconds
             {
-                InvokeRepeating("RegainStamina", 0.0f, 2.0f); // repeat function
+                InvokeRepeating("RegainStamina", 0.0f, 0.1f); // repeat function
                 _startedStamina = true;
             }
         }
 
         private void RegainStamina() =>
-            Stamina += 20;
+            Stamina += 1;
+
+        public IEnumerator EndOfBattle()
+        {
+            //_animHandler.StartVictory();
+            yield return new WaitForSeconds(1);
+            _navController.SetDestination(new Vector3(-1, 0, -46));
+        }
     }
 }

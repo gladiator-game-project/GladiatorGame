@@ -7,7 +7,7 @@ namespace Assets.Scripts.Entities
     public class AnimationHandler : MonoBehaviour
     {
         public bool HasShield;
-        
+
         private Animator _animator;
         private ArmorHandler _armorHandler;
 
@@ -83,7 +83,7 @@ namespace Assets.Scripts.Entities
         /// <summary>
         /// Raise the Defence
         /// </summary>
-        public void RaiseDefense()
+        public void RaiseDefence()
         {
             if (HasShield)
             {
@@ -97,14 +97,26 @@ namespace Assets.Scripts.Entities
             }
         }
 
+        /// <summary>
+        /// Raises defence and lowers it after the given timeLength
+        /// </summary>
+        /// <param name="timeLength"></param>
+        public void RaiseDefence(float timeLength)
+        {
+            RaiseDefence();
+            StartCoroutine("LowerDefence", timeLength);
+        }
 
         /// <summary>
         /// Lower the Defence
         /// </summary>
-        public void LowerDefense() => 
+        public void LowerDefence() =>
             _animator.SetBool(HasShield ? "HoldShield" : "HoldSword", false);
 
         public void SetEnabled(bool b) =>
             _animator.enabled = b;
+
+        public void StartVictory() =>
+            _animator.SetTrigger("victory");
     }
 }
