@@ -102,7 +102,7 @@ MonoBehaviour:
     \       <inputValues>\r\n          <entry name=\"Target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"Target\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
     \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode
-    id=\"33\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
+    id=\"33\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"FuzzyLogic\">\r\n      <inputParams>\r\n
     \       <inputValues>\r\n          <entry name=\"DecisionHandler\" type=\"Assets.Scripts.Entities.DecisionHandler\"
     isBlackboard=\"True\" blackboard=\"DecisionHandler\" />\r\n          <entry name=\"Action\"
     type=\"System.String\" isBlackboard=\"False\" value=\"DEFEND\" />\r\n          <entry
