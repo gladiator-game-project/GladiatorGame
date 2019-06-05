@@ -17,6 +17,7 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
 
         //Buffer used to prevent AI from switching behaviours too fast
         private float _buffer = 1;
+        private float _distanceToPlayer = 2.2f;
 
         public override void OnStart()
         {
@@ -33,9 +34,9 @@ namespace Assets.Scripts.Behaviour.Actions.Movement
             var distance = Vector3.Distance(gameObject.transform.position, Target.transform.position);
 
             //If the AI gets too far, set the target to the player
-            if (distance >= 4 + _buffer)
+            if (distance >= _distanceToPlayer + _buffer)
             {
-                _buffer -= distance - 4;
+                _buffer -= distance - _distanceToPlayer;
                 newPos = Target.transform.position;
             }
             else
