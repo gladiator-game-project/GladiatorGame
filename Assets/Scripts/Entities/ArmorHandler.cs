@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class ArmorHandler : MonoBehaviour
 {
+    public GameObject Chest;
+    public GameObject Skirt;
+    public GameObject Helmet;
+    public GameObject Shield;
+
     public bool HasHelmet;
     public bool HasSkirt;
     public bool HasChest;
     public bool HasShield;
 
-    // Start is called before the first frame update
     void Awake()
     {
+        Chest = transform.Find("Body/Chest").gameObject;
+        Skirt = transform.Find("Body/Skirt").gameObject;
+        Helmet = transform.Find("Body/Helmet").gameObject;
+        Shield = transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject;
+        
         UpdateArmor();
     }
 
     public void UpdateArmor()
     {
-        transform.Find("Body/Chest").gameObject.SetActive(HasChest);
-        transform.Find("Body/Skirt").gameObject.SetActive(HasSkirt);
-        transform.Find("Body/Helmet").gameObject.SetActive(HasHelmet);
-        transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject.SetActive(HasShield);
+        Chest.SetActive(HasChest);
+        Skirt.SetActive(HasSkirt);
+        Helmet.SetActive(HasHelmet);
+        Shield.SetActive(HasShield);
     }
 }

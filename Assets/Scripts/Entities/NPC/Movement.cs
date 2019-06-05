@@ -10,7 +10,7 @@ namespace Assets.Scripts.Entities
         public float MovementAmp = 1f;
         public float Speed;
 
-        private const int _rotationSpeed = 35;
+        private const int _rotationSpeed = 65;
         private AnimationHandler _animHandler;
 
         private readonly int xAngleCutOff = 15;

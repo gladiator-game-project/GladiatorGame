@@ -8,7 +8,9 @@ namespace Assets.Scripts.Entities.Player
     {
         public GameObject Hand;
         public BaseWeapon Weapon;
+
         private Image _pickupImage;
+        private Text _pickupText;
 
         private GameObject _currentWeapon;
         private GameObject _selectedWeapon;
@@ -18,7 +20,11 @@ namespace Assets.Scripts.Entities.Player
         public void Start()
         {
             _animHandler = GetComponent<AnimationHandler>();
-            _pickupImage = GameObject.Find("Weapon Pickup Image").GetComponent<Image>();
+
+            var pickup = GameObject.Find("Weapon Pickup Image");
+            _pickupImage = pickup.GetComponent<Image>();
+            _pickupText = pickup.GetComponentInChildren<Text>();
+
             _isPlayer = gameObject.tag == "Player";
         }
 
@@ -86,26 +92,26 @@ namespace Assets.Scripts.Entities.Player
 
                 while (i < hitColliders.Length)
                 {
-                    if (hit.transform.GetComponentInParent<Entity>() != null)
-                    {
-                        if (hit.transform.GetComponentInParent<Entity>().CompareTag("Enemy") || hit.transform.GetComponentInParent<Entity>().CompareTag("Player"))
-                        {
+                    if (hit.transform.GetComponentInParent<Entity>() != null)                    
+                        if (hit.transform.GetComponentInParent<Entity>().CompareTag("Enemy") || 
+                            hit.transform.GetComponentInParent<Entity>().CompareTag("Player"))                        
                             break;
-                        }
-                    }
-
 
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
+
                         _pickupImage.enabled = true;
-                        //_btnText.text = "Press E to pick up " + hitColliders[i].name;
+                        _pickupText.text = "E";
+
                         return true;
                     }
                     i++;
                 }
             }
             _pickupImage.enabled = false;
+            _pickupText.text = "";
+
             return false;
         }
 
