@@ -9,7 +9,7 @@ namespace Assets.Scripts.Entities
         public string CurrentMovementAction;
         public string CurrentInteractionAction;
         public bool UseInternalValues;
-          
+
         public Fuzzy_Sets Sets { get; private set; }
 
         [Range(0, 100)] public float Health;
@@ -19,9 +19,11 @@ namespace Assets.Scripts.Entities
         private Movement _movement;
         private Entity _entity;
         private AnimationHandler _animHandler;
-        
+
         private Fuzzy_Rules _rules;
         private Timer _timer;
+
+        private int _circlingCounter;
 
         public void Start()
         {
@@ -71,27 +73,42 @@ namespace Assets.Scripts.Entities
             return "IDLE";
         }
 
+        /// <summary>
+        /// Gets a movement action based on Health, Courage and Angle
+        /// </summary>
+        /// <returns>Movement Action string</returns>
         public string GetDecision()
         {
+            //Get the angle between the Target and the NPC
+            float angle = Vector3.Angle(transform.position - _movement.Target.transform.position, _movement.Target.transform.forward);
+
             float[] values = UseInternalValues ?
-                            new float[] { Health, Courage, Angle } : new float[] { _entity.Health, _entity.Courage, 0 }; //TODO use angle
+                            new float[] { Health, Courage, Angle } : new float[] { _entity.Health, _entity.Courage, angle };
 
             //1 calculate from the Sets            
             var setValues = GetSetValues(values);
 
             //2 Throw into the Rules and get a decision
-            return _rules.GetPreferredAction(setValues);
+            var preferredAction = _rules.GetPreferredAction(setValues);
+
+            //Make sure the AI does not circle constantly
+            if (preferredAction == "CIRCLE_AROUND")
+            {
+                _circlingCounter++;
+
+                if (_circlingCounter == Random.Range(18, 25))
+                    _timer.AddTimer("Circling", 1.5f);
+
+                if (_timer.CheckTimer("Circling") == false)
+                    preferredAction = "IDLE";
+            }
+            else
+                _circlingCounter = 0;
+                       
+            return preferredAction;
         }
 
         public Dictionary<string, float> GetSetValues(float[] values) =>
             Sets.CalculateValues(values);
-    }
-
-    public enum MovementBehaviour
-    {
-        IDLE,
-        CIRLCE_AROUND,
-        WALK_BACKWARDS,
-        FLEE
     }
 }

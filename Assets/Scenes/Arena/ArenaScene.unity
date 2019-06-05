@@ -751,7 +751,7 @@ RectTransform:
   - {fileID: 875419018}
   - {fileID: 821864975}
   - {fileID: 214614230}
-  - {fileID: 1411682724}
+  - {fileID: 2097419041}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -861,12 +861,6 @@ Transform:
 --- !u!1 &1411682723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1299988505776150675, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2097419040}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1411682724 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1299988505776150674, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
     type: 3}
   m_PrefabInstance: {fileID: 2097419040}
   m_PrefabAsset: {fileID: 0}
@@ -1269,16 +1263,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1078968751}
     m_Modifications:
-    - target: {fileID: 1299988505776150675, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
-        type: 3}
-      propertyPath: m_Name
-      value: LoseText
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299988505776150675, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1299988505776150674, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1384,8 +1368,23 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1299988505776150675, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
+        type: 3}
+      propertyPath: m_Name
+      value: LoseText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299988505776150675, guid: 82a472cbc26ba1f4191e9d9f29e68da1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a472cbc26ba1f4191e9d9f29e68da1, type: 3}
+--- !u!4 &2097419041 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2097419040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3785299402449313554
 PrefabInstance:
   m_ObjectHideFlags: 0
