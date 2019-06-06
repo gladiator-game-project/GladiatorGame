@@ -7,6 +7,7 @@ namespace Assets.Scripts
     {
         void Update()
         {
+#if (UNITY_EDITOR)
             if (Input.GetKey(KeyCode.Escape))
             {
                 EditorApplication.isPlaying = false;
@@ -18,6 +19,7 @@ namespace Assets.Scripts
                 EditorApplication.isPaused = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+#endif
 
         }
     }

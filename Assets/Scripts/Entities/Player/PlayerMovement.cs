@@ -103,6 +103,9 @@ namespace Assets.Scripts.Entities.Player
             _rigidBody.velocity = movementDirection;
         }
 
+        /// <summary>
+        /// Updates the camera pitch based on mouse input
+        /// </summary>
         private void UpdateCameraMovement()
         {
             Pitch += Input.GetAxis("Mouse Y") * CameraSpeed;
@@ -118,6 +121,9 @@ namespace Assets.Scripts.Entities.Player
             Camera.transform.localEulerAngles = new Vector3(-Pitch, Camera.transform.localEulerAngles.y, Camera.transform.localEulerAngles.z);
         }
 
+        /// <summary>
+        /// Checks whether the left mouse button is pressed and attacks
+        /// </summary>
         private void UpdateAttack() // update attack function, which checks for attacks and what direction
         {
             if (_animHandler.IsAnimationRunning("attack"))
@@ -149,6 +155,12 @@ namespace Assets.Scripts.Entities.Player
             }
         }
 
+        /// <summary>
+        /// Changes the position of the circle indication
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="swordOrShield"></param>
+        /// <param name="offside"></param>
         private void ChangeCirclePosition(Direction direction, GameObject swordOrShield, float offside)
         {
             if (direction == Direction.DOWN)
@@ -165,6 +177,9 @@ namespace Assets.Scripts.Entities.Player
                 swordOrShield.transform.position = new Vector2(_mousePosCenter.x + 200, _mousePosCenter.y - offside);
         }
 
+        /// <summary>
+        /// Checks wheter the right mouse button was pressed and defends
+        /// </summary>
         private void UpdateShield() // update attack function, which checks for attacks and what direction
         {
             //check if mouse was raised previous frame
@@ -227,6 +242,9 @@ namespace Assets.Scripts.Entities.Player
             }
         }
 
+        /// <summary>
+        /// Stop holding the shield up
+        /// </summary>
         private void EndShield()
         {
             _entity.LowerDefense();
@@ -238,6 +256,12 @@ namespace Assets.Scripts.Entities.Player
                 ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
 
+        /// <summary>
+        /// Checks which direction the mouse is for sword movement
+        /// </summary>
+        /// <param name="newPos"></param>
+        /// <param name="mousePosCenter"></param>
+        /// <returns></returns>
         private static Direction WhichDirection6(Vector2 newPos, Vector2 mousePosCenter) // Function  to check direction
         {
             const float radius = 40; // the radius of the center
@@ -245,14 +269,14 @@ namespace Assets.Scripts.Entities.Player
             float diffy = newPos.y - mousePosCenter.y; // check distance between mouse y and center
 
             if (diffx > radius && diffy < radius && diffy > -radius)
-                return Direction.RIGHT;                   //                                         ----------------
+                return Direction.RIGHT;                   //                                    ----------------
             if (diffx > radius && diffy > radius) //                                            | UL | U  | UR |
-                return Direction.UP_RIGHT;               //                                           |----+----+-----
+                return Direction.UP_RIGHT;               //                                     |----+----+-----
             if (diffx < radius && diffx > -radius && diffy > radius) //                         | L  | C  | R  |
-                return Direction.UP;                    //                                           |----+----+-----
-            if (diffx < -radius && diffy > radius) //                                                   |              |
-                return Direction.UP_LEFT;                //                                           |      D       |
-            if (diffx < -radius && diffy < radius && diffy > -radius) //                                    ----------------
+                return Direction.UP;                    //                                      |----+----+-----
+            if (diffx < -radius && diffy > radius) //                                           |              |
+                return Direction.UP_LEFT;                //                                     |      D       |
+            if (diffx < -radius && diffy < radius && diffy > -radius) //                        ----------------
                 return Direction.LEFT;
             if (diffy < -radius)
                 return Direction.DOWN;
@@ -260,6 +284,12 @@ namespace Assets.Scripts.Entities.Player
             return Direction.CENTER;
         }
 
+        /// <summary>
+        /// Checks wich direction the mouse points to
+        /// </summary>
+        /// <param name="newPos"></param>
+        /// <param name="mousePosCenter"></param>
+        /// <returns></returns>
         private static Direction WhichDirection4(Vector2 newPos, Vector2 mousePosCenter) // Function  to check direction
         {
             float radius = 40; // the radius of the center
