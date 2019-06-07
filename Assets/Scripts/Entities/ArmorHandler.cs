@@ -16,16 +16,19 @@ public class ArmorHandler : MonoBehaviour
 
     void Awake()
     {
-        Chest = transform.Find("Body/Chest").gameObject;
-        Skirt = transform.Find("Body/Skirt").gameObject;
-        Helmet = transform.Find("Body/Helmet").gameObject;
-        Shield = transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield").gameObject;
-        
+        Chest = transform.Find("Body/Chest")?.gameObject;
+        Skirt = transform.Find("Body/Skirt")?.gameObject;
+        Helmet = transform.Find("Body/Helmet")?.gameObject;
+        Shield = transform.Find("Armature/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftLowerArm/LeftHand/shield")?.gameObject;
+
         UpdateArmor();
     }
 
     public void UpdateArmor()
     {
+        if (Chest == null || Skirt == null || Helmet == null || Shield == null)
+            return;
+
         Chest.SetActive(HasChest);
         Skirt.SetActive(HasSkirt);
         Helmet.SetActive(HasHelmet);

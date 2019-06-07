@@ -16,7 +16,6 @@ namespace Assets.Scripts.GameManagers
         private List<Entity> _enemyList;
         private bool _battleGoing;
 
-        public GameObject LoseText;
         public GameObject RestartButton;
 
         void Start()
@@ -55,11 +54,10 @@ namespace Assets.Scripts.GameManagers
             if (_playerEntity.Alive == false)
             {
                 _player.GetComponent<PlayerMovement>().enabled = false;
-                RestartButton.SetActive(true);
-                LoseText.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 _battleGoing = false;
+                RestartButton.SetActive(true);
             }
 
             //Remove every NPC who is dead
@@ -71,7 +69,7 @@ namespace Assets.Scripts.GameManagers
 
             //Remove enemy from list
             _enemyList.RemoveAll(enemy => enemy.GetComponent<Entity>().Alive == false);
-                        
+
             //No more enemies? end game
             if (_enemyList.Count == 0)
             {

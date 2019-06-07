@@ -25,7 +25,7 @@ namespace Assets.Scripts.Behaviour.Actions
             //If the animation is not running and the entity can lose 40 stamina
             if (_animHandler.IsAnimationRunning("attack") == false)
                 if (_entity.LoseStamina(40))
-                    _entity.Attack(PlayerMovement.Direction.LEFT);
+                    _entity.Attack(Direction.LEFT);
 
             return TaskStatus.COMPLETED;
         }

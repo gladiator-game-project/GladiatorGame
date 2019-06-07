@@ -11,6 +11,7 @@ namespace Assets.Scripts.Dev
         public GameObject LineRenderObject;
         public Slider[] Sliders = new Slider[3];
         public GameObject[] Points = new GameObject[3];
+        public Text BehaviourText;
 
         private float _scale = 10f;
         private float _xOffset = -15f;
@@ -55,6 +56,8 @@ namespace Assets.Scripts.Dev
             var y = 10 - (sliderID * 8) + Mathf.Max(yValue1, yValue2, yValue3) * 2;
             var x = Sliders[sliderID].value / _scale + _xOffset;
             Points[sliderID].transform.position = new Vector3(x, y, 19);
+
+            BehaviourText.text = DecisionHandler.GetPreferredAction(setValues);
         }
     }
 }

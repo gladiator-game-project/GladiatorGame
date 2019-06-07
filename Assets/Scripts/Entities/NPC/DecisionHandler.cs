@@ -53,6 +53,9 @@ namespace Assets.Scripts.Entities
 
         public string GetInteractionDecision()
         {
+            if (_movement == null)
+                return "NULL";
+
             //Am I attacked? Defend
             if (_timer.CheckTimer("Defend"))
             {
@@ -80,7 +83,7 @@ namespace Assets.Scripts.Entities
         public string GetDecision()
         {
             //Get the angle between the Target and the NPC
-            float angle = Vector3.Angle(transform.position - _movement.Target.transform.position, _movement.Target.transform.forward);
+            float angle = UseInternalValues ? 0 : Vector3.Angle(transform.position - _movement.Target.transform.position, _movement.Target.transform.forward);
 
             float[] values = UseInternalValues ?
                             new float[] { Health, Courage, Angle } : new float[] { _entity.Health, _entity.Courage, angle };
@@ -89,7 +92,7 @@ namespace Assets.Scripts.Entities
             var setValues = GetSetValues(values);
 
             //2 Throw into the Rules and get a decision
-            var preferredAction = _rules.GetPreferredAction(setValues);
+            var preferredAction = GetPreferredAction(setValues);
 
             //Make sure the AI does not circle constantly
             if (preferredAction == "CIRCLE_AROUND")
@@ -104,11 +107,15 @@ namespace Assets.Scripts.Entities
             }
             else
                 _circlingCounter = 0;
-                       
+
             return preferredAction;
         }
 
         public Dictionary<string, float> GetSetValues(float[] values) =>
             Sets.CalculateValues(values);
+
+        public string GetPreferredAction(Dictionary<string, float> setValues) =>
+           _rules.GetPreferredAction(setValues);
+
     }
 }

@@ -71,9 +71,9 @@ namespace Assets.Scripts.Entities
         /// </summary>
         /// <param name="attackType"></param>
         /// <param name="direction"></param>
-        public void Attack(BaseWeapon.AttackType attackType, PlayerMovement.Direction direction)
+        public void Attack(BaseWeapon.AttackType attackType, Direction direction)
         {
-            if (attackType == BaseWeapon.AttackType.SLASH && (direction == PlayerMovement.Direction.LEFT || direction == PlayerMovement.Direction.RIGHT))
+            if (attackType == BaseWeapon.AttackType.SLASH && (direction == Direction.LEFT || direction == Direction.RIGHT))
                 _animator.SetTrigger("SLASH" + direction);
             else
                 _animator.SetTrigger(attackType.ToString());

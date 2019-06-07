@@ -22,8 +22,8 @@ namespace Assets.Scripts.Entities.Player
             _animHandler = GetComponent<AnimationHandler>();
 
             var pickup = GameObject.Find("Weapon Pickup Image");
-            _pickupImage = pickup.GetComponent<Image>();
-            _pickupText = pickup.GetComponentInChildren<Text>();
+            _pickupImage = pickup?.GetComponent<Image>();
+            _pickupText = pickup?.GetComponentInChildren<Text>();
 
             _isPlayer = gameObject.tag == "Player";
         }
@@ -101,20 +101,27 @@ namespace Assets.Scripts.Entities.Player
                     if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != Weapon.gameObject)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
-
-                        _pickupImage.enabled = true;
-                        _pickupText.text = "E";
+                        SetPickupImage(true);
 
                         return true;
                     }
                     i++;
                 }
             }
-            _pickupImage.enabled = false;
-            _pickupText.text = "";
+            SetPickupImage(false);
 
             return false;
         }
+
+        private void SetPickupImage(bool enabled)
+        {
+            if (_pickupImage == null)
+                return;
+
+            _pickupImage.enabled = enabled;
+            _pickupText.text = enabled ? "E" : "";
+        }
+          
 
         private void UpdateWeapon()
         {
