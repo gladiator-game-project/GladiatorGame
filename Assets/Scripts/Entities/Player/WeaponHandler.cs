@@ -30,8 +30,9 @@ namespace Assets.Scripts.Entities.Player
 
         public void Update()
         {
-            if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E) && _isPlayer)
-                SwitchWeapon();
+            if (_isPlayer)
+                if (CheckForWeapon() && Input.GetKeyDown(KeyCode.E))
+                    SwitchWeapon();
             UpdateWeapon();
             _animHandler.SetIdle(Weapon.CurrentType);
         }
@@ -97,7 +98,7 @@ namespace Assets.Scripts.Entities.Player
                             hit.transform.GetComponentInParent<Entity>().CompareTag("Player"))                        
                             break;
 
-                    if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != _currentWeapon)
+                    if (hitColliders[i].tag == "Weapon" && hitColliders[i].gameObject != Weapon.gameObject)
                     {
                         _selectedWeapon = hitColliders[i].gameObject;
 
