@@ -30,7 +30,7 @@ namespace Assets.Scripts.Entities.Player
         {
             var obj = col.GetComponentInParent<AnimationHandler>();
             var isWeapon = col.GetComponent<BaseWeapon>();
-            
+
 
             if (obj == null || isWeapon == null)
                 return;
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Entities.Player
 
         public void OnTriggerExit(Collider col)
         {
-            if (_weaponColliders.Contains(col))
+            if (_weaponColliders != null && _weaponColliders.Contains(col))
                 _weaponColliders.Remove(col);
         }
 
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Entities.Player
             _damageImmunityTimer += Time.deltaTime;
         }
 
-        
+
         /// <summary>
         /// Checks if the entity itself is hit and by which weapon. 
         /// Then reduces hp by the amount of damage the attacking weapon does

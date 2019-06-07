@@ -76,7 +76,7 @@ namespace Assets.Scripts.Entities
         public void LowerDefense() =>
             _animHandler.LowerDefence();
 
-        public void Attack(PlayerMovement.Direction direction) =>
+        public void Attack(Direction direction) =>
             _animHandler.Attack(_weaponHandler.Weapon.CurrentType, direction);
 
         public bool LoseStamina(float stamina)

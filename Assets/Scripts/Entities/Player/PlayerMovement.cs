@@ -4,12 +4,14 @@ namespace Assets.Scripts.Entities.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        #region Variables
+
         public int MovementSpeed = 6;
         public int CameraSpeed = 10;
         public int MaxCameraPitch = 90;
 
         public float Pitch;
-        public GameObject Camera; // TODO Change to Head object
+        public GameObject Camera;
 
         private float _seconds;
         private readonly float _fireDelay = 1.0f; // Seconds to wait
@@ -22,25 +24,31 @@ namespace Assets.Scripts.Entities.Player
 
         private bool _holdMouseDown;
         private bool _holdSecondMouseDown;
-        public enum Direction { RIGHT, UP_RIGHT, UP, UP_LEFT, LEFT, DOWN, CENTER };
-        private Vector2 _mousePosCenter;
+
+        public Vector2 MouseDirection;
+        private static Vector2 ScreenCenter;
 
         public GameObject SwordIndication;
         public GameObject ShieldIndication;
         public bool DebugMode = false;
 
         private bool _lShiftDown;
+
         // Speed amplifier when the shift key is down.
         public float MovementAmp = 1.6f;
 
+        #endregion
+
         void Start()
         {
-            _mousePosCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20); // +20 because unity is 20 off with mouse pos
             _animHandler = GetComponent<AnimationHandler>();
             _rigidBody = GetComponent<Rigidbody>();
             _entity = GetComponent<Entity>();
             _fireTimestamp = Time.realtimeSinceStartup + _fireDelay;
             Cursor.lockState = CursorLockMode.Locked;
+
+            //y +20 because unity is 20 off with vertical mouse pos            
+            ScreenCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20);
         }
 
         void Update()
@@ -52,11 +60,9 @@ namespace Assets.Scripts.Entities.Player
         }
 
         /// <summary>
-        /// Checks if the player is holding down the shift key to sprint.
-        /// Moreover it will speed up the running animation when the player
-        /// is holding down the shift key.
+        /// Checks if the player is holding down the shift key to sprint
         /// </summary>
-        /// <returns>The movement speed if whilst keeping sprinting in account.</returns>
+        /// <returns>new movement speed</returns>
         private float HandleSprinting()
         {
             float movementSpeed = MovementSpeed;
@@ -115,8 +121,7 @@ namespace Assets.Scripts.Entities.Player
 
             //Player rotation
             transform.eulerAngles = transform.eulerAngles - playerRotation;
-
-
+            
             Pitch = Mathf.Clamp(Pitch, -MaxCameraPitch, MaxCameraPitch);
             Camera.transform.localEulerAngles = new Vector3(-Pitch, Camera.transform.localEulerAngles.y, Camera.transform.localEulerAngles.z);
         }
@@ -124,8 +129,9 @@ namespace Assets.Scripts.Entities.Player
         /// <summary>
         /// Checks whether the left mouse button is pressed and attacks
         /// </summary>
-        private void UpdateAttack() // update attack function, which checks for attacks and what direction
+        private void UpdateAttack()
         {
+            //If there is already an attack animation, return
             if (_animHandler.IsAnimationRunning("attack"))
                 return;
 
@@ -134,8 +140,6 @@ namespace Assets.Scripts.Entities.Player
                 _holdMouseDown = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = false;
-                if (DebugMode)
-                    SwordIndication.transform.position = _mousePosCenter;
             }
 
             if (Input.GetMouseButtonUp(0) && _holdMouseDown && _entity.LoseStamina(10))// normal attack cost 10 stamina
@@ -144,43 +148,17 @@ namespace Assets.Scripts.Entities.Player
 
                 _holdMouseDown = false;
                 Vector2 mousePos = Input.mousePosition;
-                var mousePosCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20); // +20 because unity is 20 off with mouse pos
-                var direction = WhichDirection4(mousePos, mousePosCenter);
+                var direction = WhichDirection4(mousePos);
 
+                MouseDirection = DirectionConverter.GetVectorFromDirection(direction);
                 _entity.Attack(direction);
-
-                if (DebugMode)
-                    ChangeCirclePosition(WhichDirection6(mousePos, _mousePosCenter), SwordIndication, 0f);
-                //We could change the attack functions to set the number of stamina in there of how much stamina it costs
             }
-        }
-
-        /// <summary>
-        /// Changes the position of the circle indication
-        /// </summary>
-        /// <param name="direction"></param>
-        /// <param name="swordOrShield"></param>
-        /// <param name="offside"></param>
-        private void ChangeCirclePosition(Direction direction, GameObject swordOrShield, float offside)
-        {
-            if (direction == Direction.DOWN)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 200 - offside);
-            else if (direction == Direction.LEFT)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x - 200, _mousePosCenter.y - offside);
-            else if (direction == Direction.UP_LEFT)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x - 200, _mousePosCenter.y + 200 - offside);
-            else if (direction == Direction.UP)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y + 200 - offside);
-            else if (direction == Direction.UP_RIGHT)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x + 200, _mousePosCenter.y + 200 - offside);
-            else if (direction == Direction.RIGHT)
-                swordOrShield.transform.position = new Vector2(_mousePosCenter.x + 200, _mousePosCenter.y - offside);
         }
 
         /// <summary>
         /// Checks wheter the right mouse button was pressed and defends
         /// </summary>
-        private void UpdateShield() // update attack function, which checks for attacks and what direction
+        private void UpdateShield()
         {
             //check if mouse was raised previous frame
             if (_holdSecondMouseDown == false)
@@ -191,7 +169,8 @@ namespace Assets.Scripts.Entities.Player
                     _seconds = 0f;
             }
 
-            if (Input.GetMouseButtonDown(1)) // if mouse button is pressed
+            // if the left mouse button is pressed
+            if (Input.GetMouseButtonDown(1))
             {
                 if (_entity.LoseStamina(_seconds * 2f))
                     _entity.RaiseDefense();
@@ -202,21 +181,12 @@ namespace Assets.Scripts.Entities.Player
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = false;
-
-
-                if (DebugMode)
-                    ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
             }
 
             if (_holdSecondMouseDown) //if mouse still down
             {
-                if (!_entity.UsingStamina.Contains("blocking"))
+                if (_entity.UsingStamina.Contains("blocking") == false)
                     _entity.UsingStamina.Add("blocking");
-                Vector2 mousePos = Input.mousePosition;
-                var mousePosCenter = new Vector2(Screen.width / 2f, (Screen.height / 2f) + 20); // +20 because unity is 20 off with mouse pos
-
-                if (DebugMode)
-                    ChangeCirclePosition(WhichDirection4(mousePos, _mousePosCenter), ShieldIndication, 40f);
 
                 // If absolute time is later than the timestamp, we know 1 seconds have passed
                 if (Time.realtimeSinceStartup > _fireTimestamp)
@@ -227,19 +197,17 @@ namespace Assets.Scripts.Entities.Player
 
                     _seconds++;
                     float blockStaminaLoss = _seconds * factor;
-                    if (!_entity.LoseStamina((int)blockStaminaLoss))
+                    if (_entity.LoseStamina((int)blockStaminaLoss) == false)
                     {
                         EndShield();
                         return;
                     }
-
                 }
             }
 
-            if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown)//if mouse not down
-            {
+            //if the mouse is up    
+            if (Input.GetMouseButtonUp(1) && _holdSecondMouseDown)
                 EndShield();
-            }
         }
 
         /// <summary>
@@ -251,22 +219,18 @@ namespace Assets.Scripts.Entities.Player
             _entity.UsingStamina.Remove("blocking");
             _holdSecondMouseDown = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            if (DebugMode)
-                ShieldIndication.transform.position = new Vector2(_mousePosCenter.x, _mousePosCenter.y - 40);
         }
 
         /// <summary>
         /// Checks which direction the mouse is for sword movement
         /// </summary>
         /// <param name="newPos"></param>
-        /// <param name="mousePosCenter"></param>
         /// <returns></returns>
-        private static Direction WhichDirection6(Vector2 newPos, Vector2 mousePosCenter) // Function  to check direction
+        private static Direction WhichDirection6(Vector2 newPos)
         {
             const float radius = 40; // the radius of the center
-            float diffx = newPos.x - mousePosCenter.x; // check distance between mouse x and center
-            float diffy = newPos.y - mousePosCenter.y; // check distance between mouse y and center
+            float diffx = newPos.x - ScreenCenter.x; // distance between mouse x and center
+            float diffy = newPos.y - ScreenCenter.y; // distance between mouse y and center
 
             if (diffx > radius && diffy < radius && diffy > -radius)
                 return Direction.RIGHT;                   //                                    ----------------
@@ -288,13 +252,12 @@ namespace Assets.Scripts.Entities.Player
         /// Checks wich direction the mouse points to
         /// </summary>
         /// <param name="newPos"></param>
-        /// <param name="mousePosCenter"></param>
         /// <returns></returns>
-        private static Direction WhichDirection4(Vector2 newPos, Vector2 mousePosCenter) // Function  to check direction
+        private static Direction WhichDirection4(Vector2 newPos)
         {
             float radius = 40; // the radius of the center
-            float diffx = newPos.x - mousePosCenter.x; // check distance between mouse x and center
-            float diffy = newPos.y - mousePosCenter.y; // check distance between mouse y and center
+            float diffx = newPos.x - ScreenCenter.x; // check distance between mouse x and center
+            float diffy = newPos.y - ScreenCenter.y; // check distance between mouse y and center
 
             //      -------------
             //      | \   U   / |
@@ -333,6 +296,33 @@ namespace Assets.Scripts.Entities.Player
                 return Direction.RIGHT;
 
             return Direction.CENTER;
+        }
+    }
+
+    public enum Direction { RIGHT, UP_RIGHT, UP, UP_LEFT, LEFT, DOWN, CENTER };
+
+    public class DirectionConverter
+    {
+        /// <summary>
+        /// Gets a vector from the given direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public static Vector2 GetVectorFromDirection(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.LEFT: return new Vector2(-1, 0);
+                case Direction.RIGHT: return new Vector2(1, 0);
+
+                case Direction.UP_LEFT: return new Vector2(-1, 1);
+                case Direction.UP_RIGHT: return new Vector2(1, 1);
+
+                case Direction.UP: return new Vector2(0, 1);
+                case Direction.DOWN: return new Vector2(-1, -1);
+
+                default: return new Vector2(0, 0);
+            }
         }
     }
 }
